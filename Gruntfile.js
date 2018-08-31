@@ -9,12 +9,12 @@ module.exports = function( grunt ) {
 					sourcemap: 'none',
 					includePaths: require( 'node-bourbon' ).includePaths
 				},
-				files: [ {"build/style.css":"build/style.scss","build/rtl.css":"build/rtl.scss"} ]
+				files: [ {"style.css":"style.scss","rtl.css":"rtl.scss"} ]
 			}
 		},
 		watch: {
 			sass: {
-				files: ["build/stylesheets/inc/*.scss","build/stylesheets/*.scss","build/*.scss"],
+				files: ["stylesheets/inc/*.scss","stylesheets/*.scss","*.scss"],
 				tasks: [
 					'sass'
 				]
