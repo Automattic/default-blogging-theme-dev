@@ -35,11 +35,11 @@
 }
 
 @mixin link-transition( $attr: color ) {
-	transition: $attr 110ms ease-in-out;
+	transition: $attr $link_transition ease-in-out;
 }
 
 @mixin svg-transition() {
-	transition: fill 120ms ease-in-out;
+	transition: fill $icon_transition ease-in-out;
 }
 
 @mixin remove-child-margins() {
