@@ -27,7 +27,7 @@
 	}
 	
 	.entry-title {
-		@include font-size(26px);
+		@include font-size( 26px );
 		@include font-smoothing;
 		
 		font-family: $title_font;
@@ -36,13 +36,13 @@
 		line-height: 1.35;
 		
 		@include media( tablet ) {
-			@include font-size(36px);
+			@include font-size( 36px );
 			margin-bottom: 0.48em;
 			font-weight: 700;
 		}
 		
 		@include media( desktop ) {
-			@include font-size(46px);
+			@include font-size( 46px );
 			margin-bottom: 0.58em;
 		}
 		
@@ -69,7 +69,7 @@
 			}
 			
 			@include media( desktop ) {
-				@include font-size(24px);
+				@include font-size( 24px );
 				margin-bottom: 0.05em;
 			}
 			
@@ -85,7 +85,7 @@
 	}
 	
 	.entry-footer {
-		@include font-size(12px);
+		@include font-size( 12px );
 		@include font-smoothing;
 		
 		font-family: $title_font;
@@ -94,7 +94,7 @@
 		margin-top: 1.5em;
 		
 		@include media( tablet ) {
-			@include font-size(13px);
+			@include font-size( 13px );
 		}
 		
 		> span {

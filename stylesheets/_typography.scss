@@ -35,9 +35,9 @@ address {
 }
 
 pre {
+	@include font-size( 15px );
 	background: #eee;
 	font-family: $monospace_font;
-	font-size: 15px;
 	font-size: 0.9375rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
@@ -47,8 +47,8 @@ pre {
 }
 
 code, kbd, tt, var {
+	@include font-size( 15px );
 	font-family: $monospace_font;
-	font-size: 15px;
 	font-size: 0.9375rem;
 }
 
