@@ -1,0 +1,26 @@
+{
+  "name": "independent-publisher-3",
+  "title": "Independent Publisher 3",
+  "description": "Gutenberg-ready blogging theme for WordPress.com",
+  "version": "1.0.0",
+  "license": "GPL-2.0+",
+  "main": "Gruntfile.js",
+  "devDependencies": {
+    "colors": "~1.1.2",
+    "glob": "~7.1.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-copy": "~0.8.0",
+    "grunt-contrib-less": "~1.4.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-sass": "~1.0.0",
+    "minimist": "~1.2.0",
+    "node-bourbon": "~4.2.3",
+    "node-sass": "~4.5.0",
+    "susy": "~2.2.5",
+    "twig": "^0.10.3"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.1.0"
+  }
+}
