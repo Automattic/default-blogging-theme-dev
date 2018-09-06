@@ -10,3 +10,12 @@
 		padding-top: 80px;
 	}
 }
+
+%site-branding-flex {
+	@include media( tablet ) {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+	}
+}

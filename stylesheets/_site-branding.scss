@@ -15,6 +15,10 @@ body.single .site-header {
 	@extend %page-wrapper-padding;
 	
 	margin: 0;
+	
+	.layout-wrap {
+		@extend %site-branding-flex;
+	}
 }
 
 .site-branding {
