@@ -50,6 +50,6 @@ add_action( 'after_setup_theme', 'ip3_jetpack_setup' );
 function ip3_infinite_scroll_render() {
 	while ( have_posts() ) {
 		the_post();
-		get_template_part( 'template-parts/content' );
+		get_template_part( 'template-parts/post/content' );
 	}
 }

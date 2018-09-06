@@ -47,3 +47,10 @@ add_action( 'wp_head', 'ip3_pingback_header' );
 function ip3_image_filters_enabled() {
 	return true;
 }
+
+/**
+ * Returns true if it's the front page or home page.
+ */
+function ip3_is_home() {
+	return is_home() || is_front_page();
+}

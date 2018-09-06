@@ -24,13 +24,13 @@ get_header();
 		// Load posts loop.
 		while ( have_posts() ) {
 			the_post();
-			get_template_part( 'template-parts/content' );
+			get_template_part( 'template-parts/post/content' );
 		}
 
 	} else {
 
 		// If no content, include the "No posts found" template.
-		get_template_part( 'template-parts/content', 'none' );
+		get_template_part( 'template-parts/post/content', 'none' );
 
 	}
 ?>
