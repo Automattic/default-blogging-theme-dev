@@ -1,0 +1,12 @@
+
+%page-wrapper-padding {
+	padding-top: 20px;
+
+	@include media( tablet ) {
+		padding-top: 40px;
+	}
+	
+	@include media( desktop ) {
+		padding-top: 80px;
+	}
+}

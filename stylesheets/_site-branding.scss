@@ -11,6 +11,12 @@
 
 }
 
+body.single .site-header {
+	@extend %page-wrapper-padding;
+	
+	margin: 0;
+}
+
 .site-branding {
 	padding-top: 0.2em;
 	letter-spacing: -0.02em;

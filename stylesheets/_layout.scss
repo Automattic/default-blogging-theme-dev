@@ -6,34 +6,7 @@
 }
 
 #page-wrapper {
-	padding-top: 20px;
-	border: solid transparent;
-	border-width: 0 $side_padding;
-	max-width: 425px;
-	margin: 0 auto;
-	width: 100%;
-	
-	@include media( tablet ) {
-		display: flex;
-		flex-wrap: nowrap;
-		justify-content: flex-start;
-		align-items: stretch;
-		max-width: $tablet_width;
-		padding-top: 40px;
-		
-		body.single & {
-			padding-top: 0;
-		}
-	}
-	
-	@include media( desktop ) {
-		max-width: $desktop_width;
-		padding-top: 80px;
-	}
-	
-	@include media( wide ) {
-		max-width: $wide_width;
-	}
+	@extend %page-wrapper-padding;
 }
 
 #primary {
@@ -47,11 +20,41 @@
 	@include media( tablet ) {
 		border-right: solid $logo_wrapper_width_tablet transparent; // rgba( red, 0.5);
 		width: calc( 100% - 2*#{$logo_wrapper_width_tablet} );
+		body.single & {
+			margin-left: $logo_wrapper_width_tablet;
+		}
 	}
 	
 	@include media( desktop ) {
 		border-right: solid $logo_wrapper_width_desktop transparent; // rgba( red, 0.5);
 		width: calc( 100% - 2*#{$logo_wrapper_width_desktop} );
+		body.single & {
+			margin-left: $logo_wrapper_width_desktop;
+		}
+	}
+}
+
+.layout-wrap {
+	border: solid transparent;
+	border-width: 0 $side_padding;
+	max-width: 425px;
+	margin: 0 auto;
+	width: 100%;
+	
+	@include media( tablet ) {
+		display: flex;
+		flex-wrap: nowrap;
+		justify-content: flex-start;
+		align-items: stretch;
+		max-width: $tablet_width;
+	}
+	
+	@include media( desktop ) {
+		max-width: $desktop_width;
+	}
+	
+	@include media( wide ) {
+		max-width: $wide_width;
 	}
 }
 

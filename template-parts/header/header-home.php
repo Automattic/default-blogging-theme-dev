@@ -1,4 +1,4 @@
-<div id="page-wrapper">
+<div id="page-wrapper" class="layout-wrap">
 
 <?php if ( has_custom_logo() ) : ?>
 	<div class="site-logo"><?php the_custom_logo(); ?></div>
