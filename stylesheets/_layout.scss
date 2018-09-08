@@ -7,7 +7,14 @@
 
 #page-wrapper {
 	@extend %page-wrapper-padding;
-	@extend %site-branding-flex;
+	
+	body.home & {
+		@extend %site-branding-flex;
+	}
+	
+	body.single & {
+		padding-top: 1.2em;
+	}
 }
 
 #primary {

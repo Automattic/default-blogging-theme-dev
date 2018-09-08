@@ -262,6 +262,10 @@ body.single .site-header {
 					display: block;
 					line-height: 1;
 					
+					&#ui-icon-link {
+						transform: rotate(-45deg);
+					}
+					
 					&:hover {
 						fill: $blue;
 					}
@@ -309,4 +313,9 @@ body.single .site-header {
 			color: $blue;
 		}
 	}
+}
+
+body.single .singular-post-meta {
+	@extend %entry-header;
+	margin-top: 3.5em;
 }

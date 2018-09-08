@@ -64,15 +64,21 @@ class Independent_Publisher_3_SVG_Icons {
 	 * User Interface icons – svg sources.
 	 */
 	static $ui_icons = array(
-		'question' => /* genericons-help */ '
-<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<rect x="0" fill="none" width="16" height="16"/>
-	<path d="M8 2C4.7 2 2 4.7 2 8s2.7 6 6 6 6-2.7 6-6-2.7-6-6-6zm0 10c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1.5-3.5c-.7.2-.7.6-.7.7H7.2c0-1 .6-1.8 1.8-2.2.7-.2.7-.7.7-.8 0-.4-.3-.8-.8-.8H7c-.4 0-.8.3-.8.8H4.8C4.8 5 5.8 4 7 4h2c1.2 0 2.2 1 2.2 2.2 0 1.1-.6 1.9-1.7 2.3z"/>
+		'link' => /* material-design – link */ '
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none"/>
+    <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
 </svg>',
-		'link' => /* genericons-link */ '
-<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<rect x="0" fill="none" width="16" height="16"/>
-	<path d="M13 4h-3c-1.1 0-2 .9-2 2v.8H7V6c0-1.1-.9-2-2-2H2C.9 4 0 4.9 0 6v3c0 1.1.9 2 2 2h3c1.1 0 2-.9 2-2v-.8h1V9c0 1.1.9 2 2 2h3c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zM5.5 9c0 .3-.2.5-.5.5H2c-.3 0-.5-.2-.5-.5V6c0-.3.2-.5.5-.5h3c.3 0 .5.2.5.5v.8H5c-.4 0-.8.3-.8.8s.4.6.8.6h.5V9zm8 0c0 .3-.2.5-.5.5h-3c-.3 0-.5-.2-.5-.5v-.8h.5c.4 0 .8-.3.8-.8s-.4-.6-.8-.6h-.5V6c0-.3.2-.5.5-.5h3c.3 0 .5.2.5.5v3z"/>
+
+		'watch' => /* material-design – watch-later */ '
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <path id="a" d="M0 0h24v24H0V0z"/>
+    </defs>
+    <clipPath id="b">
+        <use xlink:href="#a" overflow="visible"/>
+    </clipPath>
+    <path clip-path="url(#b)" d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
 </svg>',
 
 		'archive' => /* material-design – folder */ '

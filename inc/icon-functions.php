@@ -40,7 +40,7 @@ function ip3_nav_menu_social_icons( $item_output, $item, $depth, $args ) {
 	if ( 'social' === $args->theme_location ) {
 		$svg = ip3_get_social_link_svg( $item->url, 26 );
 		if ( empty( $svg ) ) {
-			$svg = ip3_get_icon_svg( 'question' );
+			$svg = ip3_get_icon_svg( 'link' );
 		}
 		$item_output = str_replace( $args->link_after, '</span>' . $svg, $item_output );
 	}

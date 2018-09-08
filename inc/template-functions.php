@@ -48,9 +48,8 @@ function ip3_image_filters_enabled() {
 	return true;
 }
 
-/**
- * Returns true if it's the front page or home page.
- */
-function ip3_is_home() {
-	return is_home() || is_front_page();
+function ip3_get_estimated_reading_time() {
+	$content = get_post_field( 'post_content', get_the_ID() );
+	$count = str_word_count( strip_tags( $content ) );
+	return (int) round( $count / 250 ); // Assuming 250 words per minute reading speed.
 }

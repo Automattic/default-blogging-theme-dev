@@ -24,8 +24,7 @@
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
 
-		</div><!-- #content -->
-	</div><!-- #page-wrapper -->
+	<?php get_template_part( 'template-parts/footer/footer', is_singular() ? 'singular' : 'home' ); ?>
 
 </div><!-- #page -->
 
