@@ -8,7 +8,7 @@
 	@include media( tablet ) {
 		margin-bottom: 4.8em;
 	}
-
+	
 }
 
 body.single .site-header {
@@ -19,6 +19,46 @@ body.single .site-header {
 	.layout-wrap {
 		@extend %site-branding-flex;
 	}
+	
+	&:not(.cover-image) {
+		margin-bottom: 3.5em;
+		
+		@include media( desktop ) {
+			margin-bottom: 5em;
+		}
+	}
+	
+	.singular-post-meta {
+		@extend %entry-header;
+
+		margin-top: 3.5em;
+	}
+	
+}
+
+body.single .site-main > .hentry:not(.has-post-thumbnail) {
+
+	&:before {
+		@extend %hentry-line-pseudo-before;
+		margin-bottom: 1em;
+		
+		@include media( desktop ) {
+			width: 58px;
+		}
+	}
+
+	.entry-header {
+		margin-bottom: 1.1em;
+		
+		@include media( tablet ) {
+			margin-bottom: 1.8em;
+		}
+		
+		@include media( desktop ) {
+			margin-bottom: 2.1em;
+		}
+	}
+
 }
 
 .site-branding {
@@ -313,9 +353,4 @@ body.single .site-header {
 			color: $blue;
 		}
 	}
-}
-
-body.single .singular-post-meta {
-	@extend %entry-header;
-	margin-top: 3.5em;
 }

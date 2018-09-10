@@ -32,40 +32,67 @@
 %entry-header {
 	.posted-on {
 		@include font-size( 15px );
+		
+		@include media( tablet ) {
+			@include font-size( 18px );
+		}
+		
+		@include media( desktop ) {
+			@include font-smoothing;
+			@include font-size( 26px );
+		}
 	}
-	
+
 	.entry-title {
 		@include font-size( 25px );
 		font-family: $title_font;
 		margin: 0.1em 0 0 0;
-	}
-	
-	.content-wrap {
+		font-weight: bold;
+		line-height: 1.25;
 		
-		&:before {
-			@extend %hentry-line-pseudo-before;
+		@include media( tablet ) {
+			@include font-size( 36px );
 		}
 		
+		@include media( desktop ) {
+			@include font-size( 48px );
+			letter-spacing: -0.02em;
+			line-height: 1.15;
+			word-spacing: 0.05em;
+		}
 	}
 	
-	.meta-info {
-		@extend %entry-footer;
-		margin-top: 0.6em;
+	.content-wrap &:before {
+		@extend %hentry-line-pseudo-before;
 	}
+	
 }
 
-%entry-footer {
-	@include font-size( 12px );
+.entry-header .meta-info,
+.singular-post-meta .meta-info {
+	@extend %entry-footer-style;
 	@include font-smoothing;
-	
-	font-family: $title_font;
-	font-weight: 500;
-	color: lighten($light_text, 0%);
-	margin-top: 1.5em;
+	@include font-size( 12px );
+	margin-top: 0.5em;
+
+	> span {
+		font-weight: 600;
+	}
 	
 	@include media( tablet ) {
 		@include font-size( 13px );
+		margin-top: 1.15em;
 	}
+	
+	@include media( desktop ) {
+		@include font-size( 14px );
+	}
+}
+
+%entry-footer-style {
+	font-family: $title_font;
+	font-weight: 500;
+	color: lighten($light_text, 0%);
 	
 	> span {
 		$hmargin: 1.35em;
@@ -129,4 +156,17 @@
 			transform: scale(0.9);
 		}
 	}
+}
+
+%entry-footer {
+	@include font-size( 12px );
+	@include font-smoothing;
+	
+	margin-top: 1.5em;
+	
+	@include media( tablet ) {
+		@include font-size( 13px );
+	}
+	
+	@extend %entry-footer-style;
 }
