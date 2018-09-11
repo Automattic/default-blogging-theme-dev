@@ -1,11 +1,6 @@
 
 /** === Site Branding === */
 
-/** TODO: 
- *
- * - Provide background image from PHP, on <style> tag on `wp_head` action
- */
-
 .site-header {
 
 	margin-bottom: 3.5em;
@@ -167,7 +162,6 @@ body.single .site-header.cover-image {
 	/* First layer: grayscale. */
 	.site-branding-container:before {
 		@extend %background-settings;
-		background-image: url(http://ip3.local/wp-content/uploads/2018/08/camera.png);
 		filter: grayscale(100%);
 		z-index: 1;
 	}

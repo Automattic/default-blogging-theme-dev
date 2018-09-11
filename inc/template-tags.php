@@ -140,7 +140,7 @@ if ( ! function_exists( 'ip3_post_thumbnail' ) ) :
 	 * element when on single views.
 	 */
 	function ip3_post_thumbnail() {
-		if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+		if ( ! ip3_can_show_post_thumbnail() ) {
 			return;
 		}
 
@@ -169,5 +169,15 @@ if ( ! function_exists( 'ip3_post_thumbnail' ) ) :
 
 		<?php
 		endif; // End is_singular().
+	}
+endif;
+
+if ( ! function_exists( 'ip3_header_cover_image_css' ) ) :
+	/**
+	 * Documentation for function.
+	 */
+	function ip3_header_cover_image_css() {
+		$img_url = get_the_post_thumbnail_url( get_the_ID(), 'post-thumbnail' );
+		return sprintf( 'body.single .site-header.cover-image .site-branding-container:before { background-image: url(%s); }', esc_url( $img_url ) );
 	}
 endif;

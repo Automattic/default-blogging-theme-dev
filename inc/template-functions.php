@@ -1,6 +1,6 @@
 <?php
 /**
- * Functions which enhance the theme by hooking into WordPress
+ * Functions which enhance the theme by hooking into WordPress.
  *
  * @package Independent_Publisher_3
  */
@@ -42,14 +42,24 @@ function ip3_pingback_header() {
 add_action( 'wp_head', 'ip3_pingback_header' );
 
 /**
- * Returns true if image filters are enabled on the theme options.
+ * Determines if post thumbnail can be displayed.
  */
-function ip3_image_filters_enabled() {
-	return true;
+function ip3_can_show_post_thumbnail() {
+	return ! post_password_required() && ! is_attachment() && has_post_thumbnail();
 }
 
+/**
+ * Determines the estimated time to read a post, in minutes.
+ */
 function ip3_get_estimated_reading_time() {
 	$content = get_post_field( 'post_content', get_the_ID() );
 	$count = str_word_count( strip_tags( $content ) );
 	return (int) round( $count / 250 ); // Assuming 250 words per minute reading speed.
+}
+
+/**
+ * Returns true if image filters are enabled on the theme options.
+ */
+function ip3_image_filters_enabled() {
+	return true;
 }
