@@ -57,8 +57,10 @@
 		max-width: $desktop_width;
 	}
 	
-	@include media( wide ) {
-		max-width: $wide_width;
+	body:not(.single) & {
+		@include media( wide ) {
+			max-width: $wide_width;
+		}
 	}
 }
 

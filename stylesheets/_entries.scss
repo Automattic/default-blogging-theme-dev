@@ -122,8 +122,10 @@
 	}
 	
 	.entry-header, .entry-content, .entry-footer {
-		@include media( wide ) {
-			max-width: $tablet_width;
+		body:not(.single) & {
+			@include media( wide ) {
+				max-width: $tablet_width;
+			}
 		}
 	}
 	
