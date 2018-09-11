@@ -11,16 +11,8 @@
 	
 	body:not(.single) &:before {
 		@extend %hentry-line-pseudo-before;
-
-		@include media( tablet ) {
-			width: 2em;
-		}
-		
-		@include media( desktop ) {
-			width: 2.8em;
-		}
 	}
-	
+
 	.entry-title {
 		@include font-size( 26px );
 		@include font-smoothing;
@@ -28,7 +20,7 @@
 		font-family: $title_font;
 		font-weight: 600;
 		margin: 0 0 0.7em 0;
-		line-height: 1.35;
+		line-height: 1.2;
 		
 		@include media( tablet ) {
 			@include font-size( 36px );
@@ -110,20 +102,9 @@
 			display: block;
 
 			.post-thumbnail-inner {
-				position: relative;
-				
-				filter: grayscale(100%);
-				z-index: 1;
-				
-				&:after {
-					display: block;
-					width: 100%;
-					height: 100%;
-					background: green;
-					z-index: 10;
-				}
+				@extend %filter-grayscale;
 			}
-		
+			
 			&:before, &:after {
 				position: absolute;
 				display: block;
@@ -134,19 +115,7 @@
 				display: block;
 			}
 		
-			&:before {
-				background: $blue;
-				mix-blend-mode: screen;
-				opacity: 0.1;
-				z-index: 2;
-			}
-		
-			&:after {
-				background: $blue;
-				mix-blend-mode: multiply;
-				opacity: 1;
-				z-index: 3;
-			}
+			@extend %filter-duotone;
 		
 		}
 	

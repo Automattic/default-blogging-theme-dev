@@ -1,4 +1,33 @@
 
+%filter-grayscale {
+	position: relative;
+	filter: grayscale(100%);
+	z-index: 1;
+	
+	&:after {
+		display: block;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+	}
+}
+
+%filter-duotone {
+	&:before {
+		background: $blue;
+		mix-blend-mode: screen;
+		opacity: 0.1;
+		z-index: 2;
+	}
+
+	&:after {
+		background: $blue;
+		mix-blend-mode: multiply;
+		opacity: 1;
+		z-index: 3;
+	}
+}
+
 %page-wrapper-padding {
 	padding-top: 20px;
 
@@ -27,6 +56,14 @@
 	height: 2px;
 	background: lighten($text_color, 50%);
 	margin-bottom: 1.3em;
+	
+	@include media( tablet ) {
+		width: 2em;
+	}
+	
+	@include media( desktop ) {
+		width: 2.8em;
+	}
 }
 
 %entry-header {
@@ -38,7 +75,6 @@
 		}
 		
 		@include media( desktop ) {
-			@include font-smoothing;
 			@include font-size( 26px );
 		}
 	}

@@ -1,6 +1,11 @@
 
 /** === Site Branding === */
 
+/** TODO: 
+ *
+ * - Provide background image from PHP, on <style> tag on `wp_head` action
+ */
+
 .site-header {
 
 	margin-bottom: 3.5em;
@@ -11,15 +16,19 @@
 	
 }
 
+/* Site header, singular item */
+
 body.single .site-header {
 	@extend %page-wrapper-padding;
 	
 	margin: 0;
 	
 	.layout-wrap {
-		@extend %site-branding-flex;
+		@extend %site-branding-flex; // Provides flexbox display properties.
 	}
 	
+
+	/* When header does not have a cover image */
 	&:not(.cover-image) {
 		margin-bottom: 3.5em;
 		
@@ -28,23 +37,15 @@ body.single .site-header {
 		}
 	}
 	
-	.singular-post-meta {
-		@extend %entry-header;
-
-		margin-top: 3.5em;
-	}
-	
 }
+
+/* Entry header, no post thumbnail */
 
 body.single .site-main > .hentry:not(.has-post-thumbnail) {
 
 	&:before {
 		@extend %hentry-line-pseudo-before;
 		margin-bottom: 1em;
-		
-		@include media( desktop ) {
-			width: 58px;
-		}
 	}
 
 	.entry-header {
@@ -60,6 +61,166 @@ body.single .site-main > .hentry:not(.has-post-thumbnail) {
 	}
 
 }
+
+/* Site header with cover image */
+
+body.single .site-header.cover-image {
+	
+	/* Need relative positioning to properly align layers. */
+	position: relative;
+	
+	/* Add text shadow to text, to increase readability. */
+	text-shadow: 0 1px 2px rgba(black, 0.35);
+	
+	@mixin bottom-sep($val) {
+		padding-bottom: $val;
+		margin-bottom: $val;
+	}
+	
+	/* Shared background settings between pseudo elements. */ 
+	%background-settings {
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
+	
+	/* Separations of header & content for each breakpoint. */
+	@include bottom-sep(1.2em);
+	
+	@include media( tablet ) {
+		@include bottom-sep(1.6em);
+	}
+	
+	@include media( desktop ) {
+		@include bottom-sep(3.15em);
+	}
+	
+	/* Set white text color when cover image is set. */
+	.site-branding .site-title,
+	.site-branding .site-description,
+	.main-navigation a,
+	.main-navigation a:after,
+	.main-navigation li {
+		color: white;
+	}
+	
+	/* Fill SVGs. */
+	.social-navigation svg {
+		fill: white;
+	}
+	
+	/* Post metadata */
+	.singular-post-meta {
+		@include font-smoothing;
+		@extend %entry-header;
+
+		margin-top: 3.8em;
+		
+		@include media( tablet ) {
+			margin-top: 5.5em;
+		}
+		
+		@include media( desktop ) {
+			margin-top: 6em;
+		}
+		
+		.content-wrap:before {
+			@extend %hentry-line-pseudo-before;
+			background: white;
+		}
+		
+		span,
+		.posted-on a,
+		.entry-title {
+			color: white;
+		}
+		svg {
+			fill: white;
+		}
+	}
+	
+	/* Make sure important elements are above pseudo elements used for effects. */
+	.site-logo,
+	.site-branding,
+	.singular-post-meta .content-wrap {
+		position: relative;
+		z-index: 10;
+	}
+	
+	.site-branding-container:before,
+	.site-branding-container:after,
+	.singular-post-meta:before,
+	.singular-post-meta:after,
+	&:after {
+		display: block;
+		position: absolute;
+		top: 0; left: 0;
+		content: "\020";
+		width: 100%;
+		height: 100%;
+	}
+	
+	@extend %background-settings;
+	
+	/* The intensity of each blend mode is controlled via layer opacity. */
+
+	/* First layer: grayscale. */
+	.site-branding-container:before {
+		@extend %background-settings;
+		background-image: url(http://ip3.local/wp-content/uploads/2018/08/camera.png);
+		filter: grayscale(100%);
+		z-index: 1;
+	}
+	
+	/* Second layer: screen. */
+	.singular-post-meta:before {
+		background: $blue;
+		mix-blend-mode: screen;
+		opacity: 0.1;
+		z-index: 2;
+	}
+	
+	/* Third layer: multiply. */
+	.singular-post-meta:after {
+		background: $blue;
+		mix-blend-mode: multiply;
+		opacity: 1;
+		z-index: 3;
+	}
+	
+	/* Fourth layer: overlay. */
+	.site-branding-container:after {
+		background: rgba(white, 0.35);
+		mix-blend-mode: overlay;
+		opacity: 0.5;
+		z-index: 4;
+	}
+	
+	/* Fifth layer: readability overlay */
+	&:after {
+		background: mix($blue, black, 12%);
+		
+		/**
+		 * Add a transition to the readability overlay, to add a subtle
+		 * but smooth effect when resizing the screen.
+		 */ 
+		transition: opacity 1200ms ease-in-out;
+
+		z-index: 5;
+		opacity: 0.38;
+		
+		@include media( tablet ) {
+			opacity: 0.18;
+		}
+		
+		@include media( desktop ) {
+			opacity: 0.1;
+		}
+	}
+
+}
+
+/* Site branding */
 
 .site-branding {
 	padding-top: 0.2em;
@@ -250,6 +411,8 @@ body.single .site-main > .hentry:not(.has-post-thumbnail) {
 
 }
 
+/* Social Navigation */
+
 .social-navigation {
 	margin-top: 0.6em;
 	text-align: center;
@@ -336,6 +499,8 @@ body.single .site-main > .hentry:not(.has-post-thumbnail) {
 	}
 	
 }
+
+/* Site footer */
 
 .site-footer {
 	@include font-smoothing;
