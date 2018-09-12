@@ -34,8 +34,11 @@
 		) );
 		?>
 	</div><!-- .entry-content -->
-
+	
 	<footer class="entry-footer">
 		<?php ip3_entry_footer(); ?>
 	</footer><!-- .entry-footer -->
+	
+	<?php get_template_part( 'template-parts/post/author', 'info' ); ?>
+
 </article><!-- #post-${ID} -->

@@ -119,6 +119,15 @@ body.single .site-header.cover-image {
 			margin-top: 6em;
 		}
 		
+		.content-wrap {
+			@include media( desktop ) {
+				max-width: $tablet_width;
+			}
+			@include media( wide ) {
+				max-width: 100%;
+			}
+		}
+		
 		.content-wrap:before {
 			@extend %hentry-line-pseudo-before;
 			background: white;
@@ -295,10 +304,8 @@ body.single .site-header.cover-image {
 			letter-spacing: -0.01em;
 		}
 		
-		body:not(.single) & {
-			@include media( wide ) {
-				@include font-size( 42px );
-			}
+		@include media( wide ) {
+			@include font-size( 42px );
 		}
 		
 		body.single & {

@@ -206,3 +206,36 @@
 	
 	@extend %entry-footer-style;
 }
+
+%description-dash {
+	display: inline-block;
+	content: "–";
+	transform: scaleX(1.8);
+	margin: 0 0.5em;
+	
+	@include media( tablet ) {
+		margin: 0 0.35em;
+	}
+	
+	@include media( desktop ) {
+		margin: 0 0.3em;
+	}
+}
+
+%post-section-dash {
+	display: block;
+	content: "\020";
+	background: $light_text;
+	margin: 0 0 1em 0;
+	width: 1.15em;
+	height: 2px;
+	
+	@include media( tablet ) {
+		width: 2em;
+		margin-bottom: 1.2em;
+	}
+	
+	@include media( desktop ) {
+		width: 2.8em;
+	}
+}

@@ -121,16 +121,21 @@
 	
 	}
 	
-	.entry-header, .entry-content, .entry-footer {
-		body:not(.single) & {
-			@include media( wide ) {
-				max-width: $tablet_width;
-			}
+	.entry-header, .entry-content, .entry-footer, .author-description {
+		@include media( desktop ) {
+			max-width: $tablet_width;
 		}
 	}
 	
 	.entry-content {
 		@include remove-child-margins;
+		@include font-smoothing;
+		
+		line-height: 1.6;
+		
+		@include media( desktop ) {
+			@include font-size( 20px );
+		}
 		
 		.more-link {
 			@include link-transition;
