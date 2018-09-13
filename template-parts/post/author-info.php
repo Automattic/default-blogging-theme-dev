@@ -1,3 +1,4 @@
+<?php if ( (bool) get_the_author_meta( 'description' ) ) : ?>
 <div class="author-description">
 	<h2 class="author-title">
 		<span class="author-heading"><?php _e( 'Published by', 'independent-publisher-3' ); ?></span>
@@ -10,3 +11,4 @@
 		</a>
 	</p><!-- .author-bio -->
 <div><!-- .author-description -->
+<?php endif; ?>
