@@ -1,0 +1,115 @@
+
+/** === Comments. === */
+
+.comments-area {
+	@include font-smoothing;
+	
+	.comments-title {
+		@extend %author-description-title;
+	}
+	
+}
+
+#respond {
+	.comment-user-avatar {
+		display: none;
+	}
+	
+	.comment-form-comment label[for="comment"]:first-child {
+		display: none;
+	}
+}
+
+.comment-list {
+	
+	margin: 2.2em 0 0 0;
+	padding: 0;
+	
+	.children {
+		margin: 0;
+		padding: 0;
+	}
+	
+	> .comment:first-child {
+		margin-top: 0;
+	}
+	
+}
+
+.comment {
+	margin-top: 2em;
+	
+	.comment-meta {
+		position: relative;
+		padding-left: 50px;
+	}
+	
+	.comment-author {
+//		position: relative;
+		margin: 0 0 -0.4em 0;
+		
+		img {
+			position: absolute;
+			width: $avatar_size_small;
+			height: $avatar_size_small;
+			box-shadow: 0 0 0 $avatar_border_small $text_color inset, 0 0 0 ($avatar_border_small + 1px) $text_color inset;
+			border-radius: 100%;
+			padding: $avatar_border_small;
+			top: 0;
+			left: 0;
+		}
+		
+		.fn {
+			@include font-size( 15px );
+
+			position: relative;
+			display: block;
+			font-family: $title_font;
+			font-weight: bold;
+			margin-bottom: -0.1em;
+			top: -0.18em;
+			
+			a {
+				@include link-transition;
+				color: inherit;
+				&:hover {
+					color: $darker_blue;
+					text-decoration: none;
+				}
+			}
+		}
+		
+	}
+	
+	.comment-metadata {
+		font-family: $title_font;
+
+		> a {
+			@include font-size( 13px );
+			@include link-transition;
+
+			position: relative;
+			font-weight: 500;
+			color: $light_text;
+			top: -0.05em;
+			
+			&:hover {
+				color: darken($light_text, 10%);
+				text-decoration: none;
+			}
+		}
+
+		.edit-link {
+			display: none;
+		}
+	}
+	
+	.comment-content {
+		@include font-size( 16px );
+		@include remove-child-margins();
+		
+		line-height: 1.7;
+		margin-top: 0.4em;
+	}
+	
+}

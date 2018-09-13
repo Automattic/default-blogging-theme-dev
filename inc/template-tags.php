@@ -174,10 +174,84 @@ endif;
 
 if ( ! function_exists( 'ip3_header_cover_image_css' ) ) :
 	/**
-	 * Documentation for function.
+	 * Returns the CSS for the header cover image background.
 	 */
 	function ip3_header_cover_image_css() {
 		$img_url = get_the_post_thumbnail_url( get_the_ID(), 'post-thumbnail' );
 		return sprintf( 'body.single .site-header.cover-image .site-branding-container:before { background-image: url(%s); }', esc_url( $img_url ) );
+	}
+endif;
+
+if ( ! function_exists( 'ip3_comment_avatar' ) ) :
+	/**
+	 * Returns the HTML markup to generate a user avatar.
+	 */
+	function ip3_get_user_avatar_markup( $id_or_email=null, $class=null ) {
+		if ( empty( $id_or_email ) ) {
+			$id_or_email = get_current_user_id();
+		}
+		
+		$classes = array( 'comment-author', 'vcard' );
+		
+		return sprintf( '<div class="comment-user-avatar comment-author vcard">%s</div>', get_avatar( $id_or_email, 60 ) );
+	}
+endif;
+
+if ( ! function_exists( 'ip3_human_time_diff' ) ) :
+/**
+ * Same as core's human_time_diff(), only in the "ago" context,
+ * which is different for some languages.
+ *
+ * @param int $from Unix timestamp from which the difference begins.
+ * @param int $to Optional Unix timestamp to end the time difference. Defaults to time() if not set.
+ * @return string Human readable time difference.
+ */
+	function ip3_human_time_diff( $from, $to = '' ) {
+		if ( empty( $to ) ) {
+			$to = time(); 
+		}
+
+		$diff = (int) abs( $to - $from );
+
+		if ( $diff < HOUR_IN_SECONDS ) {
+			$mins = round( $diff / MINUTE_IN_SECONDS );
+			if ( $mins <= 1 ) {
+				$mins = 1;
+			}
+			/* translators: min=minute */
+			$since = sprintf( _n( '%s min ago', '%s mins ago', $mins, 'independent-publisher-3' ), $mins );
+		} elseif ( $diff < DAY_IN_SECONDS && $diff >= HOUR_IN_SECONDS ) {
+			$hours = round( $diff / HOUR_IN_SECONDS );
+			if ( $hours <= 1 ) {
+				$hours = 1;
+			}
+			$since = sprintf( _n( '%s hour ago', '%s hours ago', $hours, 'independent-publisher-3' ), $hours );
+		} elseif ( $diff < WEEK_IN_SECONDS && $diff >= DAY_IN_SECONDS ) {
+			$days = round( $diff / DAY_IN_SECONDS );
+			if ( $days <= 1 ) {
+				$days = 1;
+			}
+			$since = sprintf( _n( '%s day ago', '%s days ago', $days, 'independent-publisher-3' ), $days );
+		} elseif ( $diff < 30 * DAY_IN_SECONDS && $diff >= WEEK_IN_SECONDS ) {
+			$weeks = round( $diff / WEEK_IN_SECONDS );
+			if ( $weeks <= 1 ) {
+				$weeks = 1;
+			}
+			$since = sprintf( _n( '%s week ago', '%s weeks ago', $weeks, 'independent-publisher-3' ), $weeks );
+		} elseif ( $diff < YEAR_IN_SECONDS && $diff >= 30 * DAY_IN_SECONDS ) {
+			$months = round( $diff / ( 30 * DAY_IN_SECONDS ) );
+			if ( $months <= 1 ) {
+				$months = 1;
+			}
+			$since = sprintf( _n( '%s month ago', '%s months ago', $months, 'independent-publisher-3' ), $months );
+		} elseif ( $diff >= YEAR_IN_SECONDS ) {
+			$years = round( $diff / YEAR_IN_SECONDS );
+			if ( $years <= 1 ) {
+				$years = 1;
+			}
+			$since = sprintf( _n( '%s year ago', '%s years ago', $years, 'independent-publisher-3' ), $years );
+		}
+
+		return $since;
 	}
 endif;

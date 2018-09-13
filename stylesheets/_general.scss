@@ -1,23 +1,6 @@
 
-$author_bio_vsep: 2.8em;
+$author_bio_vsep: 3.5em;
 $author_bio_vsep_reduction_factor: 0.6;
-
-%author-bio-font-common-styles {
-	@include font-size( 22px );
-	
-	@include media( tablet ) {
-		@include font-size( 27px );
-	}
-
-	@include media( desktop ) {
-		@include font-size( 36px );
-	}
-	
-	.author-link, .post-title {
-		font-size: 0.88em;
-	}
-	
-}
 
 .author-description {
 	@include font-smoothing;
@@ -29,18 +12,8 @@ $author_bio_vsep_reduction_factor: 0.6;
 	}
 	
 	h2.author-title {
-		@include font-size( 18.5px );
-		font-family: $title_font;
+		@extend %author-description-title;
 		display: inline;
-
-		@include media( tablet ) {
-			@include font-size( 25px );
-		}
-		
-		@include media( desktop ) {
-			@include font-size( 33px );
-		}
-		
 	}
 	
 	p.author-bio {

@@ -63,3 +63,7 @@ function ip3_get_estimated_reading_time() {
 function ip3_image_filters_enabled() {
 	return true;
 }
+
+function ip3_comment_template() {
+
+}

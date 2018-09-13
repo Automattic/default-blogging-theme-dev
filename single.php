@@ -20,11 +20,6 @@ get_header();
 			
 				get_template_part( 'template-parts/content/content', 'single' );
 
-				// If comments are open or we have at least one comment, load up the comment template.
-				if ( comments_open() || get_comments_number() ) {
-					// comments_template();
-				}
-
 				if ( is_singular( 'attachment' ) ) {
 					// Parent post navigation.
 					the_post_navigation(
@@ -44,6 +39,11 @@ get_header();
 								'<span class="post-title">%title</span>',
 						)
 					);
+				}
+				
+				// If comments are open or we have at least one comment, load up the comment template.
+				if ( comments_open() || get_comments_number() ) {
+					comments_template();
 				}
 
 			endwhile; // End of the loop.

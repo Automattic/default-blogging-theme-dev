@@ -232,10 +232,40 @@
 	
 	@include media( tablet ) {
 		width: 2em;
-		margin-bottom: 1.2em;
+		margin-bottom: 1.18em;
 	}
 	
 	@include media( desktop ) {
 		width: 2.8em;
+	}
+}
+
+%author-bio-font-common-styles {
+	@include font-size( 22px );
+	
+	@include media( tablet ) {
+		@include font-size( 27px );
+	}
+
+	@include media( desktop ) {
+		@include font-size( 36px );
+	}
+
+	.author-link, .post-title {
+		font-size: 0.88em;
+	}
+
+}
+
+%author-description-title {
+	@include font-size( 18.5px );
+	font-family: $title_font;
+
+	@include media( tablet ) {
+		@include font-size( 25px );
+	}
+	
+	@include media( desktop ) {
+		@include font-size( 33px );
 	}
 }

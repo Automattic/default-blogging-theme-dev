@@ -18,41 +18,31 @@
 if ( post_password_required() ) {
 	return;
 }
+
 ?>
 
 <div id="comments" class="comments-area">
 
 	<?php
+	
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) :
 		?>
-		<h2 class="comments-title">
-			<?php
-			$ip3_comment_count = get_comments_number();
-			if ( '1' === $ip3_comment_count ) {
-				printf(
-					/* translators: 1: title. */
-					esc_html__( 'One thought on &ldquo;%1$s&rdquo;', 'independent-publisher-3' ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			} else {
-				printf( // WPCS: XSS OK.
-					/* translators: 1: comment count number, 2: title. */
-					esc_html( _nx( '%1$s thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', $ip3_comment_count, 'comments title', 'independent-publisher-3' ) ),
-					number_format_i18n( $ip3_comment_count ),
-					'<span>' . get_the_title() . '</span>'
-				);
-			}
-			?>
-		</h2><!-- .comments-title -->
+		<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
 
-		<?php the_comments_navigation(); ?>
+		<?php comment_form( array(
+			'title_reply_before' => ip3_get_user_avatar_markup(),
+			'logged_in_as'       => null,
+			'title_reply'        => null,
+		) ); ?>
 
 		<ol class="comment-list">
 			<?php
 			wp_list_comments( array(
-				'style'      => 'ol',
-				'short_ping' => true,
+				'walker'      => new Independent_Publisher_3_Walker_Comment(),
+				'avatar_size' => 60,
+				'short_ping'  => true,
+				'style'       => 'ol',
 			) );
 			?>
 		</ol><!-- .comment-list -->
@@ -69,7 +59,6 @@ if ( post_password_required() ) {
 
 	endif; // Check for have_comments().
 
-	comment_form();
 	?>
 
 </div><!-- #comments -->

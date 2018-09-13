@@ -121,6 +121,11 @@ add_action( 'wp_enqueue_scripts', 'ip3_scripts' );
 require get_template_directory() . '/classes/class.ip3-svg-icons.php';
 
 /**
+ * Custom Comment Walker template.
+ */
+require get_template_directory() . '/classes/class.ip3-walker-comment.php';
+
+/**
  * Enhance the theme by hooking into WordPress.
  */
 require get_template_directory() . '/inc/template-functions.php';
