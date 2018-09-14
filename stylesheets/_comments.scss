@@ -22,6 +22,8 @@
 }
 
 #respond {
+	padding-top: 1px; // Stop margin spread, avoids jumpy elements.
+	
 	.comment-user-avatar {
 		display: none;
 	}
@@ -34,8 +36,8 @@
 .comment-list {
 	
 	margin: 2.2em 0 0 0;
+	padding: 0 0 0 0;
 	list-style: none;
-	padding: 0;
 	
 	.children {
 		margin: 0;
@@ -52,18 +54,23 @@
 	
 	> .comment:first-child {
 		margin-top: 0;
-		
-		> .children .children ul {
-			padding-left: 0 !important;
-		}
-		
 	}
 	
 }
 
 .comment {
 	position: relative;
-	margin-top: 2.6em;
+	margin-top: 1em;
+	line-height: 1;
+	
+	> #respond {
+		margin-top: -$comment_reply_line_height;
+	}
+	
+	> .comment-body {
+		/* Account for absolutely positioned `.comment .reply` element. */
+		padding-bottom: $comment_reply_line_height;
+	}
 	
 	@include media( tablet ) {
 		padding-left: $comment_avatar_padding_tablet;
@@ -93,15 +100,15 @@
 	.comment-author {
 		margin: 0 0 -0.4em 0;
 		
-		/* If we add the border using a regular CSS border, it won't look good since its edges
-		 * can look jagged due to lack of antialiasing. In this case, we are several layers of
-		 * box-shadow to add the border visually, which will render the border smoother. */
+		/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
+		 * since its edges can look jagged due to lack of antialiasing. In this case, we are several
+		 * layers of box-shadow to add the border visually, which will render the border smoother. */
 
 		@mixin box-shadow( $size ) {
 			box-shadow:
-				0 0 0 $size $text_color inset,         // Original border.
-				0 0 0 ($size + 1px) $text_color inset, // Antialiasing, inner edge.
-				0 0 1px 0 rgba( $text_color, 0.7 );  // Antialiasing, outer edge.
+				0 0 0 $size $text_color inset,         	// Original border.
+				0 0 0 ($size + 1px) $text_color inset, 	// Antialiasing, inner edge.
+				0 0 1px 0 rgba( $text_color, 0.7 );  	// Antialiasing, outer edge.
 		}
 		
 		@include media( tablet ) {
@@ -156,6 +163,8 @@
 	
 	.comment-metadata {
 		font-family: $title_font;
+		padding: 1px 0;
+		line-height: 1.6;
 		
 		@include media( tablet ) {
 			position: relative;
@@ -170,6 +179,11 @@
 			font-weight: 500;
 			color: $light_text;
 			vertical-align: middle;
+			line-height: 1;
+			
+			time {
+				vertical-align: middle;
+			}
 
 			&:hover {
 				color: darken($light_text, 10%);
@@ -197,6 +211,7 @@
 			@extend %edit-link-transition;
 			margin: 0 0.2em;
 			color: $light_text;
+			vertical-align: middle;
 		}
 
 		.edit-link {
@@ -216,7 +231,6 @@
 			}
 			
 			&:hover {
-				color: $blue;
 				svg {
 					fill: $blue;
 				}
@@ -224,6 +238,12 @@
 		}
 		
 		.comment-edit-link {
+			$padding: 1.4em;
+			
+			position: relative;
+			padding-left: $padding;
+			margin-left: -$padding;
+			z-index: 1;
 			
 			&:hover {
 				color: $blue;
@@ -237,13 +257,20 @@
 	
 	.comment-content {
 		@include font-size( 16px );
-		@include remove-child-margins();
+		@include remove-child-margins;
 		
 		line-height: 1.7;
-		margin-top: 0.4em;
+		margin-top: 0.5em;
+		padding-bottom: 0.5em;
 		
 		@include media( tablet ) {
+			@include font-size( 17px );
+		}
+		
+		@include media( desktop ) {
 			@include font-size( 18px );
+			padding-right: 80px;
+			padding-bottom: 1em;
 		}
 	}
 	
@@ -275,9 +302,13 @@
 	
 }
 
+/* The comment reply button needs to be absolutely positioned because
+ * it needs to be aligned with the "Cancel comment reply" link. */
+
 .comment .reply {
 	position: absolute;
 	margin-top: -0.2em;
+	line-height: $comment_reply_line_height;
 	right: 0;
 }
 
@@ -287,7 +318,7 @@
 	font-weight: 500;
 	
 	@include media( desktop ) {
-		@include font-size( 16px, rem );
+		@include font-size( 15px, rem );
 	}
 	
 	&:hover {
@@ -298,12 +329,21 @@
 	
 }
 
-.comment #respond {
-//	margin-top: -1.5em;
+#cancel-comment-reply-link {
+	position: relative;
+	top: -0.4em;
+	
+	@include media( desktop ) {
+		top: -0.38em;
+	}
 }
 
 .comment-navigation {
 	margin-top: 1.2em;
+	
+	@include media( tablet ) {
+		margin-top: 2.4em;
+	}
 	
 	.nav-links {
 		
@@ -322,17 +362,22 @@
 	.nav-previous, .nav-next {
 		min-width: 50%;
 		width: 100%;
-
-		span, svg {
-			vertical-align: middle;
+		
+		.secondary-text {
+			display: none;
+			
+			@include media( tablet ) {
+				display: inline;
+			}
 		}
-
+		
 		svg {
 			@include svg-transition;
+			vertical-align: middle;
 			position: relative;
 			fill: $light_text;
 			margin: 0 -0.35em;
-			top: 1px;
+			top: -1px;
 		}
 		
 		a {
@@ -346,10 +391,6 @@
 				}
 			}
 		}
-	}
-	
-	.nav-previous {
-		
 	}
 	
 	.nav-next {

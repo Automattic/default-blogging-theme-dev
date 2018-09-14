@@ -50,10 +50,11 @@ if ( post_password_required() ) {
 		
 		$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
 		$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
+		$comments_text = __( 'Comments', 'independent-publisher-3' );
 		
 		the_comments_navigation( array(
-			'prev_text' => sprintf( '%s <span class="nav-prev-text">%s</span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ) ),
-			'next_text' => sprintf( '<span class="nav-next-text">%s</span> %s', __( 'Next', 'independent-publisher-3' ), $next_icon ),
+			'prev_text' => sprintf( '%s <span class="nav-prev-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ) ),
+			'next_text' => sprintf( '<span class="nav-next-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span> %s', __( 'Next', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ), $next_icon ),
 		) );
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
