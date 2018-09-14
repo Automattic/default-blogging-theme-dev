@@ -227,16 +227,16 @@
 	content: "\020";
 	background: $light_text;
 	margin: 0 0 1em 0;
-	width: 1.15em;
+	width: 1.15rem;
 	height: 2px;
 	
 	@include media( tablet ) {
-		width: 2em;
-		margin-bottom: 1.18em;
+		width: 2rem;
+		margin-bottom: 1.18rem;
 	}
 	
 	@include media( desktop ) {
-		width: 2.8em;
+		width: 2.8rem;
 	}
 }
 

@@ -9,6 +9,7 @@ $monospace_font: Menlo, monaco, Consolas, Lucida Console, monospace;
 
 $base_size: 18px;
 
+
 // Screen widths.
 
 $mobile_width: 380px;
@@ -21,21 +22,38 @@ $wide_width: 1379px;
 
 $side_padding: 20px;
 
-// Layout.
+
+// Logo wrapper.
 
 $logo_wrapper_width_tablet: 108px;
 
 $logo_wrapper_width_desktop: 172px;
 
+
+// Threaded comments.
+
+$threaded_comments_padding_mobile: 20px;
+
+$threaded_comments_padding_tablet: 20px;
+
+$threaded_comments_padding_desktop: 20px;
+
+// Comment avatar padding.
+
+$comment_avatar_padding_tablet: 70px;
+
+$comment_avatar_padding_desktop: 70px;
+
 // Avatar sizes.
 
-$avatar_size_normal: 30px;
+$avatar_size_normal: 40px;
 
-$avatar_border_normal: 5px;
+$avatar_border_normal: 4px;
 
 $avatar_size_small: 28px;
 
 $avatar_border_small: 4px;
+
 
 // Transition timeouts.
 

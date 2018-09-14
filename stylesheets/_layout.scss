@@ -93,3 +93,13 @@
 	}
 
 }
+
+.hentry .entry-header,
+.hentry .entry-content,
+.hentry .entry-footer,
+.hentry .author-description,
+#comments {
+	@include media( desktop ) {
+		max-width: $tablet_width;
+	}
+}

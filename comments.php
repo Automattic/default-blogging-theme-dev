@@ -22,20 +22,19 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area">
+	
+	<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
+
+	<?php comment_form( array(
+		'title_reply_before' => ip3_get_user_avatar_markup(),
+		'logged_in_as'       => null,
+		'title_reply'        => null,
+	) ); ?>
 
 	<?php
 	
 	// You can start editing here -- including this comment!
-	if ( have_comments() ) :
-		?>
-		<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
-
-		<?php comment_form( array(
-			'title_reply_before' => ip3_get_user_avatar_markup(),
-			'logged_in_as'       => null,
-			'title_reply'        => null,
-		) ); ?>
-
+	if ( have_comments() ) : ?>
 		<ol class="comment-list">
 			<?php
 			wp_list_comments( array(
@@ -48,16 +47,25 @@ if ( post_password_required() ) {
 		</ol><!-- .comment-list -->
 
 		<?php
-		the_comments_navigation();
+		
+		$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
+		$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
+		
+		the_comments_navigation( array(
+			'prev_text' => sprintf( '%s <span class="nav-prev-text">%s</span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ) ),
+			'next_text' => sprintf( '<span class="nav-next-text">%s</span> %s', __( 'Next', 'independent-publisher-3' ), $next_icon ),
+		) );
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
 		if ( ! comments_open() ) :
 			?>
-			<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'independent-publisher-3' ); ?></p>
+			<p class="no-comments">
+				<?php esc_html_e( 'Comments are closed.', 'independent-publisher-3' ); ?>
+			</p>
 			<?php
 		endif;
 
-	endif; // Check for have_comments().
+	endif; // if have_comments().
 
 	?>
 

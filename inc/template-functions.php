@@ -64,6 +64,18 @@ function ip3_image_filters_enabled() {
 	return true;
 }
 
-function ip3_comment_template() {
-
+/**
+ * Returns true if comment is by author of the post.
+ *
+ * @see get_comment_class()
+ */
+function ip3_is_comment_by_post_author( $comment=null ) {
+	if ( is_object( $comment ) && $comment->user_id > 0 ) {
+		$user = get_userdata( $comment->user_id );
+		$post = get_post( $comment->comment_post_ID );
+		if ( ! empty( $user ) && ! empty( $post ) ) {
+			return $comment->user_id === $post->post_author;
+		}
+	}
+	return false;
 }

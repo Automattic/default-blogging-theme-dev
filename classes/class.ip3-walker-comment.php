@@ -14,6 +14,7 @@ class Independent_Publisher_3_Walker_Comment extends Walker_Comment {
 	protected function html5_comment( $comment, $depth, $args ) {
 		
 		$tag = ( 'div' === $args['style'] ) ? 'div' : 'li';
+		
 ?>
 		<<?php echo $tag; ?> id="comment-<?php comment_ID(); ?>" <?php comment_class( $this->has_children ? 'parent' : '', $comment ); ?>>
 			<article id="div-comment-<?php comment_ID(); ?>" class="comment-body">
@@ -30,6 +31,13 @@ class Independent_Publisher_3_Walker_Comment extends Walker_Comment {
 									echo preg_replace( '/>[^<]+</', sprintf( '>%s<', $avatar ), $comment_author_link );
 								}
 							}
+							
+							/* Using the `check` icon instead of `check_circle`, since we can't add a
+							 * fill color to the inner check shape when in circle form. */
+							if ( ip3_is_comment_by_post_author( $comment ) ) {
+								printf( '<span class="post-author-badge" aria-hidden="true">%s</span>', ip3_get_icon_svg( 'check', 24 ) );
+							}
+							
 							/* translators: %s: comment author link */
 							printf( __( '%s <span class="screen-reader-text says">says:</span>' ),
 								sprintf( '<b class="fn">%s</b>', get_comment_author_link( $comment ) )

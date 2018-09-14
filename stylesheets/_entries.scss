@@ -121,12 +121,6 @@
 	
 	}
 	
-	.entry-header, .entry-content, .entry-footer, .author-description {
-		@include media( desktop ) {
-			max-width: $tablet_width;
-		}
-	}
-	
 	.entry-content {
 		@include remove-child-margins;
 		@include font-smoothing;

@@ -6,6 +6,17 @@
 	
 	.comments-title {
 		@extend %author-description-title;
+		
+		&:before {
+			@extend %post-section-dash;
+		}
+	}
+	
+	.no-comments {
+		font-weight: bold;
+		font-family: $title_font;
+		color: $light_text;
+		margin: 1.2em 0 0 0;
 	}
 	
 }
@@ -23,51 +34,106 @@
 .comment-list {
 	
 	margin: 2.2em 0 0 0;
+	list-style: none;
 	padding: 0;
 	
 	.children {
 		margin: 0;
-		padding: 0;
+		padding: 0 0 0 $threaded_comments_padding_mobile;
+		
+		@include media( tablet ) {
+			padding-left: $threaded_comments_padding_tablet;
+		}
+
+		@include media( desktop ) {
+			padding-left: $threaded_comments_padding_desktop;
+		}
 	}
 	
 	> .comment:first-child {
 		margin-top: 0;
+		
+		> .children .children ul {
+			padding-left: 0 !important;
+		}
+		
 	}
 	
 }
 
 .comment {
-	margin-top: 2em;
+	position: relative;
+	margin-top: 2.6em;
+	
+	@include media( tablet ) {
+		padding-left: $comment_avatar_padding_tablet;
+		
+		.children {
+			padding-left: 0;
+		}
+	}
 	
 	.comment-meta {
 		position: relative;
 		padding-left: 50px;
+		
+		@include media( tablet ) {
+			position: static;
+			padding-left: 0;
+		}
 	}
 	
 	.comment-author {
-//		position: relative;
 		margin: 0 0 -0.4em 0;
 		
+		/* If we add the border using a regular CSS border, it won't look good since its edges
+		 * can look jagged due to lack of antialiasing. In this case, we are several layers of
+		 * box-shadow to add the border visually, which will render the border smoother. */
+
+		@mixin box-shadow( $size ) {
+			box-shadow:
+				0 0 0 $size $text_color inset,         // Original border.
+				0 0 0 ($size + 1px) $text_color inset, // Antialiasing, inner edge.
+				0 0 1px 1px rgba( $text_color, 0.7 );  // Antialiasing, outer edge.
+		}
+		
+		@include media( tablet ) {
+			display: inline;
+		}
+		
 		img {
+			@include dimensions( $avatar_size_small );
+
 			position: absolute;
-			width: $avatar_size_small;
-			height: $avatar_size_small;
-			box-shadow: 0 0 0 $avatar_border_small $text_color inset, 0 0 0 ($avatar_border_small + 1px) $text_color inset;
 			border-radius: 100%;
+			top: 0; left: 0;
+			
+			@include box-shadow( $avatar_size_normal );
 			padding: $avatar_border_small;
-			top: 0;
-			left: 0;
+				
+			@include media( tablet ) {
+				@include box-shadow( $avatar_border_normal );
+				@include dimensions( $avatar_size_normal );
+				padding: $avatar_border_normal;
+			}
 		}
 		
 		.fn {
 			@include font-size( 15px );
-
+			
 			position: relative;
 			display: block;
 			font-family: $title_font;
 			font-weight: bold;
 			margin-bottom: -0.1em;
 			top: -0.18em;
+			
+			@include media( tablet ) {
+				@include font-size( 22px );
+				position: relative;
+				display: inline;
+				vertical-align: middle;
+			}
 			
 			a {
 				@include link-transition;
@@ -83,6 +149,13 @@
 	
 	.comment-metadata {
 		font-family: $title_font;
+		
+		@include media( tablet ) {
+			position: relative;
+			display: inline;
+			margin-left: 0.8em;
+			top: -0.05rem;
+		}
 
 		> a {
 			@include font-size( 13px );
@@ -97,10 +170,14 @@
 				color: darken($light_text, 10%);
 				text-decoration: none;
 			}
+			
+			@include media( tablet ) {
+				@include font-size( 14px );
+			}
 		}
 
 		.edit-link {
-			display: none;
+
 		}
 	}
 	
@@ -110,6 +187,109 @@
 		
 		line-height: 1.7;
 		margin-top: 0.4em;
+	}
+	
+}
+
+.comment.bypostauthor .comment-author .post-author-badge {
+	@include dimensions( 22px );
+	
+	display: block;
+	position: absolute;
+	background: lighten( $blue, 8% );
+	transform: scale(0.85);
+	left: 20px;
+	margin: -6px 0 0 2px;
+	border-radius: 100px;
+	
+	@include media( tablet ) {
+		left: 34px;
+	}
+	
+	svg {
+		width: inherit;
+		height: inherit;
+		display: block;
+		fill: white;
+		transform: scale(0.95);
+	}
+	
+}
+
+.comment .reply {
+	position: absolute;
+	margin-top: -0.2em;
+	right: 0;
+}
+
+.comment-reply-link, #cancel-comment-reply-link {
+	@include font-size( 13px, rem );
+	font-family: $title_font;
+	font-weight: 500;
+	
+	&:hover {
+		@include link-transition;
+		text-decoration: none;
+		color: $darker_blue;
+	}
+}
+
+.comment #respond {
+//	margin-top: -1.5em;
+}
+
+.comment-navigation {
+	margin-top: 1.2em;
+	
+	.nav-links {
+		
+		display: flex;
+		flex-direction: row;
+		
+		a {
+			@include font-size( 15px );
+			font-family: $title_font;
+			color: $light_text;
+			font-weight: 600;
+		}
+		
+	}
+	
+	.nav-previous, .nav-next {
+		min-width: 50%;
+		width: 100%;
+
+		span, svg {
+			vertical-align: middle;
+		}
+
+		svg {
+			@include svg-transition;
+			position: relative;
+			fill: $light_text;
+			margin: 0 -0.35em;
+			top: 1px;
+		}
+		
+		a {
+			@include link-transition;
+
+			&:hover {
+				text-decoration: none;
+				color: $blue;
+				svg {
+					fill: $blue;
+				}
+			}
+		}
+	}
+	
+	.nav-previous {
+		
+	}
+	
+	.nav-next {
+		text-align: right;
 	}
 	
 }
