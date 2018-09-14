@@ -72,13 +72,20 @@
 			padding-left: 0;
 		}
 	}
+
+	&:hover > .comment-body > .comment-meta > .comment-metadata {
+		> .edit-link-sep, > .edit-link {
+			opacity: 1;
+		}
+	}
 	
 	.comment-meta {
 		position: relative;
-		padding-left: 50px;
+		padding: 0 0 0 50px;
 		
 		@include media( tablet ) {
 			position: static;
+			padding-top: 0.7rem;
 			padding-left: 0;
 		}
 	}
@@ -94,7 +101,7 @@
 			box-shadow:
 				0 0 0 $size $text_color inset,         // Original border.
 				0 0 0 ($size + 1px) $text_color inset, // Antialiasing, inner edge.
-				0 0 1px 1px rgba( $text_color, 0.7 );  // Antialiasing, outer edge.
+				0 0 1px 0 rgba( $text_color, 0.7 );  // Antialiasing, outer edge.
 		}
 		
 		@include media( tablet ) {
@@ -119,7 +126,7 @@
 		}
 		
 		.fn {
-			@include font-size( 15px );
+			@include font-size( 17px );
 			
 			position: relative;
 			display: block;
@@ -156,28 +163,75 @@
 			margin-left: 0.8em;
 			top: -0.05rem;
 		}
-
-		> a {
-			@include font-size( 13px );
+		
+		> a, .comment-edit-link {
+			@include font-size( 14px );
 			@include link-transition;
-
-			position: relative;
 			font-weight: 500;
 			color: $light_text;
-			top: -0.05em;
-			
+			vertical-align: middle;
+
 			&:hover {
 				color: darken($light_text, 10%);
 				text-decoration: none;
 			}
+		}
+
+		> a {
+
+
+			position: relative;
+			top: -0.05em;
 			
 			@include media( tablet ) {
 				@include font-size( 14px );
 			}
 		}
+		
+		%edit-link-transition {
+			transition: opacity 200ms ease-in-out;
+			opacity: 0;
+		}
+		
+		.edit-link-sep {
+			@extend %edit-link-transition;
+			margin: 0 0.2em;
+			color: $light_text;
+		}
 
 		.edit-link {
-
+			@extend %edit-link-transition;
+			color: $light_text;
+			
+			svg {
+				@include svg-transition;
+				transform: scale(0.8);
+				vertical-align: middle;
+				margin-right: 0.2em;
+				fill: $light_text;
+				
+				&:hover {
+					fill: $light_text !important;
+				}
+			}
+			
+			&:hover {
+				color: $blue;
+				svg {
+					fill: $blue;
+				}
+			}
+		}
+		
+		.comment-edit-link {
+			
+			&:hover {
+				color: $blue;
+				svg {
+					fill: $blue;
+				}
+			}
+			
 		}
 	}
 	
@@ -187,6 +241,10 @@
 		
 		line-height: 1.7;
 		margin-top: 0.4em;
+		
+		@include media( tablet ) {
+			@include font-size( 18px );
+		}
 	}
 	
 }
@@ -203,7 +261,8 @@
 	border-radius: 100px;
 	
 	@include media( tablet ) {
-		left: 34px;
+		left: 38px;
+		top: 4px;
 	}
 	
 	svg {
@@ -227,11 +286,16 @@
 	font-family: $title_font;
 	font-weight: 500;
 	
+	@include media( desktop ) {
+		@include font-size( 16px, rem );
+	}
+	
 	&:hover {
 		@include link-transition;
 		text-decoration: none;
 		color: $darker_blue;
 	}
+	
 }
 
 .comment #respond {

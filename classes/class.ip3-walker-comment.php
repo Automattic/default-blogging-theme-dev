@@ -51,7 +51,10 @@ class Independent_Publisher_3_Walker_Comment extends Walker_Comment {
 								<?php echo ip3_human_time_diff( get_comment_date( 'U' ) ); ?>
 							</time>
 						</a>
-						<?php edit_comment_link( __( 'Edit' ), '<span class="edit-link">', '</span>' ); ?>
+						<?php
+							$edit_comment_icon = ip3_get_icon_svg( 'edit', 16 );
+							edit_comment_link( __( 'Edit' ), '<span class="edit-link-sep">&mdash;</span> <span class="edit-link">' . $edit_comment_icon, '</span>' );
+						?>
 					</div><!-- .comment-metadata -->
 
 					<?php if ( '0' == $comment->comment_approved ) : ?>
