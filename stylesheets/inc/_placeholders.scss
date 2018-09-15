@@ -1,18 +1,5 @@
 
-%filter-grayscale {
-	position: relative;
-	filter: grayscale(100%);
-	z-index: 1;
-	
-	&:after {
-		display: block;
-		width: 100%;
-		height: 100%;
-		z-index: 10;
-	}
-}
-
-%filter-duotone {
+@mixin filter-duotone {
 	&:before {
 		background: $blue;
 		mix-blend-mode: screen;
@@ -28,7 +15,20 @@
 	}
 }
 
-%page-wrapper-padding {
+@mixin filter-grayscale {
+	position: relative;
+	filter: grayscale(100%);
+	z-index: 1;
+	
+	&:after {
+		display: block;
+		width: 100%;
+		height: 100%;
+		z-index: 10;
+	}
+}
+
+@mixin page-wrapper-padding {
 	padding-top: 20px;
 
 	@include media( tablet ) {
@@ -40,7 +40,7 @@
 	}
 }
 
-%site-branding-flex {
+@mixin site-branding-flex {
 	@include media( tablet ) {
 		display: flex;
 		flex-wrap: nowrap;
@@ -49,7 +49,7 @@
 	}
 }
 
-%hentry-line-pseudo-before {
+@mixin hentry-line-pseudo-before {
 	content: "\020";
 	display: block;
 	width: 1.5em;
@@ -66,7 +66,7 @@
 	}
 }
 
-%entry-header {
+@mixin entry-header {
 	.posted-on {
 		@include font-size( 15px );
 		
@@ -99,33 +99,12 @@
 	}
 	
 	.content-wrap &:before {
-		@extend %hentry-line-pseudo-before;
+		@include hentry-line-pseudo-before;
 	}
 	
 }
 
-.entry-header .meta-info,
-.singular-post-meta .meta-info {
-	@extend %entry-footer-style;
-	@include font-smoothing;
-	@include font-size( 12px );
-	margin-top: 0.5em;
-
-	> span {
-		font-weight: 600;
-	}
-	
-	@include media( tablet ) {
-		@include font-size( 13px );
-		margin-top: 1.15em;
-	}
-	
-	@include media( desktop ) {
-		@include font-size( 14px );
-	}
-}
-
-%entry-footer-style {
+@mixin entry-footer-style {
 	font-family: $title_font;
 	font-weight: 500;
 	color: lighten($light_text, 0%);
@@ -194,7 +173,7 @@
 	}
 }
 
-%entry-footer {
+@mixin entry-footer {
 	@include font-size( 12px );
 	@include font-smoothing;
 	
@@ -204,10 +183,10 @@
 		@include font-size( 13px );
 	}
 	
-	@extend %entry-footer-style;
+	@include entry-footer-style;
 }
 
-%description-dash {
+@mixin description-dash {
 	display: inline-block;
 	content: "–";
 	transform: scaleX(1.8);
@@ -222,7 +201,7 @@
 	}
 }
 
-%post-section-dash {
+@mixin post-section-dash {
 	display: block;
 	content: "\020";
 	background: $light_text;
@@ -240,7 +219,7 @@
 	}
 }
 
-%author-bio-font-common-styles {
+@mixin author-bio-font-common-styles {
 	@include font-size( 22px );
 	
 	@include media( tablet ) {
@@ -257,7 +236,7 @@
 
 }
 
-%author-description-title {
+@mixin author-description-title {
 	@include font-size( 18.5px );
 	font-family: $title_font;
 

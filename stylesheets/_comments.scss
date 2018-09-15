@@ -5,10 +5,10 @@
 	@include font-smoothing;
 	
 	.comments-title {
-		@extend %author-description-title;
+		@include author-description-title;
 		
 		&:before {
-			@extend %post-section-dash;
+			@include post-section-dash;
 		}
 	}
 	
@@ -202,20 +202,20 @@
 			}
 		}
 		
-		%edit-link-transition {
+		@mixin edit-link-transition {
 			transition: opacity 200ms ease-in-out;
 			opacity: 0;
 		}
 		
 		.edit-link-sep {
-			@extend %edit-link-transition;
+			@include edit-link-transition;
 			margin: 0 0.2em;
 			color: $light_text;
 			vertical-align: middle;
 		}
 
 		.edit-link {
-			@extend %edit-link-transition;
+			@include edit-link-transition;
 			color: $light_text;
 			
 			svg {

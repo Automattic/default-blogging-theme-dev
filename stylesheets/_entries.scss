@@ -10,13 +10,13 @@
 	}
 	
 	body:not(.single) &:before {
-		@extend %hentry-line-pseudo-before;
+		@include hentry-line-pseudo-before;
 	}
 
 	.entry-title {
 		@include font-size( 26px );
 		@include font-smoothing;
-		
+
 		font-family: $title_font;
 		font-weight: 600;
 		margin: 0 0 0.7em 0;
@@ -72,7 +72,7 @@
 	}
 	
 	.entry-footer {
-		@extend %entry-footer;
+		@include entry-footer;
 	}
 	
 	.post-thumbnail {
@@ -102,7 +102,7 @@
 			display: block;
 
 			.post-thumbnail-inner {
-				@extend %filter-grayscale;
+				@include filter-grayscale;
 			}
 			
 			&:before, &:after {
@@ -115,7 +115,7 @@
 				display: block;
 			}
 		
-			@extend %filter-duotone;
+			@include filter-duotone;
 		
 		}
 	
@@ -150,10 +150,31 @@
 	
 }
 
+.entry-header .meta-info,
+.singular-post-meta .meta-info {
+	@include entry-footer-style;
+	@include font-smoothing;
+	@include font-size( 12px );
+	margin-top: 0.5em;
+
+	> span {
+		font-weight: 600;
+	}
+	
+	@include media( tablet ) {
+		@include font-size( 13px );
+		margin-top: 1.15em;
+	}
+	
+	@include media( desktop ) {
+		@include font-size( 14px );
+	}
+}
+
 body.single .hentry {
 	
 	.entry-header {
-		@extend %entry-header;
+		@include entry-header;
 	}
 	
 }

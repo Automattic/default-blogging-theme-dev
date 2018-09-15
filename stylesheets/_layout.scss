@@ -6,10 +6,10 @@
 }
 
 #page-wrapper {
-	@extend %page-wrapper-padding;
+	@include page-wrapper-padding;
 	
 	body.home & {
-		@extend %site-branding-flex;
+		@include site-branding-flex;
 	}
 	
 	body.single & {

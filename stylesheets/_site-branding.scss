@@ -14,12 +14,12 @@
 /* Site header, singular item */
 
 body.single .site-header {
-	@extend %page-wrapper-padding;
+	@include page-wrapper-padding;
 	
 	margin: 0;
 	
 	.layout-wrap {
-		@extend %site-branding-flex; // Provides flexbox display properties.
+		@include site-branding-flex; // Provides flexbox display properties.
 	}
 	
 
@@ -39,7 +39,7 @@ body.single .site-header {
 body.single .site-main > .hentry:not(.has-post-thumbnail) {
 
 	&:before {
-		@extend %hentry-line-pseudo-before;
+		@include hentry-line-pseudo-before;
 		margin-bottom: 1em;
 	}
 
@@ -73,7 +73,7 @@ body.single .site-header.cover-image {
 	}
 	
 	/* Shared background settings between pseudo elements. */ 
-	%background-settings {
+	@mixin background-settings {
 		background-position: center;
 		background-repeat: no-repeat;
 		background-size: cover;
@@ -107,7 +107,7 @@ body.single .site-header.cover-image {
 	/* Post metadata */
 	.singular-post-meta {
 		@include font-smoothing;
-		@extend %entry-header;
+		@include entry-header;
 
 		margin-top: 3.8em;
 		
@@ -129,7 +129,7 @@ body.single .site-header.cover-image {
 		}
 		
 		.content-wrap:before {
-			@extend %hentry-line-pseudo-before;
+			@include hentry-line-pseudo-before;
 			background: white;
 		}
 		
@@ -164,13 +164,13 @@ body.single .site-header.cover-image {
 		height: 100%;
 	}
 	
-	@extend %background-settings;
+	@include background-settings;
 	
 	/* The intensity of each blend mode is controlled via layer opacity. */
 
 	/* First layer: grayscale. */
 	.site-branding-container:before {
-		@extend %background-settings;
+		@include background-settings;
 		filter: grayscale(100%);
 		z-index: 1;
 	}
