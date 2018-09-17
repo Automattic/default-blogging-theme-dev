@@ -48,8 +48,11 @@
 }
 
 @mixin button-transition() {
-	transition:
-		background $button_transition ease-in-out;
+	transition: background $button_transition ease-in-out;
+}
+
+@mixin background-transition() {
+	transition: background $background_transition ease-in-out;
 }
 
 @mixin remove-child-margins() {
