@@ -58,15 +58,6 @@ if ( ! function_exists( 'ip3_comment_count' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'ip3_comment_avatars' ) ) :
-	/**
-	 * Prints HTML with avatars for the latest commenters.
-	 */
-	function ip3_comment_avatars() {
-
-	}
-endif;
-
 if ( ! function_exists( 'ip3_estimated_read_time' ) ) :
 	/**
 	 * Prints HTML with the estimated reading time.
@@ -182,21 +173,6 @@ if ( ! function_exists( 'ip3_header_cover_image_css' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'ip3_comment_avatar' ) ) :
-	/**
-	 * Returns the HTML markup to generate a user avatar.
-	 */
-	function ip3_get_user_avatar_markup( $id_or_email=null, $class=null ) {
-		if ( empty( $id_or_email ) ) {
-			$id_or_email = get_current_user_id();
-		}
-		
-		$classes = array( 'comment-author', 'vcard' );
-		
-		return sprintf( '<div class="comment-user-avatar comment-author vcard">%s</div>', get_avatar( $id_or_email, 60 ) );
-	}
-endif;
-
 if ( ! function_exists( 'ip3_human_time_diff' ) ) :
 /**
  * Same as core's human_time_diff(), only in the "ago" context,
@@ -253,5 +229,49 @@ if ( ! function_exists( 'ip3_human_time_diff' ) ) :
 		}
 
 		return $since;
+	}
+endif;
+
+if ( ! function_exists( 'ip3_comment_avatar' ) ) :
+	/**
+	 * Returns the HTML markup to generate a user avatar.
+	 */
+	function ip3_get_user_avatar_markup( $id_or_email=null ) {
+		if ( ! isset( $id_or_email ) ) {
+			$id_or_email = get_current_user_id();
+		}
+		
+		$classes = array( 'comment-author', 'vcard' );
+		
+		return sprintf( '<div class="comment-user-avatar comment-author vcard">%s</div>', get_avatar( $id_or_email, ip3_get_avatar_size() ) );
+	}
+endif;
+
+if ( ! function_exists( 'ip3_discussion_avatars_list' ) ) :
+	/**
+	 * Displays a list of avatars involved in a discussion for a given post.
+	 */
+	function ip3_discussion_avatars_list( $comment_authors ) {
+		$out = array('<ol class="discussion-avatar-list">');
+		foreach( $comment_authors as $id_or_email ) {
+			$out[] = sprintf( '<li>%s</li>', ip3_get_user_avatar_markup( $id_or_email ) );
+		}
+		$out[] = '</ol><!-- .discussion-avatar-list -->';
+		echo implode( "\n", $out );
+	}
+endif;
+
+if ( ! function_exists( 'ip3_comment_form' ) ) :
+	/**
+	 * Documentation for function.
+	 */
+	function ip3_comment_form( $order ) {
+		if ( strtolower( $order ) === strtolower( get_option( 'comment_order', 'asc' ) ) ) {
+			comment_form( array(
+				'title_reply_before' => ip3_get_user_avatar_markup(),
+				'logged_in_as'       => null,
+				'title_reply'        => null,
+			) );
+		}
 	}
 endif;

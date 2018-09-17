@@ -23,15 +23,15 @@ if ( post_password_required() ) {
 
 <div id="comments" class="comments-area">
 	
-	<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
-
-	<?php comment_form( array(
-		'title_reply_before' => ip3_get_user_avatar_markup(),
-		'logged_in_as'       => null,
-		'title_reply'        => null,
-	) ); ?>
+	<div class="comments-title-flex">
+		<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
+		<?php get_template_part( 'template-parts/post/discussion', 'meta' ); ?>
+	</div><!-- .comments-title-flex -->
 
 	<?php
+	
+	// Show comment form at top if showing newest comments at the top.
+	ip3_comment_form( 'desc' );
 	
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
@@ -39,7 +39,7 @@ if ( post_password_required() ) {
 			<?php
 			wp_list_comments( array(
 				'walker'      => new Independent_Publisher_3_Walker_Comment(),
-				'avatar_size' => 60,
+				'avatar_size' => ip3_get_avatar_size(),
 				'short_ping'  => true,
 				'style'       => 'ol',
 			) );
@@ -48,10 +48,18 @@ if ( post_password_required() ) {
 
 		<?php
 		
+		// Show comment form at bottom if showing newest comments at the bottom.
+		if ( 'asc' === strtolower( get_option( 'comment_order', 'asc' ) ) ) : ?>
+			<div class="comment-form-flex">
+				<?php ip3_comment_form( 'asc' ); ?>
+				<h2 class="comments-title"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></h2>
+			</div>
+		<?php endif;
+		
 		$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
 		$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
 		$comments_text = __( 'Comments', 'independent-publisher-3' );
-		
+
 		the_comments_navigation( array(
 			'prev_text' => sprintf( '%s <span class="nav-prev-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ) ),
 			'next_text' => sprintf( '<span class="nav-next-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span> %s', __( 'Next', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ), $next_icon ),

@@ -2,6 +2,19 @@
 $author_bio_vsep: 3.5em;
 $author_bio_vsep_reduction_factor: 0.6;
 
+.post-navigation .post-title,
+.entry-title,
+.comments-title {
+	hyphens: auto;
+}
+
+/* Do not hyphenate entry title on tablet view and bigger. */
+.entry-title {
+	@include media( tablet ) {
+		hyphens: none;
+	}
+}
+
 .author-description {
 	@include font-smoothing;
 	
@@ -94,6 +107,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 			.post-title {
 				font-family: $title_font;
 				font-weight: bold;
+				hyphens: auto;
 			}
 			
 			&:hover {

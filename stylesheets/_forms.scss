@@ -5,25 +5,47 @@ button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
+	@include font-size( 14px );
+	@include button-transition;
+	
+	border: none;
+	background: $button_background;
+	font-family: $title_font;
+	box-sizing: border-box;
+	font-weight: 600;
+	padding: 0.45em 1em;
+	outline: none;
+	color: white;
+	outline: none;
+	
+	@include media( tablet ) {
+		@include font-size( 15px );
+		padding: 0.6em 1.2em;
+	}
+	
+	@include media( desktop ) {
+		@include font-size( 17px );
+		padding: 0.7em 1.5em;
+	}
+	
+	&:hover {
+		cursor: pointer;
+	}
+	
+	&:hover, &:focus {
+		background: $button_hover_background;
+	}
+	
+	&:focus {
+		outline: thin dotted;
+		outline-offset: -4px;
+	}
 
 }
 
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
-
-}
-
-button:active, button:focus,
-input[type="button"]:active,
-input[type="button"]:focus,
-input[type="reset"]:active,
-input[type="reset"]:focus,
-input[type="submit"]:active,
-input[type="submit"]:focus {
-
-}
+$input_border_color: lighten( $light_text, 25% );
+$input_background_color: mix( $light_text, white, 5.5% );
+$input_padding: 0.5em;
 
 input[type="text"],
 input[type="email"],
@@ -41,7 +63,19 @@ input[type="datetime"],
 input[type="datetime-local"],
 input[type="color"],
 textarea {
-
+	-webkit-backface-visibility: hidden;
+	box-sizing: border-box;
+	border: solid 1px $input_border_color;
+	outline: none;
+	padding: $input_padding 1.5*$input_padding;
+	background: $input_background_color;
+	
+	&:focus {
+		border-color: $blue;
+		outline: thin solid rgba( $blue, 0.15 );
+		background: white;
+		outline-offset: -4px;
+	}
 }
 
 input[type="text"]:focus,
@@ -68,5 +102,17 @@ select {
 }
 
 textarea {
+	box-sizing: border-box;
+	display: block;
 	width: 100%;
+	max-width: 100%;
+	resize: vertical;
+}
+
+form {
+
+	p {
+		margin: 1em 0;
+	}
+	
 }

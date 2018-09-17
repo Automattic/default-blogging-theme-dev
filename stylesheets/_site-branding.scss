@@ -220,6 +220,11 @@ body.single .site-header.cover-image {
 			opacity: 0.1;
 		}
 	}
+	
+	@include selection {
+		background: rgba( white, 0.17 );
+		mix-blend-mode: overlay;
+	}
 
 }
 

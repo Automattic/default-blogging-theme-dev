@@ -75,3 +75,7 @@ a {
 		text-decoration: underline;
 	}
 }
+
+@include selection {
+	background: $text_selection_background;
+}

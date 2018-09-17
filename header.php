@@ -8,7 +8,6 @@
  *
  * @package Independent_Publisher_3
  */
-
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>

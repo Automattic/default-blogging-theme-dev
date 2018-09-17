@@ -42,6 +42,19 @@ function ip3_pingback_header() {
 add_action( 'wp_head', 'ip3_pingback_header' );
 
 /**
+ * Changes comment form default fields.
+ */
+function ip3_comment_form_defaults( $defaults ) {
+	$comment_field = $defaults[ 'comment_field' ];
+	
+	// Adjust height of comment form.
+	$defaults[ 'comment_field' ] = preg_replace( '/rows="\d+"/', 'rows="5"', $comment_field );
+
+	return $defaults;
+}
+add_filter( 'comment_form_defaults', 'ip3_comment_form_defaults' );
+
+/**
  * Determines if post thumbnail can be displayed.
  */
 function ip3_can_show_post_thumbnail() {
@@ -65,6 +78,13 @@ function ip3_image_filters_enabled() {
 }
 
 /**
+ * Returns the size for avatars used in the theme.
+ */
+function ip3_get_avatar_size() {
+	return 60;
+}
+
+/**
  * Returns true if comment is by author of the post.
  *
  * @see get_comment_class()
@@ -78,4 +98,34 @@ function ip3_is_comment_by_post_author( $comment=null ) {
 		}
 	}
 	return false;
+}
+
+/**
+ * Returns information about the current post's discussion.
+ */
+function ip3_get_discussion_data() {
+	$authors = array();
+	$commenters = array();
+	$user_id = is_user_logged_in() ? get_current_user_id() : -1;
+	$comments = get_comments( array(
+		'post_id' => get_the_ID(),
+		'orderby' => 'comment_date_gmt',
+		'order'   => get_option( 'comment_order', 'asc' ), // Respect comment order from Settings » Discussion.
+		'status'  => 'approve',
+	) );
+	foreach( $comments as $comment ) {
+		$comment_user_id = (int) $comment->user_id;
+		if ( $comment_user_id !== $user_id ) {
+			$authors[] = ( $comment_user_id > 0 ) ? $comment_user_id : $comment->comment_author_email;
+			$commenters[] = $comment->comment_author_email;
+		}
+	}
+	$authors = array_unique( $authors );
+	$responses = count( $commenters );
+	$commenters = array_unique( $commenters );
+	return (object) array(
+		'authors'    => array_slice( $authors, 0, 6 ), /* Unique authors commenting on post (a subset of), excluding current user. */
+		'commenters' => count( $commenters ),          /* Number of commenters involved in discussion, excluding current user. */
+		'responses'  => $responses,                    /* Number of responses, excluding responses from current user. */
+	);
 }

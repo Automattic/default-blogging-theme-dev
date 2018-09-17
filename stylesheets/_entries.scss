@@ -169,6 +169,43 @@
 	@include media( desktop ) {
 		@include font-size( 14px );
 	}
+	
+	.comment-count {
+		
+		@include media( desktop ) {
+			float: right;
+		}
+		
+		.discussion-avatar-list {
+			position: relative;
+			display: none;
+			
+			@include media( desktop ) {
+				display: block;
+				margin-top: -1*($avatar_size_small + 2*$avatar_border_small);
+				margin-bottom: 0.4em;
+			}
+		}
+		
+	}
+	
+	&.has-discussion {
+		
+		@include media( desktop ) {
+			margin-top: 1.7em;
+		}
+		
+		.comment-count {
+			
+			@include media( desktop ) {
+				position: relative;
+				top: 2.1em;
+				float: right;
+			}
+			
+		}
+		
+	}
 }
 
 body.single .hentry {

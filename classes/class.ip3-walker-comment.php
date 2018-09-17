@@ -66,16 +66,17 @@ class Independent_Publisher_3_Walker_Comment extends Walker_Comment {
 					<?php comment_text(); ?>
 				</div><!-- .comment-content -->
 
-				<?php
-				comment_reply_link( array_merge( $args, array(
-					'add_below' => 'div-comment',
-					'depth'     => $depth,
-					'max_depth' => $args['max_depth'],
-					'before'    => '<div class="reply">',
-					'after'     => '</div>'
-				) ) );
-				?>
 			</article><!-- .comment-body -->
+			
+			<?php
+			comment_reply_link( array_merge( $args, array(
+				'add_below' => 'div-comment',
+				'depth'     => $depth,
+				'max_depth' => $args['max_depth'],
+				'before'    => '<div class="comment-reply">',
+				'after'     => '</div>'
+			) ) );
+			?>
 <?php
 	}
 	

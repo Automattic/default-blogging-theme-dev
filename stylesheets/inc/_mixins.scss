@@ -47,6 +47,11 @@
 	transition: fill $icon_transition ease-in-out;
 }
 
+@mixin button-transition() {
+	transition:
+		background $button_transition ease-in-out;
+}
+
 @mixin remove-child-margins() {
 	> *:first-child {
 		margin-top: 0;
@@ -54,5 +59,14 @@
 	
 	> *:last-child {
 		margin-bottom: 0;
+	}
+}
+
+@mixin selection {
+	::-moz-selection {
+		@content;
+	}
+	::selection {
+		@content;
 	}
 }

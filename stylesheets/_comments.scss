@@ -1,6 +1,50 @@
 
 /** === Comments. === */
 
+/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
+ * since its edges can look jagged due to lack of antialiasing. In this case, we are several
+ * layers of box-shadow to add the border visually, which will render the border smoother. */
+
+@mixin box-shadow( $size ) {
+	box-shadow:
+		0 0 0 $size $text_color inset,         	// Original border.
+		0 0 0 ($size + 1px) $text_color inset, 	// Antialiasing, inner edge.
+		0 0 1px 0 rgba( $text_color, 0.7 );  	// Antialiasing, outer edge.
+}
+
+@mixin comment-user-avatar( $incr: 0 ) {
+	
+	img {
+		@include dimensions( $avatar_size_small );
+
+		border-radius: 100%;
+		display: block;
+		
+		@include box-shadow( $avatar_size_normal + $incr );
+		padding: $avatar_border_small + $incr;
+			
+		@include media( tablet ) {
+			@include box-shadow( $avatar_border_normal + $incr );
+			@include dimensions( $avatar_size_normal );
+			padding: $avatar_border_normal + $incr;
+		}
+	}
+
+}
+
+@mixin comment-content-style {
+	@include font-size( 16px );
+	line-height: 1.7;
+	
+	@include media( tablet ) {
+		@include font-size( 17px );
+	}
+	
+	@include media( desktop ) {
+		@include font-size( 18px );
+	}
+}
+
 .comments-area {
 	@include font-smoothing;
 	
@@ -21,9 +65,14 @@
 	
 }
 
+#comment {
+	max-width: 100%;
+	box-sizing: border-box;
+}
+
 #respond {
-	padding-top: 1px; // Stop margin spread, avoids jumpy elements.
-	
+	position: relative;
+
 	.comment-user-avatar {
 		display: none;
 	}
@@ -31,6 +80,62 @@
 	.comment-form-comment label[for="comment"]:first-child {
 		display: none;
 	}
+	
+	> small {
+		display: block;
+		text-align: right;
+	}
+}
+
+#comments > #respond {
+	
+	@include media( desktop ) {
+		padding-left: $comment_avatar_padding_desktop;
+	}
+	
+	.comment-user-avatar {
+		@include media( desktop ) {
+			@include comment-user-avatar;
+			
+			position: absolute;
+			display: block;
+			top: 0; left: 0;
+			
+			img {
+				@include dimensions( $avatar_size_normal );
+			}
+		}
+	}
+	
+}
+
+.comment-form-flex {
+	
+	margin-top: 1.6em;
+	display: flex;
+	flex-direction: column;
+	
+	@include media( desktop ) {
+		margin-top: 3.4em;
+	}
+	
+	.comments-title {
+		display: none;
+		margin: 0;
+		order: 1;
+	}
+	
+	#respond {
+		order: 2;
+		+ .comments-title {
+			display: block;
+		}
+	}
+
+}
+
+#comments > .comments-title:last-child {
+	display: none;
 }
 
 .comment-list {
@@ -58,18 +163,44 @@
 	
 }
 
+.comment-reply {
+	$line_height: 1.3em;
+	
+	text-align: right;
+	padding-top: 0.2em;
+	line-height: $line_height;
+	
+	#respond + & {
+		display: none;
+	}
+
+	@include media( desktop ) {
+		margin-top: -1*$line_height;
+		padding-top: 0;
+	
+		.comment-reply-link {
+			position: relative;
+			display: inline-block;
+			top: -0.3em;
+		}
+	}
+
+}
+
 .comment {
 	position: relative;
-	margin-top: 1em;
+	margin-top: 1.4em;
 	line-height: 1;
 	
-	> #respond {
-		margin-top: -$comment_reply_line_height;
+	@include media( desktop ) {
+		margin-top: 1.9em;
 	}
 	
-	> .comment-body {
-		/* Account for absolutely positioned `.comment .reply` element. */
-		padding-bottom: $comment_reply_line_height;
+	> #respond {
+		margin-bottom: 3.2em;
+		
+		/* Edit this when reply and cancel buttons are not aligned. */
+		padding-top: 0.48em;
 	}
 	
 	@include media( tablet ) {
@@ -98,38 +229,16 @@
 	}
 	
 	.comment-author {
+		@include comment-user-avatar;
 		margin: 0 0 -0.4em 0;
-		
-		/* If we add the border using a regular CSS border, it won't look good on non-retina devices,
-		 * since its edges can look jagged due to lack of antialiasing. In this case, we are several
-		 * layers of box-shadow to add the border visually, which will render the border smoother. */
-
-		@mixin box-shadow( $size ) {
-			box-shadow:
-				0 0 0 $size $text_color inset,         	// Original border.
-				0 0 0 ($size + 1px) $text_color inset, 	// Antialiasing, inner edge.
-				0 0 1px 0 rgba( $text_color, 0.7 );  	// Antialiasing, outer edge.
-		}
 		
 		@include media( tablet ) {
 			display: inline;
 		}
 		
 		img {
-			@include dimensions( $avatar_size_small );
-
 			position: absolute;
-			border-radius: 100%;
 			top: 0; left: 0;
-			
-			@include box-shadow( $avatar_size_normal );
-			padding: $avatar_border_small;
-				
-			@include media( tablet ) {
-				@include box-shadow( $avatar_border_normal );
-				@include dimensions( $avatar_size_normal );
-				padding: $avatar_border_normal;
-			}
 		}
 		
 		.fn {
@@ -179,6 +288,7 @@
 			font-weight: 500;
 			color: $light_text;
 			vertical-align: middle;
+			letter-spacing: -0.025em;
 			line-height: 1;
 			
 			time {
@@ -222,7 +332,7 @@
 				@include svg-transition;
 				transform: scale(0.8);
 				vertical-align: middle;
-				margin-right: 0.2em;
+				margin-right: 0.1em;
 				fill: $light_text;
 				
 				&:hover {
@@ -256,21 +366,13 @@
 	}
 	
 	.comment-content {
-		@include font-size( 16px );
 		@include remove-child-margins;
-		
-		line-height: 1.7;
+		@include comment-content-style;
+
 		margin-top: 0.5em;
-		padding-bottom: 0.5em;
-		
-		@include media( tablet ) {
-			@include font-size( 17px );
-		}
-		
+
 		@include media( desktop ) {
-			@include font-size( 18px );
 			padding-right: 80px;
-			padding-bottom: 1em;
 		}
 	}
 	
@@ -302,16 +404,6 @@
 	
 }
 
-/* The comment reply button needs to be absolutely positioned because
- * it needs to be aligned with the "Cancel comment reply" link. */
-
-.comment .reply {
-	position: absolute;
-	margin-top: -0.2em;
-	line-height: $comment_reply_line_height;
-	right: 0;
-}
-
 .comment-reply-link, #cancel-comment-reply-link {
 	@include font-size( 13px, rem );
 	font-family: $title_font;
@@ -327,15 +419,6 @@
 		color: $darker_blue;
 	}
 	
-}
-
-#cancel-comment-reply-link {
-	position: relative;
-	top: -0.4em;
-	
-	@include media( desktop ) {
-		top: -0.38em;
-	}
 }
 
 .comment-navigation {
@@ -397,4 +480,112 @@
 		text-align: right;
 	}
 	
+}
+
+.discussion-avatar-list {
+	@include clearfix;
+
+	margin: 0;
+	padding: 0;
+	
+	li {
+		position: relative;
+		list-style: none;
+		margin: 0 -1*$discussion_avatar_pull_margin 0 0;
+		padding: 0;
+		float: left;
+	}
+
+	.comment-user-avatar {
+		@include comment-user-avatar( -1px );
+		
+		@include media( tablet ) {
+			img {
+				@include dimensions( $avatar_size_small );
+			}
+		}
+	}
+
+}
+
+.discussion-meta {
+	
+	.discussion-avatar-list {
+		display: inline-block;
+		margin-right: $discussion_avatar_pull_margin;
+	}
+	
+	.discussion-meta-info {
+		@include font-size( 14px );
+		color: $light_text;
+		font-family: $title_font;
+		margin: 0.0em 0 0 0;
+		letter-spacing: -0.025em;
+		font-weight: 500;
+		
+		.svg-icon {
+			vertical-align: middle;
+			fill: $light_text;
+			transform: scale( 0.6 ) scaleX(-1) translateY(-0.1em);
+			margin-left: -0.25em; // Align icon with avatars above.
+		}
+	}
+	
+}
+
+.comments-title-flex {
+	
+	$bottom_offset: 0.1em;
+	
+	@include media( desktop ) {
+		
+		display: flex;
+		flex-direction: baseline;
+		align-items: flex-end;
+		padding-bottom: $bottom_offset;
+		
+		.comments-title {
+			padding-right: 0.6rem;
+			flex-grow: 1;
+		}
+	
+		.discussion-meta {
+			transform: translateY( $bottom_offset );
+			max-width: 50%;
+			width: auto;
+		
+			.discussion-avatar-list {
+			}
+		
+			.discussion-meta-info {
+				letter-spacing: -0.05em;
+				text-align: right;
+			}
+		}
+
+	}
+	
+}
+
+.comment-form {
+	input[type="text"],
+	input[type="email"],
+	input[type="url"],
+	textarea {
+		@include comment-content-style;
+	}
+	
+	textarea {
+		padding: 0.7em 1em;
+	}
+
+	.form-submit {
+		margin-bottom: 0;
+	}
+	
+}
+
+#respond + .comment-list,
+.comment-list + #respond {
+	margin-top: 3.4em;
 }
