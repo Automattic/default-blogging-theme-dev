@@ -30,6 +30,7 @@ body.single .site-header {
 		@include media( desktop ) {
 			margin-bottom: 5em;
 		}
+
 	}
 	
 }
@@ -52,6 +53,16 @@ body.single .site-main > .hentry:not(.has-post-thumbnail) {
 		
 		@include media( desktop ) {
 			margin-bottom: 2.1em;
+		}
+		
+		.posted-on a {
+			@include link-transition;
+			
+			text-decoration: none;
+			
+			&:hover {
+				color: $darker_blue;
+			}
 		}
 	}
 

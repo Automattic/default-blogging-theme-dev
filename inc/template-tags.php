@@ -252,12 +252,15 @@ if ( ! function_exists( 'ip3_discussion_avatars_list' ) ) :
 	 * Displays a list of avatars involved in a discussion for a given post.
 	 */
 	function ip3_discussion_avatars_list( $comment_authors ) {
-		$out = array('<ol class="discussion-avatar-list">');
-		foreach( $comment_authors as $id_or_email ) {
-			$out[] = sprintf( '<li>%s</li>', ip3_get_user_avatar_markup( $id_or_email ) );
+		if ( ! empty( $comment_authors ) ) {
+			$out = array('<ol class="discussion-avatar-list">');
+			foreach( $comment_authors as $id_or_email ) {
+				$out[] = sprintf( '<li>%s</li>', ip3_get_user_avatar_markup( $id_or_email ) );
+			}
+			$out[] = '</ol><!-- .discussion-avatar-list -->';
+			echo implode( "\n", $out );
 		}
-		$out[] = '</ol><!-- .discussion-avatar-list -->';
-		echo implode( "\n", $out );
+		return null;
 	}
 endif;
 
