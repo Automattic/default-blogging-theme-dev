@@ -99,22 +99,16 @@ body.single .site-header.cover-image {
 		color: white;
 	}
 	
+	#site-navigation,
 	.site-title,
-	.main-navigation,
 	.posted-on,
 	.meta-info {
-		$h: 0.25rem;
-		$v: 0rem;
 		a {
-			@include background-transition;
-			display: inline-block;
+			transition: opacity $link_transition ease-in-out;
 			text-decoration: none;
-			border-radius: 0.2em;
-			padding: $v $h;
-			margin: -1*$v -1*$h;
+			color: white;
 			&:hover {
-				color: inherit;
-				background: rgba( white, 0.1 );
+				opacity: 0.6;
 			}
 		}
 	}
@@ -150,6 +144,7 @@ body.single .site-header.cover-image {
 			@include media( desktop ) {
 				max-width: $tablet_width;
 			}
+
 			@include media( wide ) {
 				max-width: 100%;
 			}
@@ -203,11 +198,11 @@ body.single .site-header.cover-image {
 			box-shadow: 0 0 0 4px $color;
 			
 			@include media( tablet ) {
-				box-shadow: 0 0 0 6px $color;
+				box-shadow: 0 0 0 5px $color;
 			}
 			
 			@include media( desktop ) {
-				box-shadow: 0 0 0 9px $color;
+				box-shadow: 0 0 0 6px $color;
 			}
 		}
 		
@@ -409,15 +404,33 @@ body.single .site-header.cover-image {
 			> li {
 				display: inline;
 				
-//				> a {
+				> a {
+					@include link-transition;
+
+					&:hover {
+						color: $darker_blue;
+					}
+
+					&:after {
+						content: ",";
+						display: inline;
+						margin-left: 0.03em;
+						color: $light_text;
+					}
+				}
+				
+				&:last-child> a:after {
+					content: ".";
+				}
+				
+				> a {
 					@include font-size( 23px );
 					@include link-transition;
-					
 					text-decoration: none;
 					font-weight: 700;
+					color: $blue;
 					margin-right: 0.1em;
 					letter-spacing: -0.02em;
-					color: white;
 					
 					@include media( tablet ) {
 						@include font-size( 31px );
@@ -427,34 +440,16 @@ body.single .site-header.cover-image {
 						@include font-size( 42px );
 					}
 					
-					&:after {
-						content: ",";
-						display: inline;
-						margin-left: 0.03em;
-						color: white;
-					}
-					
 					body.single & {
 						@include media( tablet ) {
 							@include font-size( 25px );
 						}
 					}
 					
-//				}
-
-				&:last-child:after {
-					content: ".";
-					margin: 0;
 				}
-				
 				
 				&:last-child > a {
 					margin-right: 0;
-					padding-right: 0;
-				}
-				
-				> a {
-					margin-right: 0.1em;
 				}
 				
 			}
@@ -466,7 +461,7 @@ body.single .site-header.cover-image {
 		}
 		
 	}
-
+	
 }
 
 /* Social Navigation */
@@ -517,23 +512,20 @@ body.single .site-header.cover-image {
 				}
 			}
 			
-			$p: 0.4em;
+			$padding: 0.2em;
 			
-			&:first-child > a {
-				margin-left: -$p;
+			&:first-child {
+				margin-left: -$padding;
 			}
 			
 			a {
-				@include background-transition;
-
 				display: block;
 				line-height: 1;
-				border-radius: 100%;
-				padding: $p;
-				margin: -$p + 0.3em;
+				padding: $padding;
 				
-				&:hover {
-					background: rgba( white, 0.075 );
+				&:hover svg {
+					transition: opacity $background_transition ease-in-out;
+					opacity: 0.6;
 				}
 				
 				svg {
