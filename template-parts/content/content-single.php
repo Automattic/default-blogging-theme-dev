@@ -13,6 +13,7 @@
 	<header class="entry-header">
 		<?php if ( ! ip3_can_show_post_thumbnail() ) get_template_part( 'template-parts/header/entry', 'header' ); ?>
 	</header>
+
 	<div class="entry-content">
 		<?php
 		the_content( sprintf(

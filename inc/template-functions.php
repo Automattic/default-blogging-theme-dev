@@ -12,16 +12,21 @@
  * @return array
  */
 function ip3_body_classes( $classes ) {
-	// Adds a class of hfeed to non-singular pages.
+	// Adds the proper header class to use.
+	if ( is_home() || is_front_page() ) {
+		$classes[] = 'header-home';
+	} else if ( is_singular() ) {
+		$classes[] = 'header-single';
+		$classes[] = 'singular';
+	} else {
+		$classes[] = 'header-default';
+	}
+
+	// Adds hfeed to non singular pages.
 	if ( ! is_singular() ) {
 		$classes[] = 'hfeed';
 	}
 
-	// Adds a class of no-sidebar when there is no sidebar present.
-	if ( ! is_active_sidebar( 'sidebar-1' ) ) {
-		$classes[] = 'no-sidebar';
-	}
-	
 	// Adds a class if image filters are enabled.
 	if ( ip3_image_filters_enabled() ) {
 		$classes[] = 'image-filters-enabled';

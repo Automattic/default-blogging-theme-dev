@@ -21,11 +21,41 @@ if ( post_password_required() ) {
 
 ?>
 
-<div id="comments" class="comments-area">
+<div id="comments" class="<?php echo comments_open() ? 'comments-area' : 'comments-area comments-closed'; ?>">
 	
 	<div class="comments-title-flex">
-		<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
-		<?php get_template_part( 'template-parts/post/discussion', 'meta' ); ?>
+		<?php if ( comments_open() ) : ?>
+			<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
+		<?php else: ?>
+			<h2 class="comments-title">
+			<?php
+				$comments_number = get_comments_number();
+				if ( '1' === $comments_number ) {
+					/* translators: %s: post title */
+					printf( _x( 'One reply on &ldquo;%s&rdquo;', 'comments title', 'independent-publisher-3' ), get_the_title() );
+				} else {
+					printf(
+						/* translators: 1: number of comments, 2: post title */
+						_nx(
+							'%1$s reply on &ldquo;%2$s&rdquo;',
+							'%1$s replies on &ldquo;%2$s&rdquo;',
+							$comments_number,
+							'comments title',
+							'independent-publisher-3'
+						),
+						number_format_i18n( $comments_number ),
+						get_the_title()
+					);
+				}
+			endif;
+			?>
+			</h2><!-- .comments-title -->
+		<?php
+			// Only show discussion information when comments are open.
+			if ( comments_open() ) {
+				get_template_part( 'template-parts/post/discussion', 'meta' );
+			}
+		?>
 	</div><!-- .comments-title-flex -->
 
 	<?php

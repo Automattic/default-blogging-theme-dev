@@ -99,7 +99,7 @@
 	}
 	
 	.content-wrap &:before {
-		@include hentry-line-pseudo-before;
+		@include post-section-dash;
 	}
 	
 }
@@ -206,16 +206,16 @@
 	content: "\020";
 	background: $light_text;
 	margin: 0 0 1em 0;
-	width: 1.15rem;
+	width: 1.563rem;
 	height: 2px;
 	
 	@include media( tablet ) {
-		width: 2rem;
+		width: 2.5rem;
 		margin-bottom: 1.18rem;
 	}
 	
 	@include media( desktop ) {
-		width: 2.8rem;
+		width: 3.75rem;
 	}
 }
 
@@ -239,7 +239,7 @@
 @mixin author-description-title {
 	@include font-size( 18.5px );
 	font-family: $title_font;
-
+	
 	@include media( tablet ) {
 		@include font-size( 25px );
 	}

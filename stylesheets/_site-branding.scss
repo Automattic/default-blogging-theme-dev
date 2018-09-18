@@ -8,12 +8,12 @@
 	@include media( tablet ) {
 		margin-bottom: 4.8em;
 	}
-	
+
 }
 
 /* Site header, singular item */
 
-body.single .site-header {
+.header-single .site-header {
 	@include page-wrapper-padding;
 	
 	margin: 0;
@@ -37,10 +37,10 @@ body.single .site-header {
 
 /* Entry header, no post thumbnail */
 
-body.single .site-main > .hentry:not(.has-post-thumbnail) {
+.header-single .site-main > .hentry:not(.has-post-thumbnail) {
 
 	&:before {
-		@include hentry-line-pseudo-before;
+		@include post-section-dash;
 		margin-bottom: 1em;
 	}
 
@@ -68,9 +68,25 @@ body.single .site-main > .hentry:not(.has-post-thumbnail) {
 
 }
 
+/* Entry header, no post thumbnail - on pages */
+
+.page .site-main > .hentry:not(.has-post-thumbnail) {
+	
+	.entry-header {
+		@include media( tablet ) {
+			margin-bottom: 1.1em;
+		}
+		
+		@include media( desktop ) {
+			margin-bottom: 1.3em;
+		}
+	}
+	
+}
+
 /* Site header with cover image */
 
-body.single .site-header.cover-image {
+.header-single .site-header.cover-image {
 	
 	/* Need relative positioning to properly align layers. */
 	position: relative;
@@ -99,6 +115,14 @@ body.single .site-header.cover-image {
 	
 	@include media( desktop ) {
 		@include bottom-sep(3.15em);
+	}
+	
+	/* Social Navigation */
+	.social-navigation ul li a svg {
+		transition: opacity $background_transition ease-in-out;
+		&:hover {
+			opacity: 0.6;
+		}
 	}
 	
 	/* Set white text color when cover image is set. */
@@ -162,7 +186,7 @@ body.single .site-header.cover-image {
 		}
 		
 		.content-wrap:before {
-			@include hentry-line-pseudo-before;
+			@include post-section-dash;
 			background: white;
 		}
 		
@@ -308,16 +332,19 @@ body.single .site-header.cover-image {
 		color: $text_color;
 		font-weight: 600;
 		
-		body.single & {
+		.header-single & {
 			display: block;
 			margin: 0.15em 0 0.2em 0;
-			font-weight: 400;
 			
 			@include media( tablet ) {
 				@include font-size( 27.5px );
 				display: inline;
 			}
 			
+		}
+		
+		body.page & {
+			display: inline;
 		}
 		
 		/* When there is no description set, make sure navigation appears below title. */
@@ -369,7 +396,7 @@ body.single .site-header.cover-image {
 			@include font-size( 42px );
 		}
 		
-		body.single & {
+		.header-single & {
 			@include font-size( 25px );
 		}
 		
@@ -380,7 +407,7 @@ body.single .site-header.cover-image {
 				margin-left: 0.2em;
 			}
 			
-			body.single & {
+			.header-single & {
 				@include media( tablet ) {
 					margin-left: 0.2em;
 				}
@@ -394,11 +421,15 @@ body.single .site-header.cover-image {
 		display: inline;
 		margin-left: 0.2em;
 		
-		body.single & {
+		.header-single & {
 			@include media( tablet ) {
 				display: block;
 				margin: 0.2em 0 0 0;
 			}
+		}
+		
+		body.page & {
+			display: block;
 		}
 		
 		.menu-main-navigation-container {
@@ -451,7 +482,7 @@ body.single .site-header.cover-image {
 						@include font-size( 42px );
 					}
 					
-					body.single & {
+					.header-single & {
 						@include media( tablet ) {
 							@include font-size( 25px );
 						}
@@ -479,7 +510,6 @@ body.single .site-header.cover-image {
 
 .social-navigation {
 	margin-top: 0.6em;
-	text-align: center;
 	
 	@include media( tablet ) {
 		margin-top: 1em;
@@ -490,7 +520,7 @@ body.single .site-header.cover-image {
 		margin-top: 1.3em;
 	}
 	
-	body.single & {
+	.header-single & {
 		text-align: left;
 		
 		@include media( tablet ) {
@@ -517,7 +547,7 @@ body.single .site-header.cover-image {
 				}
 			}
 			
-			body.single &:nth-child(n+2) {
+			.header-single &:nth-child(n+2) {
 				@include media( tablet ) {
 					margin-left: -0.12em;
 				}
@@ -533,11 +563,6 @@ body.single .site-header.cover-image {
 				display: block;
 				line-height: 1;
 				padding: $padding;
-				
-				&:hover svg {
-					transition: opacity $background_transition ease-in-out;
-					opacity: 0.6;
-				}
 				
 				svg {
 					@include svg-transition;
@@ -564,7 +589,7 @@ body.single .site-header.cover-image {
 						height: $size;
 					}
 					
-					body.single & {
+					.header-single & {
 						@include media( tablet ) {
 							$size: 25px;
 							width: $size;

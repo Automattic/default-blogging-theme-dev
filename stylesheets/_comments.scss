@@ -48,11 +48,25 @@
 .comments-area {
 	@include font-smoothing;
 	
+	/* Add extra margin when the comments section is located immediately after the
+	 * post itself (this happens on pages). */
+	.hentry + & {
+		margin-top: 2.8em;
+	}
+	
 	.comments-title {
 		@include author-description-title;
 		
 		&:before {
 			@include post-section-dash;
+		}
+	}
+	
+	/* Show smaller font size for the comments title when the comments are closed,
+	 * since the comments title already includes the post title. */
+	&.comments-closed .comments-title {
+		@include media( tablet ) {
+			@include font-size( 25px );
 		}
 	}
 	

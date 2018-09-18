@@ -60,10 +60,11 @@ endif;
 
 if ( ! function_exists( 'ip3_estimated_read_time' ) ) :
 	/**
-	 * Prints HTML with the estimated reading time.
+	 * Prints HTML with the estimated reading time. Does not display when time to read is zero.
 	 */
 	function ip3_estimated_read_time() {
 		$minutes = ip3_get_estimated_reading_time();
+		if ( 0 === $minutes ) return null;
 		$datetime_attr = sprintf( '%dm 0s', $minutes );
 		$read_time_text = sprintf( _nx( '%s Minute', '%s Minutes', $minutes, 'Time to read', 'independent-publisher-3' ), $minutes );
 		/* translators: 1: SVG icon. 2: Reading time label, only visible to screen readers. 3: The [datetime] attribute for the <time> tag. 4: Estimated reading time text, in minutes. */
@@ -169,7 +170,7 @@ if ( ! function_exists( 'ip3_header_cover_image_css' ) ) :
 	 */
 	function ip3_header_cover_image_css() {
 		$img_url = get_the_post_thumbnail_url( get_the_ID(), 'post-thumbnail' );
-		return sprintf( 'body.single .site-header.cover-image .site-branding-container:before { background-image: url(%s); }', esc_url( $img_url ) );
+		return sprintf( 'body.singular .site-header.cover-image .site-branding-container:before { background-image: url(%s); }', esc_url( $img_url ) );
 	}
 endif;
 

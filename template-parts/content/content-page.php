@@ -11,10 +11,8 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-	</header><!-- .entry-header -->
-
-	<?php ip3_post_thumbnail(); ?>
+		<?php if ( ! ip3_can_show_post_thumbnail() ) get_template_part( 'template-parts/header/entry', 'header' ); ?>
+	</header>
 
 	<div class="entry-content">
 		<?php
