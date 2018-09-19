@@ -58,6 +58,58 @@ function ip3_comment_form_defaults( $defaults ) {
 add_filter( 'comment_form_defaults', 'ip3_comment_form_defaults' );
 
 /**
+ * Filters the default archive titles.
+ */
+function ip3_get_the_archive_title() {
+	if ( is_category() ) {
+		$title = esc_html__( 'Category Archives:', 'independent-publisher-3' );
+	} elseif ( is_tag() ) {
+		$title = esc_html__( 'Tag Archives:', 'independent-publisher-3' );
+	} elseif ( is_author() ) {
+		$title = esc_html__( 'Author Archives:', 'independent-publisher-3' );
+	} elseif ( is_year() ) {
+		$title = esc_html__( 'Yearly Archives:', 'independent-publisher-3' );
+	} elseif ( is_month() ) {
+		$title = esc_html__( 'Monthly Archives:', 'independent-publisher-3' );
+	} elseif ( is_day() ) {
+		$title = esc_html__( 'Dayly Archives:', 'independent-publisher-3' );
+	} elseif ( is_post_type_archive() ) {
+		$title = esc_html__( 'Post Type Archives:', 'independent-publisher-3' );
+	} elseif ( is_tax() ) {
+		$tax = get_taxonomy( get_queried_object()->taxonomy );
+		/* translators: 1: Taxonomy singular name */
+		$title = sprintf( __( '%s Archives: ' ), $tax->labels->singular_name );
+	} else {
+		$title = esc_html__( 'Archives:', 'independent-publisher-3' );
+	}
+	return $title;
+}
+add_filter( 'get_the_archive_title', 'ip3_get_the_archive_title' );
+
+/**
+ * Filters the default archive descriptions.
+ */
+function ip3_get_the_archive_description() {
+	if ( is_category() || is_tag() || is_tax() ) {
+		$description = single_term_title( '', false );
+	} elseif ( is_author() ) {
+		$description = get_the_author_meta( 'display_name' );
+	} elseif ( is_post_type_archive() ) {
+		$description = post_type_archive_title( '', false );
+	} elseif ( is_year() ) {
+		$description = get_the_date( _x( 'Y', 'yearly archives date format', 'independent-publisher-3' ) );
+	} elseif ( is_month() ) {
+		$description = get_the_date( _x( 'F Y', 'monthly archives date format', 'independent-publisher-3' ) );
+	} elseif ( is_day() ) {
+		$description = get_the_date();
+	} else {
+		$description = null;
+	}
+	return $description;
+}
+add_filter( 'get_the_archive_description', 'ip3_get_the_archive_description' );
+
+/**
  * Determines if post thumbnail can be displayed.
  */
 function ip3_can_show_post_thumbnail() {

@@ -136,3 +136,61 @@
 	}
 	
 }
+
+.archive .page-header {
+	@include font-smoothing;
+	
+	margin-bottom: 3.7em;
+	
+	@include media( tablet ) {
+		margin-bottom: 5.2em;
+	}
+	
+	@include media( desktop ) {
+		margin-bottom: 6.4em;
+	}
+	
+	.page-title {
+		@include font-size( 27px );
+
+		font-weight: 400;
+		color: darken( $light_text, 5% );
+		line-height: 1.35;
+		margin: 0 0 -0.1em;
+		
+		@include media( tablet ) {
+			@include font-size( 38.5px );
+		}
+		
+		@include media( desktop ) {
+			@include font-size( 50px );
+			margin-bottom: -0.33em;
+		}
+	}
+	
+	.taxonomy-description {
+		@include font-size( 25px );
+		
+		font-family: $title_font;
+		
+		&:after {
+			content: ".";
+			font-weight: bold;
+			color: $light_text;
+		}
+		
+		@include media( tablet ) {
+			@include font-size( 37.5px );
+		}
+		
+		@include media( desktop ) {
+			@include font-size( 50px );
+		}
+		
+		strong {
+			
+		}
+		
+	}
+	
+}

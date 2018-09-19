@@ -1,4 +1,4 @@
-<header id="masthead" class="<?php echo ip3_can_show_post_thumbnail() ? 'site-header cover-image' : 'site-header' ?>">
+<header id="masthead" class="<?php echo ! is_archive() && ip3_can_show_post_thumbnail() ? 'site-header cover-image' : 'site-header' ?>">
 	<div class="site-branding-container layout-wrap">
 		<?php if ( has_custom_logo() ) : ?>
 			<div class="site-logo"><?php the_custom_logo(); ?></div>
@@ -7,7 +7,7 @@
 		<?php get_template_part( 'template-parts/header/site', 'branding' ); ?>
 	</div><!-- .layout-wrap -->
 
-	<?php if ( ip3_can_show_post_thumbnail() ) : ?>
+	<?php if ( ! is_archive() && ip3_can_show_post_thumbnail() ) : ?>
 
 	<div class="singular-post-meta layout-wrap">
 		<?php the_post(); ?>
