@@ -1,8 +1,7 @@
-''
+
 /** === Site Branding === */
 
 .site-header {
-
 	margin-bottom: 3.5em;
 	
 	@include media( tablet ) {
@@ -343,6 +342,7 @@
 	.site-title {
 		@include font-smoothing;
 		@include font-size( 25px );
+
 		display: inline;
 		font-family: $title_font;
 		color: $text_color;
@@ -354,7 +354,7 @@
 			
 			@include media( tablet ) {
 				@include font-size( 27.5px );
-				display: inline;
+				display: inline-block;
 			}
 			
 		}

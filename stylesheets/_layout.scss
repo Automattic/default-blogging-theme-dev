@@ -104,3 +104,35 @@
 		max-width: $tablet_width;
 	}
 }
+
+.not-found {
+	
+	.page-title {
+		@include font-size( 24px );
+
+		font-family: $title_font;
+		line-height: 1.35;
+		
+		@include media( tablet ) {
+			@include font-size( 28px );
+		}
+		
+		@include media( desktop ) {
+			@include font-size( 34px );
+		}
+	}
+	
+	.search-submit {
+		vertical-align: middle;
+	}
+	
+	.search-field {
+		width: 100%;
+		margin-bottom: 0.7em;
+		
+		@include media( tablet ) {
+			width: 18em;
+		}
+	}
+	
+}
