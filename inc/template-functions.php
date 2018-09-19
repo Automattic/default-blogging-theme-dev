@@ -13,9 +13,7 @@
  */
 function ip3_body_classes( $classes ) {
 	// Adds the proper header class to use.
-	if ( is_home() || is_front_page() ) {
-		$classes[] = 'header-home';
-	} else {
+	if ( ! is_home() && ! is_front_page() ) {
 		$classes[] = 'header-default';
 	}
 

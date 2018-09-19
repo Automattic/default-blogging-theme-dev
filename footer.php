@@ -23,8 +23,8 @@
 				</a>
 			</div><!-- .site-info -->
 		</footer><!-- #colophon -->
-
-	<?php get_template_part( 'template-parts/footer/footer', is_singular() ? 'singular' : 'home' ); ?>
+		
+	<?php get_template_part( 'template-parts/header/footer', is_singular() ? 'singular' : 'home' ); ?>
 
 </div><!-- #page -->
 

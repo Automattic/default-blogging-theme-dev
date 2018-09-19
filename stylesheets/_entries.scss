@@ -14,34 +14,7 @@
 	}
 
 	.entry-title {
-		@include font-size( 26px );
-		@include font-smoothing;
-
-		font-family: $title_font;
-		font-weight: 600;
-		margin: 0 0 0.7em 0;
-		line-height: 1.2;
-		
-		@include media( tablet ) {
-			@include font-size( 36px );
-			margin-bottom: 0.48em;
-			font-weight: 700;
-		}
-		
-		@include media( desktop ) {
-			@include font-size( 46px );
-			margin-bottom: 0.58em;
-		}
-		
-		a {
-			@include link-transition;
-			color: inherit;
-			&:hover {
-				color: $text_color_link_hover;
-				text-decoration: none;
-			}
-		}
-
+		@include hentry-entry-title;
 	}
 	
 	.entry-meta {
@@ -155,6 +128,7 @@
 	@include entry-footer-style;
 	@include font-smoothing;
 	@include font-size( 12px );
+
 	margin-top: 0.5em;
 
 	> span {

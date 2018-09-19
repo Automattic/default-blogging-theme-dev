@@ -46,7 +46,7 @@
 
 	.entry-header {
 		margin-bottom: 1.1em;
-		
+
 		@include media( tablet ) {
 			margin-bottom: 1.8em;
 		}
@@ -54,6 +54,19 @@
 		@include media( desktop ) {
 			margin-bottom: 2.1em;
 		}
+		
+		.entry-title {
+			margin-bottom: 0.3em;
+		}
+		
+		.meta-info {
+			margin-top: 0;
+			
+			> span {
+				font-weight: 500;
+			}
+		}
+		
 		
 		.posted-on a {
 			@include link-transition;
@@ -311,13 +324,12 @@
 /* Site branding */
 
 .site-branding {
-	padding-top: 0.2em;
 	letter-spacing: -0.02em;
 	color: $light_text;
 	line-height: 1.35;
 	
-	.singular & {
-		padding-top: 0;
+	body.home & {
+		padding-top: 0.2em;
 	}
 	
 	@include media( tablet ) {
