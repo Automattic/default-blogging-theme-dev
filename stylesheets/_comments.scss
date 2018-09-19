@@ -610,6 +610,56 @@
 		margin-bottom: 0;
 	}
 	
+	.comment-notes {
+		@include font-size( 16px );
+		
+		@include media( tablet ) {
+			@include font-size( 17px );
+		}
+		
+		@include media( desktop ) {
+			@include font-size( 18px );
+		}
+	}
+	
+	.comment-form-author,
+	.comment-form-email,
+	.comment-form-url {
+		label {
+			@include font-size( 14px );
+			font-family: $title_font;
+			user-select: none;
+			font-weight: 600;
+		}
+	}
+	
+	.comment-form-comment {
+		@include media( tablet ) {
+			margin-bottom: 0;
+		}
+	}
+	
+	.comment-form-author,
+	.comment-form-email {
+		@include media( tablet ) {
+			width: calc(50% - #{$side_padding/2});
+			float: left;
+		}
+	}
+	
+	.comment-form-email {
+		@include media( tablet ) {
+			margin-left: $side_padding;
+		}
+	}
+	
+	input[name="author"],
+	input[name="email"],
+	input[name="url"] {
+		display: block;
+		width: 100%;
+	}
+	
 }
 
 #respond + .comment-list,
