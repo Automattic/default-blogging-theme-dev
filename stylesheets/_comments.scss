@@ -567,16 +567,29 @@
 			transform: translateY( $bottom_offset );
 			max-width: 50%;
 			width: auto;
-		
-			.discussion-avatar-list {
-			}
-		
+			
 			.discussion-meta-info {
 				letter-spacing: -0.05em;
 				text-align: right;
 			}
 		}
 
+	}
+	
+	&.no-responses {
+		@include media( desktop ) {
+			
+			$margin: 0.2rem;
+			
+			.comments-title {
+				margin-bottom: $margin;
+			}
+			
+			.discussion-meta {
+				transform: translateY(-0.2em);
+				margin-bottom: $margin;
+			}
+		}
 	}
 	
 }

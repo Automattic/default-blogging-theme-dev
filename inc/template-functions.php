@@ -106,16 +106,21 @@ function ip3_is_comment_by_post_author( $comment=null ) {
 }
 
 /**
- * Returns information about the current post's discussion.
+ * Returns information about the current post's discussion, with cache support.
  */
 function ip3_get_discussion_data() {
+	static $discussion, $post_id;
+	$current_post_id = get_the_ID();
+	if ( $current_post_id === $post_id ) { /* If we have discussion information for post ID, return cached object */
+		return $discussion;
+	}
 	$authors = array();
 	$commenters = array();
 	$user_id = is_user_logged_in() ? get_current_user_id() : -1;
 	$comments = get_comments( array(
-		'post_id' => get_the_ID(),
+		'post_id' => $current_post_id,
 		'orderby' => 'comment_date_gmt',
-		'order'   => get_option( 'comment_order', 'asc' ), // Respect comment order from Settings » Discussion.
+		'order'   => get_option( 'comment_order', 'asc' ), /* Respect comment order from Settings » Discussion. */
 		'status'  => 'approve',
 	) );
 	foreach( $comments as $comment ) {
@@ -128,9 +133,11 @@ function ip3_get_discussion_data() {
 	$authors = array_unique( $authors );
 	$responses = count( $commenters );
 	$commenters = array_unique( $commenters );
-	return (object) array(
+	$post_id = $current_post_id;
+	$discussion = (object) array(
 		'authors'    => array_slice( $authors, 0, 6 ), /* Unique authors commenting on post (a subset of), excluding current user. */
 		'commenters' => count( $commenters ),          /* Number of commenters involved in discussion, excluding current user. */
 		'responses'  => $responses,                    /* Number of responses, excluding responses from current user. */
 	);
+	return $discussion;
 }

@@ -22,8 +22,7 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="<?php echo comments_open() ? 'comments-area' : 'comments-area comments-closed'; ?>">
-	
-	<div class="comments-title-flex">
+	<div class="<?php echo ip3_get_discussion_data()->responses > 0 ? 'comments-title-flex' : 'comments-title-flex no-responses'; ?>">
 		<?php if ( comments_open() ) : ?>
 			<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
 		<?php else: ?>
