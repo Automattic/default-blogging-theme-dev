@@ -80,8 +80,9 @@ if ( post_password_required() ) {
 		// Show comment form at bottom if showing newest comments at the bottom.
 		if ( 'asc' === strtolower( get_option( 'comment_order', 'asc' ) ) ) : ?>
 			<div class="comment-form-flex">
+				<span class="screen-reader-text"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></span>
 				<?php ip3_comment_form( 'asc' ); ?>
-				<h2 class="comments-title"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></h2>
+				<h2 class="comments-title" aria-hidden="true"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></h2>
 			</div>
 		<?php endif;
 		
