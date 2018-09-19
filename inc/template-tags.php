@@ -270,7 +270,7 @@ if ( ! function_exists( 'ip3_comment_form' ) ) :
 	 * Documentation for function.
 	 */
 	function ip3_comment_form( $order ) {
-		if ( strtolower( $order ) === strtolower( get_option( 'comment_order', 'asc' ) ) ) {
+		if ( true === $order || strtolower( $order ) === strtolower( get_option( 'comment_order', 'asc' ) ) ) {
 			comment_form( array(
 				'title_reply_before' => ip3_get_user_avatar_markup(),
 				'logged_in_as'       => null,

@@ -10,11 +10,9 @@
  * @package Independent_Publisher_3
  */
 
-/*
- * If the current post is protected by a password and
+/* If the current post is protected by a password and
  * the visitor has not yet entered the password we will
- * return early without loading the comments.
- */
+ * return early without loading the comments. */
 if ( post_password_required() ) {
 	return;
 }
@@ -23,11 +21,15 @@ if ( post_password_required() ) {
 
 <div id="comments" class="<?php echo comments_open() ? 'comments-area' : 'comments-area comments-closed'; ?>">
 	<div class="<?php echo ip3_get_discussion_data()->responses > 0 ? 'comments-title-flex' : 'comments-title-flex no-responses'; ?>">
-		<?php if ( comments_open() ) : ?>
-			<h2 class="comments-title"><?php esc_html_e( 'Join the Conversation', 'independent-publisher-3' ) ?></h2>
-		<?php else: ?>
-			<h2 class="comments-title">
-			<?php
+		<h2 class="comments-title">
+		<?php
+			if ( comments_open() ) {
+				if ( have_comments() ) {
+					echo esc_html_e( 'Join the Conversation', 'independent-publisher-3' );
+				} else {
+					echo esc_html_e( 'Leave a comment', 'independent-publisher-3' );
+				}
+			} else {
 				$comments_number = get_comments_number();
 				if ( '1' === $comments_number ) {
 					/* translators: %s: post title */
@@ -46,24 +48,26 @@ if ( post_password_required() ) {
 						get_the_title()
 					);
 				}
-			endif;
-			?>
-			</h2><!-- .comments-title -->
+			}
+		?>
+		</h2><!-- .comments-title -->
+		
 		<?php
-			// Only show discussion information when comments are open.
-			if ( comments_open() ) {
+			// Only show discussion meta information when comments are open and available.
+			if ( have_comments() && comments_open() ) {
 				get_template_part( 'template-parts/post/discussion', 'meta' );
 			}
 		?>
 	</div><!-- .comments-title-flex -->
-
 	<?php
+	if ( have_comments() ) :
 	
-	// Show comment form at top if showing newest comments at the top.
-	ip3_comment_form( 'desc' );
+		// Show comment form at top if showing newest comments at the top.
+		if ( comments_open() ) {
+			ip3_comment_form( 'desc' );
+		}
 	
-	// You can start editing here -- including this comment!
-	if ( have_comments() ) : ?>
+		?>
 		<ol class="comment-list">
 			<?php
 			wp_list_comments( array(
@@ -74,38 +78,40 @@ if ( post_password_required() ) {
 			) );
 			?>
 		</ol><!-- .comment-list -->
-
 		<?php
-		
+
 		// Show comment form at bottom if showing newest comments at the bottom.
-		if ( 'asc' === strtolower( get_option( 'comment_order', 'asc' ) ) ) : ?>
+		if ( comments_open() && 'asc' === strtolower( get_option( 'comment_order', 'asc' ) ) ) : ?>
 			<div class="comment-form-flex">
 				<span class="screen-reader-text"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></span>
 				<?php ip3_comment_form( 'asc' ); ?>
 				<h2 class="comments-title" aria-hidden="true"><?php esc_html_e( 'Leave a comment', 'independent-publisher-3' ) ?></h2>
 			</div>
 		<?php endif;
-		
-		$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
-		$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
-		$comments_text = __( 'Comments', 'independent-publisher-3' );
 
-		the_comments_navigation( array(
-			'prev_text' => sprintf( '%s <span class="nav-prev-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ) ),
-			'next_text' => sprintf( '<span class="nav-next-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span> %s', __( 'Next', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ), $next_icon ),
-		) );
+		// Show comment navigation
+		if ( have_comments() ) :
+			$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
+			$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
+			$comments_text = __( 'Comments', 'independent-publisher-3' );
+			the_comments_navigation( array(
+				'prev_text' => sprintf( '%s <span class="nav-prev-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span>', $prev_icon, __( 'Previous', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ) ),
+				'next_text' => sprintf( '<span class="nav-next-text"><span class="primary-text">%s</span> <span class="secondary-text">%s</span></span> %s', __( 'Next', 'independent-publisher-3' ), __( 'Comments', 'independent-publisher-3' ), $next_icon ),
+			) );
+		endif;
 
 		// If comments are closed and there are comments, let's leave a little note, shall we?
-		if ( ! comments_open() ) :
-			?>
+		if ( ! comments_open() ) : ?>
 			<p class="no-comments">
 				<?php esc_html_e( 'Comments are closed.', 'independent-publisher-3' ); ?>
 			</p>
 			<?php
 		endif;
 
-	endif; // if have_comments().
-
-	?>
-
+	else:
+		
+		// Show comment form.
+		ip3_comment_form( true );
+	
+	endif; // if have_comments(); ?>
 </div><!-- #comments -->
