@@ -279,3 +279,17 @@ if ( ! function_exists( 'ip3_comment_form' ) ) :
 		}
 	}
 endif;
+
+if ( ! function_exists( 'ip3_the_posts_navigation' ) ) :
+	/**
+	 * Documentation for function.
+	 */
+	function ip3_the_posts_navigation() {
+		$prev_icon = ip3_get_icon_svg( 'chevron_left',  22 );
+		$next_icon = ip3_get_icon_svg( 'chevron_right', 22 );
+		the_posts_navigation( array(
+			'prev_text' => sprintf( '%s <span class="nav-prev-text">%s</span>', $prev_icon, __( 'Older posts', 'independent-publisher-3' ) ),
+			'next_text' => sprintf( '<span class="nav-next-text">%s</span> %s', __( 'Newer posts', 'independent-publisher-3' ), $next_icon ),
+		) );
+	}
+endif;

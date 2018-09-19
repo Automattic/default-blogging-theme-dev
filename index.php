@@ -28,7 +28,7 @@ get_header();
 		}
 		
 		// Previous/next page navigation.
-		the_posts_navigation();
+		ip3_the_posts_navigation();
 
 	} else {
 

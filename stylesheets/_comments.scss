@@ -435,67 +435,6 @@
 	
 }
 
-.comment-navigation {
-	margin-top: 1.2em;
-	
-	@include media( tablet ) {
-		margin-top: 2.4em;
-	}
-	
-	.nav-links {
-		
-		display: flex;
-		flex-direction: row;
-		
-		a {
-			@include font-size( 15px );
-			font-family: $title_font;
-			color: $light_text;
-			font-weight: 600;
-		}
-		
-	}
-	
-	.nav-previous, .nav-next {
-		min-width: 50%;
-		width: 100%;
-		
-		.secondary-text {
-			display: none;
-			
-			@include media( tablet ) {
-				display: inline;
-			}
-		}
-		
-		svg {
-			@include svg-transition;
-			vertical-align: middle;
-			position: relative;
-			fill: $light_text;
-			margin: 0 -0.35em;
-			top: -1px;
-		}
-		
-		a {
-			@include link-transition;
-
-			&:hover {
-				text-decoration: none;
-				color: $blue;
-				svg {
-					fill: $blue;
-				}
-			}
-		}
-	}
-	
-	.nav-next {
-		text-align: right;
-	}
-	
-}
-
 .discussion-avatar-list {
 	@include clearfix;
 
