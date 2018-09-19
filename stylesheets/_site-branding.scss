@@ -1,4 +1,4 @@
-
+''
 /** === Site Branding === */
 
 .site-header {
@@ -13,7 +13,7 @@
 
 /* Site header, singular item */
 
-.header-single .site-header {
+.header-default .site-header {
 	@include page-wrapper-padding;
 	
 	margin: 0;
@@ -37,7 +37,7 @@
 
 /* Entry header, no post thumbnail */
 
-.header-single .site-main > .hentry:not(.has-post-thumbnail) {
+.header-default .site-main > .hentry:not(.has-post-thumbnail) {
 
 	&:before {
 		@include post-section-dash;
@@ -86,7 +86,7 @@
 
 /* Site header with cover image */
 
-.header-single .site-header.cover-image {
+.header-default .site-header.cover-image {
 	
 	/* Need relative positioning to properly align layers. */
 	position: relative;
@@ -316,6 +316,10 @@
 	color: $light_text;
 	line-height: 1.35;
 	
+	.singular & {
+		padding-top: 0;
+	}
+	
 	@include media( tablet ) {
 		line-height: 1.2;
 	}
@@ -332,7 +336,7 @@
 		color: $text_color;
 		font-weight: 600;
 		
-		.header-single & {
+		.header-default & {
 			display: block;
 			margin: 0.15em 0 0.2em 0;
 			
@@ -344,7 +348,7 @@
 		}
 		
 		body.page & {
-			display: inline;
+			display: inline-block;
 		}
 		
 		/* When there is no description set, make sure navigation appears below title. */
@@ -396,7 +400,7 @@
 			@include font-size( 42px );
 		}
 		
-		.header-single & {
+		.header-default & {
 			@include font-size( 25px );
 		}
 		
@@ -407,7 +411,7 @@
 				margin-left: 0.2em;
 			}
 			
-			.header-single & {
+			.header-default & {
 				@include media( tablet ) {
 					margin-left: 0.2em;
 				}
@@ -421,7 +425,7 @@
 		display: inline;
 		margin-left: 0.2em;
 		
-		.header-single & {
+		.header-default & {
 			@include media( tablet ) {
 				display: block;
 				margin: 0.2em 0 0 0;
@@ -482,7 +486,7 @@
 						@include font-size( 42px );
 					}
 					
-					.header-single & {
+					.header-default & {
 						@include media( tablet ) {
 							@include font-size( 25px );
 						}
@@ -520,7 +524,7 @@
 		margin-top: 1.3em;
 	}
 	
-	.header-single & {
+	.header-default & {
 		text-align: left;
 		
 		@include media( tablet ) {
@@ -547,7 +551,7 @@
 				}
 			}
 			
-			.header-single &:nth-child(n+2) {
+			.header-default &:nth-child(n+2) {
 				@include media( tablet ) {
 					margin-left: -0.12em;
 				}
@@ -589,7 +593,7 @@
 						height: $size;
 					}
 					
-					.header-single & {
+					.header-default & {
 						@include media( tablet ) {
 							$size: 25px;
 							width: $size;

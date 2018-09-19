@@ -15,15 +15,15 @@ function ip3_body_classes( $classes ) {
 	// Adds the proper header class to use.
 	if ( is_home() || is_front_page() ) {
 		$classes[] = 'header-home';
-	} else if ( is_singular() ) {
-		$classes[] = 'header-single';
-		$classes[] = 'singular';
 	} else {
 		$classes[] = 'header-default';
 	}
 
-	// Adds hfeed to non singular pages.
-	if ( ! is_singular() ) {
+	if ( is_singular() ) {
+		// Adds `singular` to singular pages.
+		$classes[] = 'singular';
+	} else {
+		// Adds `hfeed` to non singular pages.
 		$classes[] = 'hfeed';
 	}
 
