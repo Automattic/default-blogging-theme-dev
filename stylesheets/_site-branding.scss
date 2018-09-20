@@ -191,6 +191,10 @@
 			@include media( wide ) {
 				max-width: 100%;
 			}
+
+			.entry-title:only-child {
+				margin-bottom: 0;
+			}
 		}
 		
 		.content-wrap:before {
