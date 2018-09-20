@@ -26,9 +26,8 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 // Includes.
 @import "stylesheets/inc/variables";
 @import "stylesheets/inc/palette";
-@import "stylesheets/inc/functions";
+@import "stylesheets/inc/utilities";
 @import "stylesheets/inc/mixins";
-@import "stylesheets/inc/placeholders";
 
 // Stylesheets.
 @import "stylesheets/normalize";
@@ -40,7 +39,5 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "stylesheets/wordpress";
 @import "stylesheets/layout";
 @import "stylesheets/entries";
-@import "stylesheets/effects";
 @import "stylesheets/general";
 @import "stylesheets/comments";
-@import "stylesheets/dev";
