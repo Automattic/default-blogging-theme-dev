@@ -1,0 +1,17 @@
+*.rsync
+*.scss
+.*
+
+/node_modules/
+/stylesheets/
+/tools/
+
+.tm_properties
+.gitignore
+
+Gruntfile.js
+package.json
+package-lock.json
+manifest.json
+update.sh
+Makefile
