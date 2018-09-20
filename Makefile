@@ -1,15 +1,15 @@
 
 PKG="blogging-theme"
 
-default: compile
+default: build
 
-compile:
+build:
 	@grunt build
 	
 dev:
 	@grunt build && grunt watch
 	
-build:
+theme:
 	@echo "* Initializing build"; rm -Rf build; mkdir -p build
 	@echo "* Building assets"; grunt build > /dev/null
 	@echo "* Copying assets"; rsync -a . build/ --exclude-from=excludes.rsync
