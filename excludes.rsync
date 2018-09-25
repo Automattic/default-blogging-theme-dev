@@ -5,6 +5,7 @@
 /node_modules/
 /stylesheets/
 /tools/
+/build/
 
 .tm_properties
 .gitignore
