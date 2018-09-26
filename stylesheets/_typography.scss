@@ -1,7 +1,10 @@
 
 /** === Typography === */
 
-$root-font-size-base:  $base_size;
+$root-font-body: $text_font;
+$root-font-heading: $title_font;
+
+$root-font-size-base: $base_size;
 $root-font-size-ratio: 1.2;
 
 $root-font-size-xxs:   1em / (2 * $root-font-size-ratio);
@@ -24,7 +27,7 @@ select,
 optgroup,
 textarea {
 	text-rendering: optimizeLegibility;
-	font-family: $text_font;
+	font-family: $root-font-body;
 	color: #111;
 	font-weight: 400;
 	font-size: $root-font-size-base;
@@ -32,7 +35,7 @@ textarea {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-family: $title_font;
+	font-family: $root-font-heading;
 	line-height: $root-line-height-heading;
 	clear: both;
 }
@@ -63,11 +66,10 @@ h5 {
 .has-small-font-size,
 h6 {
 	font-size: $root-font-size-sm;
-	text-transform: uppercase;
 }
 
 p {
-	margin-bottom: 1.15em;
+
 }
 
 dfn, cite, em, i {
