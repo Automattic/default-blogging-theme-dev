@@ -99,13 +99,13 @@
 		@include remove-child-margins;
 		@include font-smoothing;
 
+		@include media( tablet ) {
+			font-size: 20px;
+		}
+
 		// Style all elemnts first
 		> * {
 			@include block-margin();
-
-			@include media( tablet ) {
-
-			}
 		}
 
 		.more-link {
