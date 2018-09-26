@@ -1,5 +1,5 @@
 
-/* block styles */
+/* Block styles */
 
 .entry-content > *,
 .entry-summary > * {
@@ -52,18 +52,44 @@
 
 .entry-content {
 
-	// Blockquote
-	.wp-block-quote {
+	// Categories & archives
+	.wp-block-archives,
+	.wp-block-categories {
+
+		font-family: $root-font-heading;
+		font-size: $root-font-size-md;
+
+		a {
+			font-weight: bold;
+		}
+	}
+
+	// Latest posts
+	.wp-block-latest-posts {
+		border-left: 2px solid $light_text;
+		padding: 0 0 0 ($root-space-base * 2);
 		margin-left: -($root-space-base * 2);
+		list-style: none;
 
-		&.is-large {
-			padding: $root-space-base 0 ($root-space-base * .5) ($root-space-base * 2);
+		li {
+			font-family: $root-font-heading;
+			font-size: $root-font-size-lg;
+			font-weight: bold;
+			line-height: $root-line-height-heading;
 
-			p {
-				font-size: $root-font-size-lg;
-				line-height: $root-line-height-heading;
+			&:after {
+				content: ",";
+			}
+
+			&:last-child:after {
+				content: ".";
 			}
 		}
+	}
+
+	// Latest preformatted text
+	.wp-block-preformatted {
+		padding: $root-space-base;
 	}
 
 	// Pullquote
@@ -96,6 +122,20 @@
 		}
 	}
 
+	// Blockquote
+	.wp-block-quote {
+		margin-left: -($root-space-base * 2);
+
+		&.is-large {
+			padding: $root-space-base 0 ($root-space-base * .5) ($root-space-base * 2);
+
+			p {
+				font-size: $root-font-size-lg;
+				line-height: $root-line-height-heading;
+			}
+		}
+	}
+
 	// Separator
 	.wp-block-separator {
 		margin: ( 2 * $root-space-base ) 0;
@@ -107,46 +147,6 @@
 		font-size: $root-font-size-lg;
 		line-height: $root-line-height-heading;
 		opacity: inherit;
-	}
-
-	// Latest preformatted text
-	.wp-block-preformatted {
-		padding: $root-space-base;
-	}
-
-	// Latest posts
-	.wp-block-latest-posts {
-		border-left: 2px solid $light_text;
-		padding: 0 0 0 ($root-space-base * 2);
-		margin-left: -($root-space-base * 2);
-		list-style: none;
-
-		li {
-			font-family: $root-font-heading;
-			font-size: $root-font-size-lg;
-			font-weight: bold;
-			line-height: $root-line-height-heading;
-
-			&:after {
-				content: ",";
-			}
-
-			&:last-child:after {
-				content: ".";
-			}
-		}
-	}
-
-	// Categories & Archives
-	.wp-block-categories,
-	.wp-block-archives {
-
-		font-family: $root-font-heading;
-		font-size: $root-font-size-md;
-
-		a {
-			font-weight: bold;
-		}
 	}
 
 }
