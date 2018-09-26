@@ -36,15 +36,15 @@ a:hover, a:active {
 }
 
 hr {
-	background-color: #ccc;
+	background-color: $light_text;
 	border: 0;
 	height: 1px;
-	margin-bottom: 1.5em;
+	margin-bottom: $root-space-base;
 }
 
 ul,
 ol {
-	padding-left: 1em;
+	padding-left: $root-space-base;
 }
 
 ul {
@@ -57,7 +57,7 @@ ol {
 
 li > ul,
 li > ol {
-	margin-left: 1em;
+	margin-left: $root-space-base;
 }
 
 dt {
@@ -65,7 +65,7 @@ dt {
 }
 
 dd {
-	margin: 0 1.5em 1.5em;
+	margin: 0 $root-space-base $root-space-base;
 }
 
 img {
@@ -74,10 +74,25 @@ img {
 }
 
 figure {
-	margin: 1em 0;
+	margin: 0;
+}
+
+blockquote {
+
+	border-left: 2px solid $blue;
+	margin-left: -($root-space-base * 2);
+	padding: $root-space-base 0 ($root-space-base * .5) ($root-space-base * 2);
+
+	> p {
+		margin: 0 0 $root-space-base;
+	}
+
+	cite {
+		color: $light_text;
+	}
 }
 
 table {
-	margin: 0 0 1.5em;
+	margin: 0 0 $root-space-base;
 	width: 100%;
 }

@@ -256,11 +256,11 @@
 	}
 }
 
-@mixin block-margin( $v-space: 1em, $h-space: 0 ) {
+@mixin block-margin( $v-space: $root-space-base, $h-space: 0 ) {
 	margin: $v-space $h-space;
 }
 
-@mixin block-padding( $v-space: 1em, $h-space: 1em ) {
+@mixin block-padding( $v-space: $root-space-base, $h-space: $root-space-base ) {
 	padding: $v-space $h-space;
 }
 

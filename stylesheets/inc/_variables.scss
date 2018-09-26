@@ -9,6 +9,29 @@ $monospace_font: Menlo, monaco, Consolas, Lucida Console, monospace;
 
 $base_size: 18px;
 
+// Add ::root variables
+$root-font-body:       $text_font;
+$root-font-heading:    $title_font;
+$root-font-code:       $monospace_font;
+
+$root-font-size-base:  $base_size;
+$root-font-size-ratio: 1.2;
+
+$root-font-size-xxs:   1em / (2 * $root-font-size-ratio);
+$root-font-size-xs:    1em / (1.5 * $root-font-size-ratio);
+$root-font-size-sm:    1em / (1 * $root-font-size-ratio);
+$root-font-size-md:    1em * (1 * $root-font-size-ratio);
+$root-font-size-lg:    1em * (1.5 * $root-font-size-ratio);
+$root-font-size-xl:    1em * (2 * $root-font-size-ratio);
+$root-font-size-xxl:   1em * (2.5 * $root-font-size-ratio);
+$root-font-size-xxxl:  1em * (3 * $root-font-size-ratio);
+
+$root-line-height-base:    1.5;
+$root-line-height-heading: 1.2;
+$root-line-height-double:  2 * $root-line-height-heading;
+
+$root-space-base: 1rem;
+
 // Screen widths.
 
 $mobile_width: 380px;

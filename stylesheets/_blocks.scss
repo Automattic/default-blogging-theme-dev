@@ -4,6 +4,8 @@
 .entry-content > *,
 .entry-summary > * {
 
+	@include block-margin();
+
 	&.alignwide {
 
 		margin-left: auto;
@@ -27,16 +29,16 @@
 
 	&.alignleft {
 		float: left;
-		max-width: 285px;
+		max-width: ( $mobile_width * .5 );
 		margin-top: 0;
-		margin-right: 1em;
+		margin-right: $root-space-base;
 
 		@include media( tablet ) {
-
+			max-width: ( $tablet_width * .5 );
 		}
 
 		@include media( wide ) {
-
+			max-width: ( $desktop_width * .5 );
 		}
 	}
 
@@ -44,10 +46,101 @@
 		float: right;
 		max-width: 285px;
 		margin-top: 0;
-		margin-left: 1em;
+		margin-left: $root-space-base;
 
 		@include media( tablet ) {
 
+		}
+	}
+}
+
+.entry-content {
+
+	// Blockquote
+	.wp-block-quote {
+		margin-left: -($root-space-base * 2);
+
+		&.is-large {
+			padding: $root-space-base 0 ($root-space-base * .5) ($root-space-base * 2);
+
+			p {
+				font-size: $root-font-size-xl;
+				line-height: $root-line-height-heading;
+			}
+		}
+	}
+
+	// Pullquote
+	.wp-block-pullquote {
+
+		background: $blue;
+		padding: 0;
+
+		blockquote {
+			border-left: none;
+			margin: 0;
+			padding: ($root-space-base * 3) ;
+		}
+
+		p {
+			color: #fff;
+			font-size: $root-font-size-xl;
+			line-height: $root-line-height-heading;
+		}
+
+		cite {
+			color: #fff;
+		}
+	}
+
+	// Separator
+	.wp-block-separator {
+		margin: ( 2 * $root-space-base ) 0;
+	}
+
+	// Subhead
+	.wp-block-subhead {
+		color: $blue;
+		font-size: $root-font-size-lg;
+		opacity: inherit;
+	}
+
+	// Latest preformatted text
+	.wp-block-preformatted {
+		padding: $root-space-base;
+	}
+
+	// Latest posts
+	.wp-block-latest-posts {
+		border-left: 2px solid $light_text;
+		padding: 0 0 0 ($root-space-base * 2);
+		margin-left: -($root-space-base * 2);
+		font-family: $root-font-heading;
+		font-size: $root-font-size-lg;
+		font-weight: bold;
+		list-style: none;
+
+		li {
+
+			&:after {
+				content: ",";
+			}
+
+			&:last-child:after {
+				content: ".";
+			}
+		}
+	}
+
+	// Categories & Archives
+	.wp-block-categories,
+	.wp-block-archives {
+
+		font-family: $root-font-heading;
+		font-size: $root-font-size-md;
+
+		a {
+			font-weight: bold;
 		}
 	}
 }

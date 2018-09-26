@@ -103,11 +103,6 @@
 			font-size: 20px;
 		}
 
-		// Style all elemnts first
-		> * {
-			@include block-margin();
-		}
-
 		.more-link {
 			@include link-transition;
 			display: inline;
@@ -125,6 +120,12 @@
 		}
 	}
 
+}
+
+.entry-content > *,
+.entry-summary > * {
+
+	@include block-margin();
 }
 
 .entry-header .meta-info,
