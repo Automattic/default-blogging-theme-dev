@@ -255,3 +255,12 @@
 		@include font-size( 33px );
 	}
 }
+
+@mixin block-margin( $v-space: 1em, $h-space: 0 ) {
+	margin: $v-space $h-space;
+}
+
+@mixin block-padding( $v-space: 1em, $h-space: 1em ) {
+	padding: $v-space $h-space;
+}
+

@@ -1,3 +1,53 @@
 
 /* block styles */
 
+.entry-content > *,
+.entry-summary > * {
+
+	&.alignwide {
+
+		margin-left: auto;
+		margin-right: auto;
+
+		@include media( tablet ) {
+			max-width: 100%;
+			margin-right: 0;
+		}
+
+		@include media( wide ) {
+			margin-left: 0;
+		}
+	}
+
+	&.alignfull {
+		margin-left: 0;
+		margin-right: 0;
+		max-width: 100%;
+	}
+
+	&.alignleft {
+		float: left;
+		max-width: 285px;
+		margin-top: 0;
+		margin-right: 1em;
+
+		@include media( tablet ) {
+
+		}
+
+		@include media( wide ) {
+
+		}
+	}
+
+	&.alignright {
+		float: right;
+		max-width: 285px;
+		margin-top: 0;
+		margin-left: 1em;
+
+		@include media( tablet ) {
+
+		}
+	}
+}

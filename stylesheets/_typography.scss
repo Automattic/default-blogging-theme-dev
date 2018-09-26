@@ -1,10 +1,11 @@
 
 /** === Typography === */
 
-$root-font-body: $text_font;
-$root-font-heading: $title_font;
+$root-font-body:       $text_font;
+$root-font-heading:    $title_font;
+$root-font-code:       $monospace_font;
 
-$root-font-size-base: $base_size;
+$root-font-size-base:  $base_size;
 $root-font-size-ratio: 1.2;
 
 $root-font-size-xxs:   1em / (2 * $root-font-size-ratio);
@@ -16,9 +17,9 @@ $root-font-size-xl:    1em * (2 * $root-font-size-ratio);
 $root-font-size-xxl:   1em * (2.5 * $root-font-size-ratio);
 $root-font-size-xxxl:  1em * (3 * $root-font-size-ratio);
 
-$root-line-height-base: 1.5;
+$root-line-height-base:    1.5;
 $root-line-height-heading: 1.2;
-$root-line-height-double: 2 * $root-line-height-heading;
+$root-line-height-double:  2 * $root-line-height-heading;
 
 body,
 button,
@@ -77,7 +78,18 @@ dfn, cite, em, i {
 }
 
 blockquote {
-	margin: 0 1.5em;
+
+	> p {
+		font-size: $root-font-size-xl;
+		font-style: italic;
+		line-height: $root-line-height-heading;
+	}
+
+	cite {
+		font-size: $root-font-size-sm;
+		font-style: normal;
+		font-family: $root-font-heading;
+	}
 }
 
 address {
@@ -86,19 +98,14 @@ address {
 
 pre {
 	font-size: $root-font-size-sm;
-	background: #eee;
 	font-family: $monospace_font;
-	line-height: 1.6;
-	margin-bottom: 1.6em;
-	max-width: 100%;
-	overflow: auto;
-	padding: 1.6em;
+	line-height: $root-line-height-base;
+	overflow: hidden;
 }
 
 code, kbd, tt, var {
 	font-size: $root-font-size-sm;
 	font-family: $monospace_font;
-	font-size: 0.9375rem;
 }
 
 abbr, acronym {
