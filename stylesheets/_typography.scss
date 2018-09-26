@@ -1,6 +1,22 @@
 
 /** === Typography === */
 
+$root-font-size-base:  $base_size;
+$root-font-size-ratio: 1.2;
+
+$root-font-size-xxs:   1em / (2 * $root-font-size-ratio);
+$root-font-size-xs:    1em / (1.5 * $root-font-size-ratio);
+$root-font-size-sm:    1em / (1 * $root-font-size-ratio);
+$root-font-size-md:    1em * (1 * $root-font-size-ratio);
+$root-font-size-lg:    1em * (1.5 * $root-font-size-ratio);
+$root-font-size-xl:    1em * (2 * $root-font-size-ratio);
+$root-font-size-xxl:   1em * (2.5 * $root-font-size-ratio);
+$root-font-size-xxxl:  1em * (3 * $root-font-size-ratio);
+
+$root-line-height-base: 1.5;
+$root-line-height-heading: 1.2;
+$root-line-height-double: 2 * $root-line-height-heading;
+
 body,
 button,
 input,
@@ -11,12 +27,43 @@ textarea {
 	font-family: $text_font;
 	color: #111;
 	font-weight: 400;
-	font-size: $base_size;
-	line-height: 1.5;
+	font-size: $root-font-size-base;
+	line-height: $root-line-height-base;
 }
 
 h1, h2, h3, h4, h5, h6 {
+	font-family: $title_font;
+	line-height: $root-line-height-heading;
 	clear: both;
+}
+
+h1 {
+	font-size: $root-font-size-xxl;
+}
+
+.has-larger-font-size,
+h2 {
+	font-size: $root-font-size-xl;
+}
+
+.has-large-font-size,
+h3 {
+	font-size: $root-font-size-lg;
+}
+
+.has-regular-font-size,
+h4 {
+	font-size: $root-font-size-md;
+}
+
+h5 {
+	font-size: $root-font-size-md;
+}
+
+.has-small-font-size,
+h6 {
+	font-size: $root-font-size-sm;
+	text-transform: uppercase;
 }
 
 p {
@@ -36,10 +83,9 @@ address {
 }
 
 pre {
-	@include font-size( 15px );
+	font-size: $root-font-size-sm;
 	background: #eee;
 	font-family: $monospace_font;
-	font-size: 0.9375rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
 	max-width: 100%;
@@ -48,7 +94,7 @@ pre {
 }
 
 code, kbd, tt, var {
-	@include font-size( 15px );
+	font-size: $root-font-size-sm;
 	font-family: $monospace_font;
 	font-size: 0.9375rem;
 }
@@ -64,13 +110,13 @@ mark, ins {
 }
 
 big {
-	font-size: 125%;
+	font-size: $root-font-size-xxxl;
 }
 
 a {
 	color: $blue;
 	text-decoration: none;
-	
+
 	&:hover {
 		text-decoration: underline;
 	}

@@ -19,7 +19,7 @@
 	position: relative;
 	filter: grayscale(100%);
 	z-index: 1;
-	
+
 	&:after {
 		display: block;
 		width: 100%;
@@ -34,7 +34,7 @@
 	@include media( tablet ) {
 		padding-top: 40px;
 	}
-	
+
 	@include media( desktop ) {
 		padding-top: 80px;
 	}
@@ -56,11 +56,11 @@
 	height: 2px;
 	background: lighten($text_color, 50%);
 	margin-bottom: 1.3em;
-	
+
 	@include media( tablet ) {
 		width: 2em;
 	}
-	
+
 	@include media( desktop ) {
 		width: 2.8em;
 	}
@@ -74,18 +74,18 @@
 	font-weight: 600;
 	margin: 0.1em 0 0.7em 0;
 	line-height: 1.2;
-	
+
 	@include media( tablet ) {
 		@include font-size( 36px );
 		margin-bottom: 0.48em;
 		font-weight: 700;
 	}
-	
+
 	@include media( desktop ) {
 		@include font-size( 46px );
 		margin-bottom: 0.58em;
 	}
-	
+
 	a {
 		@include link-transition;
 		color: inherit;
@@ -104,29 +104,29 @@
 	.entry-title {
 		@include hentry-entry-title;
 	}
-	
+
 	.content-wrap &:before {
 		@include post-section-dash;
 	}
-	
+
 }
 
 @mixin entry-footer-style {
 	font-family: $title_font;
 	font-weight: 500;
 	color: lighten($light_text, 0%);
-	
+
 	> span {
 		$hmargin: 1.35em;
 		$vmargin: 0.35em;
-		
+
 		display: inline-block;
 		margin: $vmargin $hmargin $vmargin 0;
 		&:last-child {
 			margin-right: 0;
 		}
 	}
-	
+
 	a {
 		@include link-transition;
 		color: inherit;
@@ -135,7 +135,7 @@
 			color: $blue;
 		}
 	}
-	
+
 	.svg-icon {
 		position: relative;
 		display: inline-block;
@@ -144,34 +144,34 @@
 		margin-right: 0.3em;
 		top: -0.1em;
 	}
-	
+
 	.byline {
 		.svg-icon {
 			transform: scale(1.1);
 			top: -0.13em;
 		}
 	}
-	
+
 	.est-reading-time {
 		.svg-icon {
 			transform: scale(0.88);
 		}
 	}
-	
+
 	.cat-links {
 		.svg-icon {
 			transform: scale(0.9);
 			top: -0.12em;
 		}
 	}
-	
+
 	.comments-link {
 		white-space: nowrap;
 		.svg-icon {
 			transform: scale(0.87);
 		}
 	}
-	
+
 	.edit-link {
 		white-space: nowrap;
 		.svg-icon {
@@ -183,13 +183,13 @@
 @mixin entry-footer {
 	@include font-size( 12px );
 	@include font-smoothing;
-	
+
 	margin-top: 1.5em;
-	
+
 	@include media( tablet ) {
 		@include font-size( 13px );
 	}
-	
+
 	@include entry-footer-style;
 }
 
@@ -198,11 +198,11 @@
 	content: "–";
 	transform: scaleX(1.8);
 	margin: 0 0.5em;
-	
+
 	@include media( tablet ) {
 		margin: 0 0.35em;
 	}
-	
+
 	@include media( desktop ) {
 		margin: 0 0.3em;
 	}
@@ -215,12 +215,12 @@
 	margin: 0 0 1em 0;
 	width: 1.563rem;
 	height: 2px;
-	
+
 	@include media( tablet ) {
 		width: 2.5rem;
 		margin-bottom: 1.18rem;
 	}
-	
+
 	@include media( desktop ) {
 		width: 3.75rem;
 	}
@@ -228,7 +228,7 @@
 
 @mixin author-bio-font-common-styles {
 	@include font-size( 22px );
-	
+
 	@include media( tablet ) {
 		@include font-size( 27px );
 	}
@@ -246,11 +246,11 @@
 @mixin author-description-title {
 	@include font-size( 18.5px );
 	font-family: $title_font;
-	
+
 	@include media( tablet ) {
 		@include font-size( 25px );
 	}
-	
+
 	@include media( desktop ) {
 		@include font-size( 33px );
 	}
