@@ -107,8 +107,6 @@ add_action( 'after_setup_theme', 'ip3_content_width', 0 );
 function ip3_scripts() {
 	wp_enqueue_style( 'ip3-style', get_stylesheet_uri() );
 
-	wp_enqueue_style( 'ip3-blocks-style', get_template_directory_uri() . '/stylesheets/blocks.css' );
-
 	wp_enqueue_script( 'ip3-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
 	if ( is_singular() && ip3_can_show_post_thumbnail() ) {
