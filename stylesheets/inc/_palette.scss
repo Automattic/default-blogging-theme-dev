@@ -9,8 +9,8 @@ $darker_blue: mix( $text_color, $blue, 30% );
 
 $text_color_link_hover: lighten($text_color, 22.5%);
 
-$button_background: $text_color;
+$button_background: $blue;
 
-$button_hover_background: $blue;
+$button_hover_background: $text_color;
 
 $text_selection_background: #ccf0ff;
