@@ -15,18 +15,18 @@
 @mixin comment-user-avatar( $incr: 0 ) {
 	
 	img {
-		@include dimensions( $avatar_size_small );
+		@include dimensions( $avatar-size-small );
 
 		border-radius: 100%;
 		display: block;
 		
-		@include box-shadow( $avatar_size_normal + $incr );
-		padding: $avatar_border_small + $incr;
+		@include box-shadow( $avatar-size-normal + $incr );
+		padding: $avatar-border-small + $incr;
 			
 		@include media( tablet ) {
-			@include box-shadow( $avatar_border_normal + $incr );
-			@include dimensions( $avatar_size_normal );
-			padding: $avatar_border_normal + $incr;
+			@include box-shadow( $avatar-border-normal + $incr );
+			@include dimensions( $avatar-size-normal );
+			padding: $avatar-border-normal + $incr;
 		}
 	}
 
@@ -72,7 +72,7 @@
 	
 	.no-comments {
 		font-weight: bold;
-		font-family: $title_font;
+		font-family: $x-title-font;
 		color: $light_text;
 		margin: 1.2em 0 0 0;
 	}
@@ -104,7 +104,7 @@
 #comments > #respond {
 	
 	@include media( desktop ) {
-		padding-left: $comment_avatar_padding_desktop;
+		padding-left: $x-comment-avatar-padding-desktop;
 	}
 	
 	.comment-user-avatar {
@@ -116,7 +116,7 @@
 			top: 0; left: 0;
 			
 			img {
-				@include dimensions( $avatar_size_normal );
+				@include dimensions( $avatar-size-normal );
 			}
 		}
 	}
@@ -160,14 +160,14 @@
 	
 	.children {
 		margin: 0;
-		padding: 0 0 0 $threaded_comments_padding_mobile;
+		padding: 0 0 0 $x-threaded-comments-padding-mobile;
 		
 		@include media( tablet ) {
-			padding-left: $threaded_comments_padding_tablet;
+			padding-left: $x-threaded-comments-padding-tablet;
 		}
 
 		@include media( desktop ) {
-			padding-left: $threaded_comments_padding_desktop;
+			padding-left: $x-threaded-comments-padding-desktop;
 		}
 	}
 	
@@ -218,7 +218,7 @@
 	}
 	
 	@include media( tablet ) {
-		padding-left: $comment_avatar_padding_tablet;
+		padding-left: $x-comment-avatar-padding-tablet;
 		
 		.children {
 			padding-left: 0;
@@ -260,7 +260,7 @@
 			
 			position: relative;
 			display: block;
-			font-family: $title_font;
+			font-family: $x-title-font;
 			font-weight: bold;
 			margin-bottom: -0.1em;
 			top: -0.18em;
@@ -285,7 +285,7 @@
 	}
 	
 	.comment-metadata {
-		font-family: $title_font;
+		font-family: $x-title-font;
 		padding: 1px 0;
 		line-height: 1.6;
 		
@@ -420,7 +420,7 @@
 
 .comment-reply-link, #cancel-comment-reply-link {
 	@include font-size( 13px, rem );
-	font-family: $title_font;
+	font-family: $x-title-font;
 	font-weight: 500;
 	
 	@include media( desktop ) {
@@ -444,7 +444,8 @@
 	li {
 		position: relative;
 		list-style: none;
-		margin: 0 -1*$discussion_avatar_pull_margin 0 0;
+		margin: 0;
+		margin-right: calc( -1 * #{$x-discussion-avatar-pull-margin} );
 		padding: 0;
 		float: left;
 	}
@@ -454,7 +455,7 @@
 		
 		@include media( tablet ) {
 			img {
-				@include dimensions( $avatar_size_small );
+				@include dimensions( $avatar-size-small );
 			}
 		}
 	}
@@ -465,13 +466,13 @@
 	
 	.discussion-avatar-list {
 		display: inline-block;
-		margin-right: $discussion_avatar_pull_margin;
+		margin-right: $x-discussion-avatar-pull-margin;
 	}
 	
 	.discussion-meta-info {
 		@include font-size( 14px );
 		color: $light_text;
-		font-family: $title_font;
+		font-family: $x-title-font;
 		margin: 0.0em 0 0 0;
 		letter-spacing: -0.025em;
 		font-weight: 500;
@@ -566,7 +567,7 @@
 	.comment-form-url {
 		label {
 			@include font-size( 14px );
-			font-family: $title_font;
+			font-family: $x-title-font;
 			user-select: none;
 			font-weight: 600;
 		}

@@ -17,7 +17,7 @@ module.exports = function( grunt ) {
 		sass: {
 			build: {
 				options: {
-					style: 'expanded',
+					outputStyle: 'expanded',
 					require: 'susy',
 					sourcemap: 'none',
 					includePaths: require( 'node-bourbon' ).includePaths

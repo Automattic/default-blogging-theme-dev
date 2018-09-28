@@ -42,7 +42,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 		}
 		
 		a.author-link {
-			font-family: $title_font;
+			font-family: $x-title-font;
 			font-weight: 700;
 			display: inline-block;
 		
@@ -105,7 +105,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 			}
 			
 			.post-title {
-				font-family: $title_font;
+				font-family: $x-title-font;
 				font-weight: bold;
 				hyphens: auto;
 			}

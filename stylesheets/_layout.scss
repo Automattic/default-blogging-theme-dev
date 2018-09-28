@@ -26,9 +26,9 @@
 	box-sizing: content-box;
 	
 	@include media( tablet ) {
-		border-right: solid $logo_wrapper_width_tablet transparent; // rgba( red, 0.5);
-		width: calc( 100% - 2*#{$logo_wrapper_width_tablet} );
-		margin-left: $logo_wrapper_width_tablet;
+		border-right: solid $x-logo-wrapper-width-tablet transparent; // rgba( red, 0.5);
+		width: calc( 100% - 2*#{$x-logo-wrapper-width-tablet} );
+		margin-left: $x-logo-wrapper-width-tablet;
 		
 		body.home & {
 			margin-left: 0;
@@ -36,9 +36,9 @@
 	}
 	
 	@include media( desktop ) {
-		border-right: solid $logo_wrapper_width_desktop transparent; // rgba( red, 0.5);
-		width: calc( 100% - 2*#{$logo_wrapper_width_desktop} );
-		margin-left: $logo_wrapper_width_desktop;
+		border-right: solid $x-logo-wrapper-width-desktop transparent; // rgba( red, 0.5);
+		width: calc( 100% - 2*#{$x-logo-wrapper-width-desktop} );
+		margin-left: $x-logo-wrapper-width-desktop;
 	}
 	
 }
@@ -66,11 +66,11 @@
 .site-logo {
 	
 	@include media( tablet ) {
-		width: $logo_wrapper_width_tablet;
+		width: $x-logo-wrapper-width-tablet;
 	}
 	
 	@include media( desktop ) {
-		width: $logo_wrapper_width_desktop;
+		width: $x-logo-wrapper-width-desktop;
 	}
 	
 	.custom-logo-link {
@@ -114,7 +114,7 @@
 	.page-title {
 		@include font-size( 24px );
 
-		font-family: $title_font;
+		font-family: $x-title-font;
 		line-height: 1.35;
 		
 		@include media( tablet ) {
@@ -175,7 +175,7 @@
 	.taxonomy-description {
 		@include font-size( 25px );
 		
-		font-family: $title_font;
+		font-family: $x-title-font;
 		
 		&:after {
 			content: ".";
@@ -214,7 +214,7 @@
 		
 		a {
 			@include font-size( 15px );
-			font-family: $title_font;
+			font-family: $x-title-font;
 			color: $light_text;
 			font-weight: 600;
 		}
@@ -264,5 +264,5 @@
 .posts-navigation {
 	@include font-size( 19px );
 	
-	margin-top: $footer_sep;
+	margin-top: $x-footer-sep;
 }

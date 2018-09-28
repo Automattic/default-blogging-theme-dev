@@ -70,7 +70,7 @@
 	@include font-size( 26px );
 	@include font-smoothing;
 
-	font-family: $title_font;
+	font-family: $x-title-font;
 	font-weight: 600;
 	margin: 0.1em 0 0.7em 0;
 	line-height: 1.2;
@@ -112,7 +112,7 @@
 }
 
 @mixin entry-footer-style {
-	font-family: $title_font;
+	font-family: $x-title-font;
 	font-weight: 500;
 	color: lighten($light_text, 0%);
 	
@@ -245,7 +245,7 @@
 
 @mixin author-description-title {
 	@include font-size( 18.5px );
-	font-family: $title_font;
+	font-family: $x-title-font;
 	
 	@include media( tablet ) {
 		@include font-size( 25px );

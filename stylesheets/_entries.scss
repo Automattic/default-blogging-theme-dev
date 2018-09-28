@@ -158,7 +158,7 @@
 			
 			@include media( desktop ) {
 				display: block;
-				margin-top: -1*($avatar_size_small + 2*$avatar_border_small);
+				margin-top: calc( -1*(#{$avatar-size-small} + 2*#{$avatar-border-small}) );
 				margin-bottom: 0.4em;
 			}
 		}

@@ -1,13 +1,18 @@
 
+/**
+ * Note: Sass variables prefixed with "$x-" will be converted
+ *       into CSS4 variables on the build process.
+ */ 
+
 // Typography
 
-$text_font: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
+$x-text-font: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
 
-$title_font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+$x-title-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
 
-$monospace_font: Menlo, monaco, Consolas, Lucida Console, monospace;
+$x-monospace-font: Menlo, monaco, Consolas, Lucida Console, monospace;
 
-$base_size: 18px;
+$base-size: 18px;
 
 // Screen widths.
 
@@ -23,37 +28,37 @@ $side_padding: 20px;
 
 // Separations.
 
-$footer_sep: 3.5rem;
+$x-footer-sep: 3.5rem;
 
 // Logo wrapper.
 
-$logo_wrapper_width_tablet: 108px;
+$x-logo-wrapper-width-tablet: 108px;
 
-$logo_wrapper_width_desktop: 172px;
+$x-logo-wrapper-width-desktop: 172px;
 
 // Comments.
 
-$threaded_comments_padding_mobile: 20px;
+$x-threaded-comments-padding-mobile: 20px;
 
-$threaded_comments_padding_tablet: 20px;
+$x-threaded-comments-padding-tablet: 20px;
 
-$threaded_comments_padding_desktop: 20px;
+$x-threaded-comments-padding-desktop: 20px;
 
-$comment_avatar_padding_tablet: 70px;
+$x-comment-avatar-padding-tablet: 70px;
 
-$comment_avatar_padding_desktop: 70px;
+$x-comment-avatar-padding-desktop: 70px;
 
-$discussion_avatar_pull_margin: 8px;
+$x-discussion-avatar-pull-margin: 8px;
 
 // Avatar sizes.
 
-$avatar_size_normal: 40px;
+$avatar-size-normal: 40px;
 
-$avatar_border_normal: 4px;
+$avatar-border-normal: 4px;
 
-$avatar_size_small: 28px;
+$avatar-size-small: 28px;
 
-$avatar_border_small: 4px;
+$avatar-border-small: 4px;
 
 // Transition timeouts.
 

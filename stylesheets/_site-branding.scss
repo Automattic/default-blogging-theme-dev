@@ -344,7 +344,7 @@
 		@include font-size( 25px );
 
 		display: inline;
-		font-family: $title_font;
+		font-family: $x-title-font;
 		color: $text_color;
 		font-weight: 600;
 		
@@ -454,7 +454,7 @@
 		
 		ul.main-menu {
 			
-			font-family: $title_font;
+			font-family: $x-title-font;
 			display: inline;
 			margin: 0;
 			padding: 0;
@@ -626,7 +626,7 @@
 	@include font-smoothing;
 	@include font-size( 15px );
 	
-	margin: $footer_sep 0 ($footer_sep - 0.5rem) 0;
+	margin: $x-footer-sep 0 calc(#{$x-footer-sep} - 0.5rem) 0;
 	padding: 0;
 	
 	color: $light_text;

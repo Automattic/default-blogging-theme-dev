@@ -2,16 +2,23 @@
 PKG="blogging-theme"
 
 default: build
+	
+clean:
+	@rm -Rf build vars-build.*
 
-build:
+build: clean
 	@grunt build
 	
-dev:
+dev: clean
 	@grunt build && grunt watch
 	
-theme:
-	@echo "* Initializing build"; rm -Rf build; mkdir -p build
-	@echo "* Building assets"; grunt build > /dev/null
+vars: clean
+	@node tools/sass-variables.js --prefix=x style.scss > vars-build.scss
+	@grunt build && mv vars-build.css style.css # && rm -f vars-build.scss
+
+theme: clean
+	@echo "* Initializing build"; mkdir -p build
+	@echo "* Building assets"; make vars > /dev/null
 	@echo "* Copying assets"; rsync -a . build/ --exclude-from=excludes.rsync
 	@echo "* Integrity check"; node tools/buildtool.js --check --path build/
 	@echo "* Zipping"; mv build ${PKG}; mkdir build; zip -mqr build/${PKG}.zip ${PKG}; cd build/; unzip -qq ${PKG}.zip

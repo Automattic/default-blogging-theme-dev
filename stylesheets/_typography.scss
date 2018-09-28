@@ -8,10 +8,10 @@ select,
 optgroup,
 textarea {
 	text-rendering: optimizeLegibility;
-	font-family: $text_font;
+	font-family: $x-text-font;
 	color: #111;
 	font-weight: 400;
-	font-size: $base_size;
+	font-size: $base-size;
 	line-height: 1.5;
 }
 
@@ -38,7 +38,7 @@ address {
 pre {
 	@include font-size( 15px );
 	background: #eee;
-	font-family: $monospace_font;
+	font-family: $x-monospace-font;
 	font-size: 0.9375rem;
 	line-height: 1.6;
 	margin-bottom: 1.6em;
@@ -49,7 +49,7 @@ pre {
 
 code, kbd, tt, var {
 	@include font-size( 15px );
-	font-family: $monospace_font;
+	font-family: $x-monospace-font;
 	font-size: 0.9375rem;
 }
 

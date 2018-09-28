@@ -1,27 +1,45 @@
-/* sass-variables.js */
+/**
+ * Sass CSS4 Variables
+ *
+ * Process Sass source code and converts variables using a specified prefix
+ * to CSS4 variabels automatically.
+ */
+
+require( 'colors' );
+
+const minimist = require( 'minimist' );
 
 const { basename, dirname } = require( 'path' );
 const { existsSync, readFileSync } = require( 'fs' );
 
-const IGNORE_IMPORTS=[ "bourbon" ];
-
-const VAR_PREFIX="x-";
-
-const VAR_PREFIX_REGEX = new RegExp( `^\\$${VAR_PREFIX}` );
-
-const VAR_INTERPOLATION_REGEX = new RegExp( `#\\s*{\s*\\$${VAR_PREFIX}([a-z0-9-_]+)\s*}`, 'g' );
+let IGNORE_IMPORTS, VAR_PREFIX;
+let VAR_PREFIX_REGEX, VAR_INTERPOLATION_REGEX;
 
 class SassVariablesCLI {
 
 	constructor() {
-		const args = process.argv.slice(2);
+		const opts = minimist( process.argv.slice( 2 ) );
+		const prefix = opts.prefix || 'x';
+		const ignore = ( opts.ignore || '' ).toString().split( /,+/ ).filter( x => x ).concat( ['bourbon', 'susy'] );
+		const args = opts._;
+		
 		if ( 1 == args.length ) {
 			const file = args[0];
+			const options = { prefix, ignore };
 			this.check( file );
-			this.run( file );
+			this.prepare( options );
+			this.run( file, options );
 		} else {
 			this.usage();
 		}
+	}
+	
+	prepare( opts ) {
+		const { prefix, ignore } = opts;
+		IGNORE_IMPORTS=ignore;
+		VAR_PREFIX = `${prefix}-`;
+		VAR_PREFIX_REGEX = new RegExp( `^\\$${VAR_PREFIX}` );
+		VAR_INTERPOLATION_REGEX = new RegExp( `#\\s*{\s*\\$${VAR_PREFIX}([a-z0-9-_]+)\s*}`, 'g' );
 	}
 
 	check( file ) {
@@ -31,17 +49,21 @@ class SassVariablesCLI {
 		}
 	}
 
-	run( file ) {
+	run( file, options ) {
 		const buf = readFileSync( file, 'utf8' ).trim();
 		const sass = new SassImportsResolver( buf ).toString();
-		const processed = new SassVariableResolver( sass ).toString();
+		const processed = new SassVariableResolver( sass, options ).toString();
 	}
 	
 	usage() {
-		console.log( 'Usage: %s <sass-file>', basename( __filename ) );
+		const script = basename( __filename );
+		console.log( 'Usage: %s <sass-file>', script );
+		console.log( 'Usage: %s --prefix=<prefix> <sass-file>', script );
+		console.log( 'Usage: %s --ignore=<file1,file2,...> <sass-file>', script );
+		console.log( 'Usage: %s --before-selector=<selector> <sass-file>', script );
 		process.exit( 1 );
 	}
-	
+
 }
 
 class SassImportsResolver {
@@ -82,7 +104,7 @@ class SassImportsResolver {
 					const sass = new SassImportsResolver( buf, path );
 					return sass.toString();
 				} else {
-					throw new Error( `Bad Import: ${ line }` );
+					throw new Error( `Bad Import: ${ line } (Use --ignore to ignore this import)`.red );
 				}
 			}
 		}
@@ -93,13 +115,13 @@ class SassImportsResolver {
 
 class SassVariableResolver {
 	
-	constructor( buf ) {
+	constructor( buf, options ) {
 		let sass = buf;
 		const spec = this.getVariables( buf );
-		const root = this.renderRoot( spec );
 		sass = this.addMediaQueryVariables( sass, spec );
 		sass = this.addFallbacks( sass, spec );
-		console.log( `${root}\n${sass}` );
+		sass = this.insertRoot( sass, spec, options );
+		console.log( sass );
 	}
 	
 	addMediaQueryVariables( buf, spec ) {
@@ -152,15 +174,20 @@ class SassVariableResolver {
 
 	renderRoot( spec ) {
 		const self = this;
-		const root = Object.keys( spec ).reduce( ( acc, key ) => {
-		const prop = self.sassToCSSVar( key );
-		const val = self.replaceInterpolatedVariables( spec[ key ] );
+		const rootBlock = Object.keys( spec ).reduce( ( acc, key ) => {
+			const prop = self.sassToCSSVar( key );
+			const val = self.replaceInterpolatedVariables( spec[ key ] );
 			acc.push( `  ${prop}: ${val};` );
 			return acc;
 		}, []).join( "\n" );
-		return `::root {\n${root}\n}`;
+		return `:root {\n${rootBlock}\n}`;
 	}
 	
+	insertRoot( sass, spec, options ) {
+		const rootBlock = this.renderRoot( spec );
+		return `${rootBlock}\n${sass}`;
+	}
+
 	sassToCSSVar( x ) {
 		return x.replace( VAR_PREFIX_REGEX, '--' );
 	}
