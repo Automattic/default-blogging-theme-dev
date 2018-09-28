@@ -1,8 +1,7 @@
 /**
  * Sass CSS4 Variables
  *
- * Process Sass source code and converts variables using a specified prefix
- * to CSS4 variabels automatically.
+ * Converts Sass variables with a given prefix into CSS4 variables.
  */
 
 require( 'colors' );
