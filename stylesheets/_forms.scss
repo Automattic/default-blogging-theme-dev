@@ -9,7 +9,7 @@ input[type="submit"] {
 	@include button-transition;
 	
 	border: none;
-	background: $button_background;
+	background: $x-button-background;
 	font-family: $x-title-font;
 	box-sizing: border-box;
 	font-weight: 600;
@@ -33,7 +33,7 @@ input[type="submit"] {
 	}
 	
 	&:hover, &:focus {
-		background: $button_hover_background;
+		background: $x-button-hover-background;
 	}
 	
 	&:focus {
@@ -43,8 +43,8 @@ input[type="submit"] {
 
 }
 
-$input_border_color: lighten( $light_text, 25% );
-$input_background_color: mix( $light_text, white, 5.5% );
+$input_border_color: $x-light-text-lighter-2;
+$input_background_color: $x-light-text-lighter-1;
 $input_padding: 0.5em;
 
 input[type="text"],
@@ -71,8 +71,8 @@ textarea {
 	background: $input_background_color;
 	
 	&:focus {
-		border-color: $blue;
-		outline: thin solid rgba( $blue, 0.15 );
+		border-color: $x-main-color;
+		outline: thin solid $x-main-color-rgba-1;
 		background: white;
 		outline-offset: -4px;
 	}

@@ -34,7 +34,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 		
 		word-spacing: -0.05em;
 		display: inline;
-		color: $light_text;
+		color: $x-light-text;
 		line-height: 1.3;
 
 		&:before {
@@ -48,7 +48,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 		
 			&:hover {
 				@include link-transition;
-				color: $darker_blue;
+				color: $x-main-color-darker-1;
 				text-decoration: none;
 			}
 		}
@@ -92,14 +92,14 @@ $author_bio_vsep_reduction_factor: 0.6;
 			}
 			
 			.meta-nav {
-				color: $light_text;
+				color: $x-light-text;
 				user-select: none;
 				
 				&:before, &:after {
 					display: none;
 					content: "—";
 					width: 2em;
-					color: $light_text;
+					color: $x-light-text;
 					height: 1em;
 				}
 			}
@@ -112,7 +112,7 @@ $author_bio_vsep_reduction_factor: 0.6;
 			
 			&:hover {
 				text-decoration: none;
-				color: $darker_blue;
+				color: $x-main-color-darker-1;
 			}
 
 		}

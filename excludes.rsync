@@ -13,6 +13,7 @@
 Gruntfile.js
 package.json
 package-lock.json
+readme-cssvars.md
 manifest.json
 update.sh
 Makefile

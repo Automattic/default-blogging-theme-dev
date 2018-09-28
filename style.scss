@@ -29,6 +29,9 @@ Nicolas Gallagher and Jonathan Neal https://necolas.github.io/normalize.css/
 @import "stylesheets/inc/utilities";
 @import "stylesheets/inc/mixins";
 
+// Root.
+:root {}
+
 // Stylesheets.
 @import "stylesheets/normalize";
 @import "stylesheets/typography";

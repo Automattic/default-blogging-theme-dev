@@ -9,7 +9,7 @@ optgroup,
 textarea {
 	text-rendering: optimizeLegibility;
 	font-family: $x-text-font;
-	color: #111;
+	color: $x-text-color;
 	font-weight: 400;
 	font-size: $base-size;
 	line-height: 1.5;
@@ -68,7 +68,7 @@ big {
 }
 
 a {
-	color: $blue;
+	color: $x-main-color;
 	text-decoration: none;
 	
 	&:hover {
@@ -77,5 +77,5 @@ a {
 }
 
 @include selection {
-	background: $text_selection_background;
+	background: $x-text-selection-background;
 }

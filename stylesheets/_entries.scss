@@ -37,7 +37,7 @@
 //				@include link-transition;
 				&:hover {
 					text-decoration: none;
-					color: $darker_blue;
+					color: $x-main-color-darker-1;
 				}
 			}
 		}
@@ -56,7 +56,7 @@
 		
 		.post-thumbnail-inner {
 			display: block;
-			border: solid 10px $text_color;
+			border: solid 10px $x-text-color;
 			margin-bottom: 1.5em;
 
 			img {
@@ -115,7 +115,7 @@
 			}
 			
 			&:hover {
-				color: $blue;
+				color: $x-main-color;
 				text-decoration: none;
 			}
 		}

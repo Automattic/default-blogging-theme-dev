@@ -73,7 +73,7 @@
 			text-decoration: none;
 			
 			&:hover {
-				color: $darker_blue;
+				color: $x-main-color-darker-1;
 			}
 		}
 	}
@@ -270,7 +270,7 @@
 	
 	/* Second layer: screen. */
 	.singular-post-meta:before {
-		background: $blue;
+		background: $x-main-color;
 		mix-blend-mode: screen;
 		opacity: 0.1;
 		z-index: 2;
@@ -278,7 +278,7 @@
 	
 	/* Third layer: multiply. */
 	.singular-post-meta:after {
-		background: $blue;
+		background: $x-main-color;
 		mix-blend-mode: multiply;
 		opacity: 1;
 		z-index: 3;
@@ -294,7 +294,7 @@
 	
 	/* Fifth layer: readability overlay */
 	&:after {
-		background: mix($blue, black, 12%);
+		background: $x-main-color-darker-2;
 		
 		/**
 		 * Add a transition to the readability overlay, to add a subtle
@@ -324,7 +324,7 @@
 
 .site-branding {
 	letter-spacing: -0.02em;
-	color: $light_text;
+	color: $x-light-text;
 	line-height: 1.35;
 	
 	body.home & {
@@ -345,7 +345,7 @@
 
 		display: inline;
 		font-family: $x-title-font;
-		color: $text_color;
+		color: $x-text-color;
 		font-weight: 600;
 		
 		.header-default & {
@@ -374,7 +374,7 @@
 			color: inherit;
 			
 			&:hover {
-				color: $text_color_link_hover;
+				color: $x-link-hover-color;
 			}
 		}
 		
@@ -396,7 +396,7 @@
 	.site-description {
 		@include font-smoothing;
 		@include font-size( 25px );
-		color: $light_text;
+		color: $x-light-text;
 		font-weight: normal;
 
 		@include media( tablet ) {
@@ -466,14 +466,14 @@
 					@include link-transition;
 
 					&:hover {
-						color: $darker_blue;
+						color: $x-main-color-darker-1;
 					}
 
 					&:after {
 						content: ",";
 						display: inline;
 						margin-left: 0.03em;
-						color: $light_text;
+						color: $x-light-text;
 					}
 				}
 				
@@ -486,7 +486,7 @@
 					@include link-transition;
 					text-decoration: none;
 					font-weight: 700;
-					color: $blue;
+					color: $x-main-color;
 					margin-right: 0.1em;
 					letter-spacing: -0.02em;
 					
@@ -590,7 +590,7 @@
 					}
 					
 					&:hover {
-						fill: $blue;
+						fill: $x-main-color;
 					}
 					
 					@include media( tablet ) {
@@ -629,13 +629,13 @@
 	margin: $x-footer-sep 0 calc(#{$x-footer-sep} - 0.5rem) 0;
 	padding: 0;
 	
-	color: $light_text;
+	color: $x-light-text;
 	
 	a {
 		color: inherit;
 		&:hover {
 			text-decoration: none;
-			color: $blue;
+			color: $x-main-color;
 		}
 	}
 }

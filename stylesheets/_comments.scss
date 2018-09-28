@@ -7,9 +7,7 @@
 
 @mixin box-shadow( $size ) {
 	box-shadow:
-		0 0 0 $size $text_color inset,         	// Original border.
-		0 0 0 ($size + 1px) $text_color inset, 	// Antialiasing, inner edge.
-		0 0 1px 0 rgba( $text_color, 0.7 );  	// Antialiasing, outer edge.
+		0 0 0 $size $x-text-color inset, 0 0 0 ($size + 1px) $x-text-color inset, 0 0 1px 0 $x-text-color;
 }
 
 @mixin comment-user-avatar( $incr: 0 ) {
@@ -73,7 +71,7 @@
 	.no-comments {
 		font-weight: bold;
 		font-family: $x-title-font;
-		color: $light_text;
+		color: $x-light-text;
 		margin: 1.2em 0 0 0;
 	}
 	
@@ -276,7 +274,7 @@
 				@include link-transition;
 				color: inherit;
 				&:hover {
-					color: $darker_blue;
+					color: $x-main-color-darker-1;
 					text-decoration: none;
 				}
 			}
@@ -300,7 +298,7 @@
 			@include font-size( 14px );
 			@include link-transition;
 			font-weight: 500;
-			color: $light_text;
+			color: $x-light-text;
 			vertical-align: middle;
 			letter-spacing: -0.025em;
 			line-height: 1;
@@ -310,7 +308,7 @@
 			}
 
 			&:hover {
-				color: darken($light_text, 10%);
+				color: $x-light-text-darker-3;
 				text-decoration: none;
 			}
 		}
@@ -334,29 +332,29 @@
 		.edit-link-sep {
 			@include edit-link-transition;
 			margin: 0 0.2em;
-			color: $light_text;
+			color: $x-light-text;
 			vertical-align: middle;
 		}
 
 		.edit-link {
 			@include edit-link-transition;
-			color: $light_text;
+			color: $x-light-text;
 			
 			svg {
 				@include svg-transition;
 				transform: scale(0.8);
 				vertical-align: middle;
 				margin-right: 0.1em;
-				fill: $light_text;
+				fill: $x-light-text;
 				
 				&:hover {
-					fill: $light_text !important;
+					fill: $x-light-text !important;
 				}
 			}
 			
 			&:hover {
 				svg {
-					fill: $blue;
+					fill: $x-main-color;
 				}
 			}
 		}
@@ -370,9 +368,9 @@
 			z-index: 1;
 			
 			&:hover {
-				color: $blue;
+				color: $x-main-color;
 				svg {
-					fill: $blue;
+					fill: $x-main-color;
 				}
 			}
 			
@@ -397,7 +395,7 @@
 	
 	display: block;
 	position: absolute;
-	background: lighten( $blue, 8% );
+	background: $x-main-color-lighter-1;
 	transform: scale(0.85);
 	left: 20px;
 	margin: -6px 0 0 2px;
@@ -430,7 +428,7 @@
 	&:hover {
 		@include link-transition;
 		text-decoration: none;
-		color: $darker_blue;
+		color: $x-main-color-darker-1;
 	}
 	
 }
@@ -471,7 +469,7 @@
 	
 	.discussion-meta-info {
 		@include font-size( 14px );
-		color: $light_text;
+		color: $x-light-text;
 		font-family: $x-title-font;
 		margin: 0.0em 0 0 0;
 		letter-spacing: -0.025em;
@@ -479,7 +477,7 @@
 		
 		.svg-icon {
 			vertical-align: middle;
-			fill: $light_text;
+			fill: $x-light-text;
 			transform: scale( 0.6 ) scaleX(-1) translateY(-0.1em);
 			margin-left: -0.25em; // Align icon with avatars above.
 		}

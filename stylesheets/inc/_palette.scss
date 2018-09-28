@@ -1,16 +1,36 @@
 
-$text_color: #111;
+$x-text-color: #111;
 
-$light_text: lighten( #929292, 1% );
+$x-text-color-light-1: lighten( $x-text-color, 50% );
 
-$blue: #0999d4;
+$x-light-text: lighten( #929292, 1% );
 
-$darker_blue: mix( $text_color, $blue, 30% );
+$x-light-text-lighter-1: lighten( $x-light-text, 5.5% );
 
-$text_color_link_hover: lighten($text_color, 22.5%);
+$x-light-text-lighter-2: lighten( $x-light-text, 25% );
 
-$button_background: $text_color;
+$x-light-text-darker-1: darken( $x-light-text, 5% );
 
-$button_hover_background: $blue;
+$x-light-text-darker-2: darken( $x-light-text, 8% );
 
-$text_selection_background: #ccf0ff;
+$x-light-text-darker-3: darken( $x-light-text, 10% );
+
+$x-main-color: #0999d4;
+
+$x-main-color-lighter-1: lighten( $x-main-color, 8% );
+
+$x-main-color-darker-1: mix( $x-text-color, $x-main-color, 30% );
+
+$x-main-color-darker-2: mix($x-main-color, black, 12%);
+
+$x-main-color-rgba-1: rgba( $x-main-color, 0.15 );
+
+$x-link-hover-color: lighten( $x-text-color, 22.5% );
+
+$x-button-background: $x-text-color;
+
+$x-button-hover-background: $x-main-color;
+
+$x-text-selection-background: #ccf0ff;
+
+$x-body-background-color: white;

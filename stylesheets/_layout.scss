@@ -158,7 +158,7 @@
 		@include font-size( 27px );
 
 		font-weight: 400;
-		color: darken( $light_text, 5% );
+		color: $x-light-text-darker-1;
 		line-height: 1.35;
 		margin: 0 0 -0.1em;
 		
@@ -180,7 +180,7 @@
 		&:after {
 			content: ".";
 			font-weight: bold;
-			color: $light_text;
+			color: $x-light-text;
 		}
 		
 		@include media( tablet ) {
@@ -215,7 +215,7 @@
 		a {
 			@include font-size( 15px );
 			font-family: $x-title-font;
-			color: $light_text;
+			color: $x-light-text;
 			font-weight: 600;
 		}
 		
@@ -237,7 +237,7 @@
 			@include svg-transition;
 			vertical-align: middle;
 			position: relative;
-			fill: $light_text;
+			fill: $x-light-text;
 			margin: 0 -0.35em;
 			top: -1px;
 		}
@@ -247,9 +247,9 @@
 
 			&:hover {
 				text-decoration: none;
-				color: $blue;
+				color: $x-main-color;
 				svg {
-					fill: $blue;
+					fill: $x-main-color;
 				}
 			}
 		}
