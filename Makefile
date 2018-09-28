@@ -14,7 +14,7 @@ dev: clean
 	
 vars: clean
 	@node tools/sass-variables.js --prefix=x style.scss > vars-build.scss
-	@grunt build && mv vars-build.css style.css # && rm -f vars-build.scss
+	@grunt build && mv vars-build.css style.css && rm -f vars-build.scss
 
 theme: clean
 	@echo "* Initializing build"; mkdir -p build
