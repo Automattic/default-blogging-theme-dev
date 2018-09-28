@@ -117,7 +117,7 @@ class SassVariableResolver {
 	
 	constructor( buf, options ) {
 		let sass = buf;
-		const spec = this.getVariables( buf );
+		const spec = this.getSpec( buf );
 		sass = this.addMediaQueryVariables( sass, spec );
 		sass = this.addFallbacks( sass, spec );
 		sass = this.insertRoot( sass, spec, options );
@@ -155,7 +155,7 @@ class SassVariableResolver {
 	
 	addPropertyFallbacks( buf, spec, filter ) {
 		const self = this;
-		return buf.replace( /(;|{|\s*)(:|::)?(\$)?([a-z0-9-]+)\s*:\s*(.+)(\s*)(;?|})/g, (match, before='', colon='', varPrefix='', property, value, whiteSpace='', end ) => {
+		return buf.replace( /(;|{|\s*)(:|::)?(\$)?([a-z0-9-_]+)\s*:\s*(.+)(\s*)(;?|})/g, (match, before='', colon='', varPrefix='', property, value, whiteSpace='', end ) => {
 			if ( '$' === varPrefix ) {
 				return match;
 			} else {
@@ -185,7 +185,14 @@ class SassVariableResolver {
 	
 	insertRoot( sass, spec, options ) {
 		const rootBlock = this.renderRoot( spec );
-		return `${rootBlock}\n${sass}`;
+		const rootRegex = /:root\s*{\s*}/;
+		if ( rootRegex.test( sass ) ) {
+			return sass.replace( /:root\s*{\s*}/, rootBlock );
+			return `${rootBlock}\n${sass}`;
+		} else {
+			console.error( '\nNeed to specify an empty `:root {}` on your CSS, ideally located after your variables are declared.\n'.red );
+			throw new Error( 'stopping: no root specified.' );
+		}
 	}
 
 	sassToCSSVar( x ) {
@@ -196,7 +203,7 @@ class SassVariableResolver {
 		return buf.replace( VAR_INTERPOLATION_REGEX, 'var(--$1)' );
 	}
 
-	getVariables( buf ) {
+	getSpec( buf ) {
 		const prefix = `$${VAR_PREFIX}`;
 		return buf.match( /(\$[a-z0-9_-]+)\s*:\s*([^;]+);/g ).filter( line => {
 			return 0 === line.indexOf( prefix );
