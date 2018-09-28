@@ -584,6 +584,7 @@
 					@include svg-transition;
 					display: block;
 					line-height: 1;
+					fill: $x-text-color;
 					
 					&#ui-icon-link {
 						transform: rotate(-45deg);
