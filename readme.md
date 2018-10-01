@@ -4,6 +4,8 @@ This is the **development** project of the upcoming default blogging theme for W
 
 <u>This repository is **not** an installable WordPress theme</u>. It is a project that _builds_ a fully functional theme.
 
+Development demo live at https://blogging-theme.ernesto.blog/
+
 ### Instructions
 
 If you don't want to build the theme yourself, download one of the [pre-built releases](#blah) and install via WP Admin » Themes.
