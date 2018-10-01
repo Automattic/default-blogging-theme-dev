@@ -8,7 +8,7 @@ Development demo live at https://blogging-theme.ernesto.blog/
 
 ### Instructions
 
-If you don't want to build the theme yourself, download one of the [pre-built releases](#blah) and install via WP Admin » Themes.
+If you don't want to build the theme yourself, download one of the [pre-built releases](https://github.com/Automattic/default-blogging-theme-dev/releases) and install via WP Admin » Themes.
 
 To **build** the theme after you clone it:
 
