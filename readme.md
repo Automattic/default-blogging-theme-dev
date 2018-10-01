@@ -36,7 +36,7 @@ To compile your `style.css` with CSS variables, do:
 $ make vars
 ```
 
-Have in mind that CSS variables are not automatically compiled when you make changes to your Sass files while running `make dev`.
+Have in mind that CSS variables are not automatically compiled when running `make dev`.
 
 If something goes wrong, make sure you read the [DO's and DON'Ts](https://github.com/Automattic/default-blogging-theme-dev/blob/master/readme-cssvars.md) for using CSS variables with this project.
 
