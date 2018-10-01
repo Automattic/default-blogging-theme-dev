@@ -2,20 +2,23 @@
 PKG="blogging-theme"
 
 default: build
-	
-deps:
+
+check-for-grunt:
+	@if [ ! -f /usr/local/bin/grunt ]; then echo -e "\nGrunt CLI is not installed. Install it with sudo npm install -g grunt\n"; exit 1; fi
+
+deps: check-for-grunt
 	@npm install
-	
+
 clean:
 	@rm -Rf build vars-build.*
 
-build: clean
+build: clean check-for-grunt
 	@grunt build
 	
-dev: clean
+dev: clean check-for-grunt
 	@grunt build && grunt watch
 	
-vars: clean
+vars: clean check-for-grunt
 	@node tools/sass-variables.js --prefix=x style.scss > vars-build.scss
 	@grunt build && mv vars-build.css style.css && rm -f vars-build.scss
 
