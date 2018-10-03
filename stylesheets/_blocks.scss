@@ -224,6 +224,14 @@
 		}
 	}
 
+	.wp-block-cover-image {
+		.wp-block-cover-image-text,
+		h2 {
+			margin: 0;
+			padding: 1em;
+		}
+	}
+
 	//! Gallery
 	.wp-block-gallery {
 
