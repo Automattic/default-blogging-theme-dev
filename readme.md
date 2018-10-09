@@ -33,7 +33,7 @@ The compilation, replacements, and fallbacks are handled automatically for you. 
 To compile your `style.css` with CSS variables, do:
 
 ```
-$ make vars
+$ make css-vars
 ```
 
 Have in mind that CSS variables are not automatically compiled when running `make dev`.
