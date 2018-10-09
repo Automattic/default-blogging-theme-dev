@@ -1,5 +1,5 @@
 
-PKG="blogging-theme"
+PKG="theme"
 
 default: build
 
@@ -25,7 +25,7 @@ vars: clean check-for-grunt
 theme: clean
 	@echo "* Initializing build"; mkdir -p build
 	@echo "* Building assets"; make vars > /dev/null
-	@echo "* Copying assets"; rsync -a . build/ --exclude-from=excludes.rsync; mv build/readme-theme.txt build/readme.txt
+	@echo "* Copying assets"; rsync -a . build/ --exclude-from=excludes.rsync
 	@echo "* Integrity check"; node tools/buildtool.js --check --path build/
 	@echo "* Zipping"; mv build ${PKG}; mkdir build; zip -mqr build/${PKG}.zip ${PKG}; cd build/; unzip -qq ${PKG}.zip
 

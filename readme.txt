@@ -1,7 +1,7 @@
-=== Independent Publisher 3 ===
+=== THEME ===
 
 Contributors: automattic
-Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+Tags: ...
 
 Requires at least: 4.0
 Tested up to: 4.9.8
@@ -10,8 +10,6 @@ License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
-
-Independent Publisher 3 is a Gutenberg-ready theme for WordPress.com.
 
 == Installation ==
 
@@ -23,7 +21,7 @@ Independent Publisher 3 is a Gutenberg-ready theme for WordPress.com.
 
 = Does this theme support any plugins? =
 
-Independent Publisher 3 includes support for Jetpack's Infinite Scroll, as well as other features.
+THEME includes support for Jetpack's Infinite Scroll, as well as other features.
 
 == Changelog ==
 

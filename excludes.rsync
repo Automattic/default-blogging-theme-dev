@@ -1,20 +1,18 @@
 *.rsync
 *.scss
+*.md
 .*
 
 /node_modules/
 /stylesheets/
 /tools/
 /build/
-/*.md
+/docs/
 
-.tm_properties
 .gitignore
 
 Gruntfile.js
 package.json
 package-lock.json
-readme-cssvars.md
 manifest.json
-update.sh
 Makefile

@@ -1,4 +1,6 @@
 
+// Utilities.
+
 @mixin media( $res ) {
 	@if tablet == $res {
 		@media only screen and (min-width: $tablet_width) {
@@ -29,37 +31,6 @@
 	}
 	@if ( rem == $unit ) {
 		font-size: ( $size / 16px ) * 1rem;
-	}
-}
-
-@mixin dimensions( $width, $height: $width ) {
-	width: $width;
-	height: $height;
-}
-
-@mixin link-transition( $attr: color ) {
-	transition: $attr $link_transition ease-in-out;
-}
-
-@mixin svg-transition() {
-	transition: fill $icon_transition ease-in-out;
-}
-
-@mixin button-transition() {
-	transition: background $button_transition ease-in-out;
-}
-
-@mixin background-transition() {
-	transition: background $background_transition ease-in-out;
-}
-
-@mixin remove-child-margins() {
-	> *:first-child {
-		margin-top: 0;
-	}
-	
-	> *:last-child {
-		margin-bottom: 0;
 	}
 }
 

@@ -1,16 +1,7 @@
 
-/**
- * Note: Sass variables prefixed with "$x-" will be converted
- *       into CSS4 variables on the build process.
- */ 
-
 // Typography
 
 $x-text-font: "Hoefler Text", "Baskerville Old Face", Garamond, "Times New Roman", serif;
-
-$x-title-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-
-$x-monospace-font: Menlo, monaco, Consolas, Lucida Console, monospace;
 
 $base-size: 18px;
 
@@ -25,47 +16,3 @@ $desktop_width: 1168px;
 $wide_width: 1379px;
 
 $side_padding: 20px;
-
-// Separations.
-
-$x-footer-sep: 3.5rem;
-
-// Logo wrapper.
-
-$x-logo-wrapper-width-tablet: 108px;
-
-$x-logo-wrapper-width-desktop: 172px;
-
-// Comments.
-
-$x-threaded-comments-padding-mobile: 20px;
-
-$x-threaded-comments-padding-tablet: 20px;
-
-$x-threaded-comments-padding-desktop: 20px;
-
-$x-comment-avatar-padding-tablet: 70px;
-
-$x-comment-avatar-padding-desktop: 70px;
-
-$x-discussion-avatar-pull-margin: 8px;
-
-// Avatar sizes.
-
-$avatar-size-normal: 40px;
-
-$avatar-border-normal: 4px;
-
-$avatar-size-small: 28px;
-
-$avatar-border-small: 4px;
-
-// Transition timeouts.
-
-$link_transition: 110ms;
-
-$icon_transition: 120ms;
-
-$button_transition: 150ms;
-
-$background_transition: 200ms;
